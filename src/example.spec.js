@@ -1,5 +1,3 @@
-import foo from './index';
-
 test('passing example', () => {
     expect(true).toBe(true);
 });
