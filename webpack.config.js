@@ -16,14 +16,27 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, 'dist')
         },
         module: {
-            rules: [{
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }]
+            rules: [
+                {
+                    enforce: 'pre',
+                    test: /\.js$/,
+                    exclude: '/node_modules/',
+                    loader: 'eslint-loader',
+                    options: {
+                        rules: {
+                            'no-console': production ? 'error' : 'warn'
+                        }
+                    }
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                }
+            ]
         },
         plugins: [
             new CleanWebpackPlugin(),
