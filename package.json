@@ -2,13 +2,12 @@
   "name": "monsterzoo",
   "version": "1.0.0",
   "description": "👹 It's a scary zoo...",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jessevdp/monsterzoo.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "npm run dev -- --watch"
   },
   "keywords": [
     "javascript-application",
@@ -16,8 +15,12 @@
   ],
   "author": "Jesse van der Pluijm",
   "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/jessevdp/monsterzoo/issues"
+  "homepage": "https://github.com/jessevdp/monsterzoo#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
   },
-  "homepage": "https://github.com/jessevdp/monsterzoo#readme"
+  "dependencies": {}
 }
