@@ -1,33 +1,47 @@
 {
-  "name": "monsterzoo",
-  "version": "1.0.0",
-  "description": "👹 It's a scary zoo...",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
-    "dev": "webpack --mode development",
-    "watch": "npm run dev -- --watch"
-  },
-  "keywords": [
-    "javascript-application",
-    "school-project"
-  ],
-  "author": "Jesse van der Pluijm",
-  "license": "UNLICENSED",
-  "homepage": "https://github.com/jessevdp/monsterzoo#readme",
-  "devDependencies": {
-    "clean-webpack-plugin": "^2.0.1",
-    "css-loader": "^2.1.1",
-    "dotenv-webpack": "^1.7.0",
-    "eslint": "^5.16.0",
-    "eslint-loader": "^2.1.2",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.6.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
-  },
-  "dependencies": {}
+    "name": "monsterzoo",
+    "version": "1.0.0",
+    "description": "👹 It's a scary zoo...",
+    "private": true,
+    "scripts": {
+        "build": "webpack --mode production",
+        "dev": "webpack --mode development",
+        "dev:watch": "npm run dev -- --watch",
+        "test": "jest",
+        "test:coverage": "npm test -- --coverage",
+        "test:watch": "npm test -- --watch"
+    },
+    "keywords": [
+        "javascript-application",
+        "school-project"
+    ],
+    "author": "Jesse van der Pluijm",
+    "license": "UNLICENSED",
+    "homepage": "https://github.com/jessevdp/monsterzoo#readme",
+    "devDependencies": {
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3",
+        "babel-jest": "^24.7.1",
+        "clean-webpack-plugin": "^2.0.1",
+        "css-loader": "^2.1.1",
+        "dotenv-webpack": "^1.7.0",
+        "eslint": "^5.16.0",
+        "eslint-loader": "^2.1.2",
+        "html-webpack-plugin": "^3.2.0",
+        "jest": "^24.7.1",
+        "mini-css-extract-plugin": "^0.6.0",
+        "node-sass": "^4.11.0",
+        "sass-loader": "^7.1.0",
+        "webpack": "^4.30.0",
+        "webpack-cli": "^3.3.1"
+    },
+    "dependencies": {},
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.js"
+        ],
+        "moduleNameMapper": {
+            "\\.(scss|sass)$": "<rootDir>/jest/styleMock.js"
+        }
+    }
 }
