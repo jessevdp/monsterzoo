@@ -1,0 +1,23 @@
+{
+  "name": "monsterzoo",
+  "version": "1.0.0",
+  "description": "👹 It's a scary zoo...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessevdp/monsterzoo.git"
+  },
+  "keywords": [
+    "javascript-application",
+    "school-project"
+  ],
+  "author": "Jesse van der Pluijm",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jessevdp/monsterzoo/issues"
+  },
+  "homepage": "https://github.com/jessevdp/monsterzoo#readme"
+}
