@@ -3,6 +3,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const DotEnv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
     const production = argv.mode === 'production'
@@ -18,7 +19,6 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
-                    enforce: 'pre',
                     test: /\.js$/,
                     exclude: '/node_modules/',
                     loader: 'eslint-loader',
@@ -45,6 +45,9 @@ module.exports = (env, argv) => {
             }),
             new MiniCssExtractPlugin({
                 filename: '[name].[contenthash].css'
+            }),
+            new DotEnv({
+                safe: true
             })
         ],
         optimization: {
