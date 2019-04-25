@@ -4,10 +4,12 @@
   "description": "👹 It's a scary zoo...",
   "private": true,
   "scripts": {
-    "test": "jest",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "watch": "npm run dev -- --watch"
+    "test": "jest",
+    "test:coverage": "npm test -- --coverage",
+    "test:watch": "npm test -- --watch"
   },
   "keywords": [
     "javascript-application",
