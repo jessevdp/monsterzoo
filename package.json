@@ -41,7 +41,7 @@
       "src/**/*.js"
     ],
     "moduleNameMapper": {
-        "\\.(scss|sass)$": "<rootDir>/src/__mocks__/styleMock.js"
+        "\\.(scss|sass)$": "<rootDir>/jest/styleMock.js"
     }
   }
 }
