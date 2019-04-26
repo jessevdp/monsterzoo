@@ -35,7 +35,9 @@
         "webpack": "^4.30.0",
         "webpack-cli": "^3.3.1"
     },
-    "dependencies": {},
+    "dependencies": {
+        "mustache": "^3.0.1"
+    },
     "jest": {
         "collectCoverageFrom": [
             "src/**/*.js"
