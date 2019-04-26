@@ -42,6 +42,11 @@ module.exports = (env, argv) => {
                 }
             ]
         },
+        resolve: {
+            alias: {
+                '@local': path.resolve(__dirname, 'src')
+            }
+        },
         plugins: [
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
