@@ -35,6 +35,10 @@ module.exports = (env, argv) => {
                         'css-loader',
                         'sass-loader'
                     ]
+                },
+                {
+                    test: /\.template.html$/,
+                    use: ['raw-loader']
                 }
             ]
         },
