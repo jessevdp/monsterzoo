@@ -1,4 +1,4 @@
-import { renderTemplate } from './templates';
+import { renderTemplate } from './template';
 
 const utilities = {
     renderTemplate,
