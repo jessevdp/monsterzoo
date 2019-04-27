@@ -45,7 +45,8 @@
         ],
         "moduleNameMapper": {
             "\\.(scss|sass)$": "<rootDir>/jest/styleMock.js",
-            "\\.(template.html)$": "<rootDir>/jest/templateMock.js"
+            "\\.(template.html)$": "<rootDir>/jest/templateMock.js",
+            "@/(.*)$": "<rootDir>/src/$1"
         }
     }
 }
