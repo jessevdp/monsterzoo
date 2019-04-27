@@ -9,5 +9,6 @@ import mustache from 'mustache';
  * @returns {string} the rendered template populated with the data
  */
 export function renderTemplate (template, data = {}) {
+    if (typeof template != 'string') throw new Error("Invalid [template] argument, expected a string.");
     return mustache.render(template, data);
 }
