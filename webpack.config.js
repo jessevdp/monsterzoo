@@ -44,7 +44,7 @@ module.exports = (env, argv) => {
         },
         resolve: {
             alias: {
-                '@local': path.resolve(__dirname, 'src')
+                '@': path.resolve(__dirname, 'src')
             }
         },
         plugins: [
