@@ -32,7 +32,8 @@ describe('isArray', () => {
         ['string'],
         [10],
         [false],
-        [null]
+        [null],
+        [undefined]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isArray(param);
         expect(result).toBeFalsy();
