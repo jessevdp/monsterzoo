@@ -38,3 +38,12 @@ export function isNumber(value) {
     if (value == Infinity) return false;
     return typeof value === 'number';
 }
+
+/**
+ * Checks if the value passed is a boolean
+ * @param {*} value
+ * @returns {boolean}
+ */
+export function isBoolean(value) {
+    return typeof value === 'boolean';
+}
