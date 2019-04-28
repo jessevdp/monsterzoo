@@ -3,6 +3,7 @@ import {
     isArray,
     isString,
     isNumber,
+    isBoolean,
 } from './typecheck';
 
 describe('isObject', () => {
@@ -85,6 +86,29 @@ describe('isNumber', () => {
         [Infinity]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isNumber(param);
+        expect(result).toBeFalsy();
+    })
+})
+
+describe('isBoolean', () => {
+    test.each([
+        [true],
+        [false]
+    ])(`returns 'true' for booleans (%b)`, (boolean) => {
+        const result = isBoolean(boolean);
+        expect(result).toBeTruthy();
+    })
+    test.each([
+        [{}],
+        [[]],
+        ['string'],
+        [10],
+        [null],
+        [undefined],
+        [NaN],
+        [Infinity]
+    ])(`returns 'false' for other types (%#)`, (param) => {
+        const result = isBoolean(param);
         expect(result).toBeFalsy();
     })
 })
