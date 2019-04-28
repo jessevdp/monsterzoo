@@ -1,9 +1,22 @@
 import { renderTemplate } from './template';
-import { isObject } from './typecheck';
+import {
+    isObject,
+    isArray,
+    isString,
+    isNumber,
+    isBoolean,
+    isFunction
+} from './typecheck';
 
 const utilities = {
     renderTemplate,
+    
     isObject,
+    isArray,
+    isString,
+    isNumber,
+    isBoolean,
+    isFunction,
 };
 
 export default utilities;
