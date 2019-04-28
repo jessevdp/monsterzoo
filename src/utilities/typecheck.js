@@ -1,3 +1,8 @@
+/**
+ * Checks if the value passed is an object
+ * @param {*} value
+ * @returns {boolean}
+ */
 export function isObject (value) {
     if (value === null) return false;
     if (Array.isArray(value)) return false;
