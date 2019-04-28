@@ -1,2 +1,7 @@
-document.title = process.env.APP_NAME;
-document.getElementById('title').innerText = process.env.APP_NAME;
+import { renderTemplate } from '@local/utilities';
+import template from './index.template.html';
+import './index.scss';
+
+const APP_NAME = process.env.APP_NAME;
+document.title = APP_NAME;
+document.body.innerHTML = renderTemplate(template, { title: APP_NAME });

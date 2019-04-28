@@ -35,8 +35,17 @@ module.exports = (env, argv) => {
                         'css-loader',
                         'sass-loader'
                     ]
+                },
+                {
+                    test: /\.template.html$/,
+                    use: ['raw-loader']
                 }
             ]
+        },
+        resolve: {
+            alias: {
+                '@local': path.resolve(__dirname, 'src')
+            }
         },
         plugins: [
             new CleanWebpackPlugin(),

@@ -31,17 +31,22 @@
         "jest": "^24.7.1",
         "mini-css-extract-plugin": "^0.6.0",
         "node-sass": "^4.11.0",
+        "raw-loader": "^2.0.0",
         "sass-loader": "^7.1.0",
         "webpack": "^4.30.0",
         "webpack-cli": "^3.3.1"
     },
-    "dependencies": {},
+    "dependencies": {
+        "mustache": "^3.0.1"
+    },
     "jest": {
         "collectCoverageFrom": [
             "src/**/*.js"
         ],
         "moduleNameMapper": {
-            "\\.(scss|sass)$": "<rootDir>/jest/styleMock.js"
+            "\\.(scss|sass)$": "<rootDir>/jest/styleMock.js",
+            "\\.(template.html)$": "<rootDir>/jest/templateMock.js",
+            "@local(.*)$": "<rootDir>/src/$1"
         }
     }
 }
