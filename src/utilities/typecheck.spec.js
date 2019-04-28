@@ -1,6 +1,7 @@
 import { 
     isObject,
     isArray,
+    isString,
 } from './typecheck';
 
 describe('isObject', () => {
@@ -24,8 +25,8 @@ describe('isObject', () => {
 
 describe('isArray', () => {
     it(`returns 'true' for arrays`, () => {
-        const object = [];
-        const result = isArray(object);
+        const array = [];
+        const result = isArray(array);
         expect(result).toBeTruthy();
     })
     test.each([
