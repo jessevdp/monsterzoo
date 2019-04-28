@@ -95,7 +95,7 @@ describe('isBoolean', () => {
     test.each([
         [true],
         [false]
-    ])(`returns 'true' for booleans (%b)`, (boolean) => {
+    ])(`returns 'true' for booleans (%p)`, (boolean) => {
         const result = isBoolean(boolean);
         expect(result).toBeTruthy();
     })
