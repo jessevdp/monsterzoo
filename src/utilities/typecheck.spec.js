@@ -4,6 +4,7 @@ import {
     isString,
     isNumber,
     isBoolean,
+    isFunction,
 } from './typecheck';
 
 describe('isObject', () => {
@@ -109,6 +110,28 @@ describe('isBoolean', () => {
         [Infinity]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isBoolean(param);
+        expect(result).toBeFalsy();
+    })
+})
+
+describe('isFunction', () => {
+    it(`returns 'true' for functions`, () => {
+        const fn = () => {};
+        const result = isFunction(fn);
+        expect(result).toBeTruthy();
+    })
+    test.each([
+        [{}],
+        [[]],
+        ['string'],
+        [10],
+        [false],
+        [null],
+        [undefined],
+        [NaN],
+        [Infinity]
+    ])(`returns 'false' for other types (%#)`, (param) => {
+        const result = isFunction(param);
         expect(result).toBeFalsy();
     })
 })
