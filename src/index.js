@@ -1,4 +1,4 @@
-import { renderTemplate } from '@/utilities';
+import { renderTemplate } from '@local/utilities';
 import template from './index.template.html';
 import './index.scss';
 
