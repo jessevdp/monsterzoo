@@ -40,3 +40,22 @@ describe('isArray', () => {
         expect(result).toBeFalsy();
     })
 })
+
+describe('isString', () => {
+    it(`returns 'true' for strings`, () => {
+        const string = 'string';
+        const result = isString(string);
+        expect(result).toBeTruthy();
+    })
+    test.each([
+        [{}],
+        [[]],
+        [10],
+        [true],
+        [null],
+        [undefined]
+    ])(`returns 'false' for other types (%#)`, (param) => {
+        const result = isString(param);
+        expect(result).toBeFalsy();
+    })
+})
