@@ -17,7 +17,9 @@ describe('isObject', () => {
         [10],
         [false],
         [null],
-        [undefined]
+        [undefined],
+        [NaN],
+        [Infinity]
     ])(`returns 'false' for non-objects (%#)`, (param) => {
         const result = isObject(param);
         expect(result).toBeFalsy();
@@ -36,7 +38,9 @@ describe('isArray', () => {
         [10],
         [false],
         [null],
-        [undefined]
+        [undefined],
+        [NaN],
+        [Infinity]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isArray(param);
         expect(result).toBeFalsy();
@@ -55,7 +59,9 @@ describe('isString', () => {
         [10],
         [true],
         [null],
-        [undefined]
+        [undefined],
+        [NaN],
+        [Infinity]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isString(param);
         expect(result).toBeFalsy();
