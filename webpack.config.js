@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
 
     return {
         mode: production ? 'production' : 'development',
-        devtool: production ? 'nosources-source-map' : 'inline-source-map',
+        devtool: production ? 'nosources-source-map' : 'source-map',
         entry: './src/index.js',
         output: {
             filename: '[name].[contenthash].js',
