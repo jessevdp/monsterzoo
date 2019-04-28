@@ -17,3 +17,12 @@ export function isObject (value) {
 export function isArray(value) {
     return Array.isArray(value);
 }
+
+/**
+ * Checks if the value passed is a string
+ * @param {*} value
+ * @returns {boolean}
+ */
+export function isString(value) {
+    return typeof value === 'string';
+}
