@@ -14,7 +14,8 @@ describe('isObject', () => {
         ['string'],
         [10],
         [false],
-        [null]
+        [null],
+        [undefined]
     ])(`returns 'false' for non-objects (%#)`, (param) => {
         const result = isObject(param);
         expect(result).toBeFalsy();
