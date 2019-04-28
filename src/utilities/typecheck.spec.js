@@ -2,6 +2,7 @@ import {
     isObject,
     isArray,
     isString,
+    isNumber,
 } from './typecheck';
 
 describe('isObject', () => {
@@ -57,6 +58,27 @@ describe('isString', () => {
         [undefined]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isString(param);
+        expect(result).toBeFalsy();
+    })
+})
+
+describe('isNumber', () => {
+    it(`returns 'true' for numbers`, () => {
+        const number = 10;
+        const result = isNumber(number);
+        expect(result).toBeTruthy();
+    })
+    test.each([
+        [{}],
+        [[]],
+        ['string'],
+        [true],
+        [null],
+        [undefined],
+        [NaN],
+        [Infinity]
+    ])(`returns 'false' for other types (%#)`, (param) => {
+        const result = isNumber(param);
         expect(result).toBeFalsy();
     })
 })
