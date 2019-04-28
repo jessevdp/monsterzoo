@@ -47,3 +47,12 @@ export function isNumber(value) {
 export function isBoolean(value) {
     return typeof value === 'boolean';
 }
+
+/**
+ * Checks if the value passed is a function
+ * @param {*} value
+ * @returns {boolean}
+ */
+export function isFunction(value) {
+    return typeof value === 'function';
+}
