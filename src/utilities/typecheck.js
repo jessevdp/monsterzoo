@@ -26,3 +26,15 @@ export function isArray(value) {
 export function isString(value) {
     return typeof value === 'string';
 }
+
+/**
+ * Checks if the value passed is a number.
+ * (NaN and Infinity are not considered to be numbers.)
+ * @param {*} value
+ * @returns {boolean}
+ */
+export function isNumber(value) {
+    if (isNaN(value)) return false;
+    if (value == Infinity) return false;
+    return typeof value === 'number';
+}
