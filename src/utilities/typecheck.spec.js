@@ -21,7 +21,8 @@ describe('isObject', () => {
         [null],
         [undefined],
         [NaN],
-        [Infinity]
+        [Infinity],
+        [() => {}]
     ])(`returns 'false' for non-objects (%#)`, (param) => {
         const result = isObject(param);
         expect(result).toBeFalsy();
@@ -42,7 +43,8 @@ describe('isArray', () => {
         [null],
         [undefined],
         [NaN],
-        [Infinity]
+        [Infinity],
+        [() => {}]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isArray(param);
         expect(result).toBeFalsy();
@@ -63,7 +65,8 @@ describe('isString', () => {
         [null],
         [undefined],
         [NaN],
-        [Infinity]
+        [Infinity],
+        [() => {}]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isString(param);
         expect(result).toBeFalsy();
@@ -84,7 +87,8 @@ describe('isNumber', () => {
         [null],
         [undefined],
         [NaN],
-        [Infinity]
+        [Infinity],
+        [() => {}]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isNumber(param);
         expect(result).toBeFalsy();
@@ -107,7 +111,8 @@ describe('isBoolean', () => {
         [null],
         [undefined],
         [NaN],
-        [Infinity]
+        [Infinity],
+        [() => {}]
     ])(`returns 'false' for other types (%#)`, (param) => {
         const result = isBoolean(param);
         expect(result).toBeFalsy();
