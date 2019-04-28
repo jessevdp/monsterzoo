@@ -5,8 +5,8 @@
     "private": true,
     "scripts": {
         "build": "webpack --mode production",
-        "dev": "webpack --mode development",
-        "dev:watch": "npm run dev -- --watch",
+        "build:develop": "webpack --mode development",
+        "build:develop:watch": "npm run build:develop -- --watch",
         "test": "jest",
         "test:coverage": "npm test -- --coverage",
         "test:watch": "npm test -- --watch"
