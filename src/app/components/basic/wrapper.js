@@ -1,4 +1,4 @@
-import { Component } from '@local/system';
+import { Component, renderTemplate } from '@local/system';
 
 export default class Wrapper extends Component {
     /**
@@ -15,12 +15,7 @@ export default class Wrapper extends Component {
     }
 
     view() {
-        return `<div> ${this.renderChildren()} </div>`;
-    }
-
-    renderChildren() {
-        return this.state.components
-            .map(component => component.render())
-            .reduce((all, child) => all + child);
+        const template = '<div>{{#components}}{{.}}{{/components}}</div>';
+        return renderTemplate(template, this.state);
     }
 }
