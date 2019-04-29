@@ -1,7 +1,7 @@
 import { Component } from '@local/system';
 import { isObject } from '@local/utilities';
 
-jest.mock('@local/system/template');
+jest.mock('@local/system/renderTemplate');
 
 describe('constructor', () => {
     it('sets up a [state] object', () => {

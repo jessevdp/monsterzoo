@@ -1,5 +1,5 @@
-import Component from './component';
-import { renderTemplate } from './template';
+import Component from './Component';
+import renderTemplate  from './renderTemplate';
 
 const System = {
     Component,
