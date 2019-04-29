@@ -41,3 +41,68 @@ describe('render', () => {
     })
 })
 
+describe('setState', () => {
+    it('accepts an object to update the state', () => {
+        const component = new Component();
+        const state = { foo: 'bar' };
+        component.setState(state);
+        expect(component.state).toEqual(state);
+    })
+    it('accepts a function to update the state', () => {
+        const component = new Component();
+        const state = { foo: 'bar' };
+        component.setState(() => state);
+        expect(component.state).toEqual(state);
+    })
+    it('passes the old state to the passed function', () => {
+        // Arrange
+        const component = new Component();
+        const oldState = { foo: 'foo' };
+        const newState = { foo: 'bar' };
+        component.setState(oldState);
+        const fn = jest.fn(() => newState);
+
+        // Act
+        component.setState(fn);
+        
+        // Assert
+        expect(fn).toHaveBeenCalledWith(oldState);
+    })
+    it('overwrites old values', () => {
+        // Arrange
+        const component = new Component();
+        const oldState = { foo: 'foo' };
+        const newState = { foo: 'bar' };
+        component.setState(oldState);
+
+        // Act
+        component.setState(newState);
+        
+        // Assert
+        expect(component.state).toEqual(newState);
+    })
+    it('leaves other values intact', () => {
+        const component = new Component();
+        const fooState = { foo: 'foo' };
+        const barState = { bar: 'bar' };
+        component.setState(fooState);
+        component.setState(barState);
+        expect(component.state.foo).toBe(fooState.foo);
+        expect(component.state.bar).toBe(barState.bar);
+    })
+    test.each([
+        ['string'],
+        [10],
+        [true],
+        [false],
+        [[]],
+        [NaN],
+        [Infinity],
+        [undefined],
+        [null],
+    ])('throws when [state] param is not an object or function', (param) => {
+        const component = new Component();
+        expect(() => component.setState(param)).toThrow();
+    })
+})
+
