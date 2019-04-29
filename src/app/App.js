@@ -1,5 +1,5 @@
 import Wrapper from './components/basic/Wrapper';
-import Title from './components/title';
+import Title from './components/Title';
 import { isString } from '@local/utilities';
 
 export default class App extends Wrapper {

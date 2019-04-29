@@ -1,8 +1,8 @@
 import { Component, renderTemplate } from '@local/system';
 import { isString } from '@local/utilities';
 
-import template from './title.template.html';
-import './title.scss';
+import template from './Title.template.html';
+import './Title.scss';
 
 export default class Title extends Component {
     /**
@@ -12,7 +12,7 @@ export default class Title extends Component {
      */
     constructor(content) {
         super();
-        if (isString(content)) this.state.content = content;
+        if (isString(content)) this.setState({ content });
         else throw new Error('Invalid [content] parameter, expected a string.');
     }
 
