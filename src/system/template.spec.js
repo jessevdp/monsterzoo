@@ -1,4 +1,5 @@
 import { renderTemplate } from './template';
+import Component from './component';
 import mustache from 'mustache';
 
 jest.mock('mustache');
@@ -30,6 +31,32 @@ describe('renderTemplate', () => {
         expect(mustache.render).toHaveBeenCalledWith(template, {});
     })
 
+    describe('usage with Component', () => {
+        it('renders a component before outputting it', () => {
+            const view = 'some view';
+            const template = '{{ component }}'
+            const component = new MockComponent(view);
+            renderTemplate(template, { component });
+            expect(mustache.render).toHaveBeenCalledWith(template, { component: view })
+        })
+        it('renders components in an array before outputting them', () => {
+            const view = 'some view';
+            const template = ''
+            const components = [new MockComponent(view), new MockComponent(view), new MockComponent(view)];
+            const expected = components.map(component => component.render());
+            renderTemplate(template, { components });
+
+            expect(mustache.render).toHaveBeenCalledWith(template, { components: expected })
+        })
+        it('renders nested components before outputting them', () => {
+            const view = 'some view';
+            const template = ''
+            const components = { mock: new MockComponent(view) };
+            renderTemplate(template, { components });
+            expect(mustache.render).toHaveBeenCalledWith(template, { components: { mock: view }})
+        })
+    })
+
     describe('parameter validation', () => {
         it('throws without [template] param', () => {
             expect(() => renderTemplate()).toThrow()
@@ -56,3 +83,9 @@ describe('renderTemplate', () => {
         })
     })
 })
+
+function MockComponent(view = '') {
+    this.render = jest.fn(() => view);
+    this.view = jest.fn(() => view);
+}
+MockComponent.prototype = Object.create(Component.prototype);
