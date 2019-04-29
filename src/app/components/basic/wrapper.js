@@ -15,7 +15,7 @@ export default class Wrapper extends Component {
     }
 
     view() {
-        const template = '<div>{{#components}}{{.}}{{/components}}</div>';
+        const template = '<div>{{#components}}{{{.}}}{{/components}}</div>';
         return renderTemplate(template, this.state);
     }
 }
