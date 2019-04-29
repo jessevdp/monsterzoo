@@ -1,5 +1,5 @@
-import { Component } from '@local/system';
-import { isString, renderTemplate } from '@local/utilities';
+import { Component, renderTemplate } from '@local/system';
+import { isString } from '@local/utilities';
 
 import template from './title.template.html';
 import './title.scss';

@@ -1,5 +1,5 @@
 import mustache from 'mustache';
-import { isObject } from './typecheck';
+import { isObject } from '@local/utilities';
 
 /**
  * Render a template string with a given data object.
