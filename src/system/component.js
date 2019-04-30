@@ -25,7 +25,7 @@ export default class Component {
         verifyHasView(this);
         const view  = this.view();
         verifyView(view);
-        return addSystemId(view, this.id);
+        return addComponentId(view, this.id);
     }
 
     /**
@@ -60,10 +60,10 @@ function verifyView(view) {
     }
 }
 
-function addSystemId(view, id) {
+function addComponentId(view, id) {
     const wrapper = wrapHtmlString(view);
     const element = wrapper.children[0];
-    element.setAttribute('data-system-id', id);
+    element.setAttribute('data-component-id', id);
     return wrapper.innerHTML;
 }
 

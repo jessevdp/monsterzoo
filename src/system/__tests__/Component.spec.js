@@ -33,7 +33,7 @@ describe('render', () => {
         const component = new Component();
         const view = '<div>view</div>';
         component.view = () => view;
-        expect(component.render()).toBe(`<div data-system-id="${component.id}">view</div>`);
+        expect(component.render()).toBe(`<div data-component-id="${component.id}">view</div>`);
     })
     it('throws if the [view] outputs more than 1 root element', () => {
         const component = new Component();
