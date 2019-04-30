@@ -1,9 +1,18 @@
+import uuid from 'uuid/v1';
 import Component from '../Component';
 import { isObject } from '@local/utilities';
 
 jest.mock('@local/system/renderTemplate');
+jest.mock('uuid/v1');
 
 describe('constructor', () => {
+    it('uses uuid to create an [id]', () => {
+        const expected = 'mock id';
+        uuid.mockImplementationOnce(() => expected);
+        const component = new Component();
+        expect(uuid).toHaveBeenCalled();
+        expect(component.id).toBe(expected);
+    })
     it('sets up a [state] object', () => {
         const component = new Component();
         expect(isObject(component.state)).toBeTruthy();
