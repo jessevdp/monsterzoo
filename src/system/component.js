@@ -1,3 +1,4 @@
+import uuid from 'uuid/v1';
 import {
     isFunction,
     isString,
@@ -10,6 +11,7 @@ export default class Component {
      * @memberof Component
      */
     constructor() {
+        this.id = uuid();
         this.state = {};
     }
 
@@ -27,7 +29,7 @@ export default class Component {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = view;
         if (wrapper.children.length !== 1) throw new Error('Component [view] function must return exactly 1 root element');
-        
+
         return view;
     }
 
