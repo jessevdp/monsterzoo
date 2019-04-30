@@ -28,7 +28,7 @@ describe('render', () => {
     it('returns all components wrapped in a <div>', () => {
         const components = [new MockComponent('1'), new MockComponent('2'), new MockComponent('3')];
         const wrapper = new Wrapper(...components);
-        const result = wrapper.render();
+        const result = wrapper.view();
         expect(result).toBe('<div>123</div>');
     })
 })
