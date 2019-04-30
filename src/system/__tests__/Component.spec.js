@@ -13,16 +13,26 @@ describe('constructor', () => {
 describe('render', () => {
     it('calls the [view] function', () => {
         const component = new Component();
-        component.view = jest.fn(() => 'rendered view string');
+        component.view = jest.fn(() => '<div>rendered view string</div>');
         component.render();
         expect(component.view).toHaveBeenCalled();
     })
     it('returns the result of the view function', () => {
         const component = new Component();
-        const expected = 'rendered view string'
+        const expected = '<div>rendered view string</div>'
         component.view = jest.fn(() => expected);
         const result = component.render();
         expect(result).toBe(expected);
+    })
+    it('throws if the [view] outputs more than 1 root element', () => {
+        const component = new Component();
+        component.view = jest.fn(() => '<div></div><div></div>');
+        expect(() => component.render()).toThrow();
+    })
+    it('throws if the [view] outputs no root element', () => {
+        const component = new Component();
+        component.view = jest.fn(() => 'just a string');
+        expect(() => component.render()).toThrow();
     })
     it('throws if no [view] function is defined', () => {
         const component = new Component();
