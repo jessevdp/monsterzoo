@@ -29,8 +29,9 @@ export default class Component {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = view;
         if (wrapper.children.length !== 1) throw new Error('Component [view] function must return exactly 1 root element');
-
-        return view;
+        const element = wrapper.children[0];
+        element.setAttribute('data-system-id', this.id);
+        return wrapper.innerHTML;
     }
 
     /**
