@@ -1,5 +1,5 @@
 import { Component } from '@local/system'
-import Wrapper from './Wrapper';
+import Wrapper from '../Wrapper';
 
 describe('constructor', () => {
     it('stores all components in state', () => {

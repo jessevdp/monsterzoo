@@ -1,4 +1,4 @@
-import { Component } from '@local/system';
+import Component from '../Component';
 import { isObject } from '@local/utilities';
 
 jest.mock('@local/system/renderTemplate');

@@ -1,5 +1,5 @@
-import renderTemplate from './renderTemplate';
-import Component from './Component';
+import renderTemplate from '../renderTemplate';
+import Component from '../Component';
 import mustache from 'mustache';
 
 jest.mock('mustache');
