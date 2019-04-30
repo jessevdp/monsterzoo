@@ -3,7 +3,10 @@ import Component from '../Component';
 import { isObject } from '@local/utilities';
 
 jest.mock('@local/system/renderTemplate');
-jest.mock('uuid/v1');
+
+jest.mock('uuid/v1', () => {
+    return jest.fn(() => "mock-id");
+});
 
 describe('constructor', () => {
     it('uses uuid to create an [id]', () => {
@@ -26,12 +29,11 @@ describe('render', () => {
         component.render();
         expect(component.view).toHaveBeenCalled();
     })
-    it('returns the result of the view function', () => {
+    it('returns the [view] but adds the [id]', () => {
         const component = new Component();
-        const expected = '<div>rendered view string</div>'
-        component.view = jest.fn(() => expected);
-        const result = component.render();
-        expect(result).toBe(expected);
+        const view = '<div>view</div>';
+        component.view = () => view;
+        expect(component.render()).toBe(`<div data-system-id="${component.id}">view</div>`);
     })
     it('throws if the [view] outputs more than 1 root element', () => {
         const component = new Component();
