@@ -23,6 +23,11 @@ export default class Component {
         if (!isFunction(this.view)) throw new Error('Component must implement a [view] function.');
         const view  = this.view();
         if (!isString(view)) throw new Error('Component [view] function must return a string.');
+
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = view;
+        if (wrapper.children.length !== 1) throw new Error('Component [view] function must return exactly 1 root element');
+        
         return view;
     }
 
