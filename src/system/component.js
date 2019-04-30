@@ -22,16 +22,10 @@ export default class Component {
      * @memberof Component
      */
     render() {
-        if (!isFunction(this.view)) throw new Error('Component must implement a [view] function.');
+        verifyHasView(this);
         const view  = this.view();
-        if (!isString(view)) throw new Error('Component [view] function must return a string.');
-
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = view;
-        if (wrapper.children.length !== 1) throw new Error('Component [view] function must return exactly 1 root element');
-        const element = wrapper.children[0];
-        element.setAttribute('data-system-id', this.id);
-        return wrapper.innerHTML;
+        verifyView(view);
+        return addSystemId(view, this.id);
     }
 
     /**
@@ -48,4 +42,33 @@ export default class Component {
         else throw new Error('Invalid [state] param, expected an object or a function');
         this.state = { ...this.state, ...newState };
     }
+}
+
+function verifyHasView(component) {
+    if (!isFunction(component.view)) {
+        throw new Error('Component must implement a [view] function.');
+    }
+}
+
+function verifyView(view) {
+    if (!isString(view)) {
+        throw new Error('Component [view] function must return a string.');
+    }
+    const wrapper = wrapHtmlString(view);
+    if (wrapper.children.length !== 1) {
+        throw new Error('Component [view] function must return exactly 1 root element');
+    }
+}
+
+function addSystemId(view, id) {
+    const wrapper = wrapHtmlString(view);
+    const element = wrapper.children[0];
+    element.setAttribute('data-system-id', id);
+    return wrapper.innerHTML;
+}
+
+function wrapHtmlString(htmlString, element = 'div') {
+    const wrapper = document.createElement(element);
+    wrapper.innerHTML = htmlString;
+    return wrapper;
 }
