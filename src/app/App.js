@@ -9,9 +9,17 @@ export default class App extends Wrapper {
      * @memberof App
      */
     constructor(name) {
-        if (!isString(name)) throw new Error('Invalid argument [name], expected a string.');
-        super(
-            new Title(name),
-        );
+        let title = new Title(name);
+        super(title);
+        this._title = title;
+    }
+
+    /**
+     * @param {string} value
+     * @memberof App
+     */
+    set name(value) {
+        if (isString(value)) this._title.content = value;
+        else throw new Error('Invalid [name], expected a string.');
     }
 }

@@ -6,11 +6,11 @@ import './Title.scss';
 
 export default class Title extends Component {
     /**
-     * Creates an instance of Title.
-     * @param {string} content the text-content of the title
+     *Creates an instance of Title.
+     * @param {string} [content=''] the text-content of the title
      * @memberof Title
      */
-    constructor(content) {
+    constructor(content = '') {
         super();
         if (isString(content)) this.setState({ content });
         else throw new Error('Invalid [content] parameter, expected a string.');
@@ -18,5 +18,14 @@ export default class Title extends Component {
 
     view() {
         return renderTemplate(template, this.state);
+    }
+
+    /**
+     * @param {string} value
+     * @memberof Title
+     */
+    set content(value) {
+        if (isString(value)) this.setState({ content: value });
+        else throw new Error('Invalid [content], expected a string.');
     }
 }
