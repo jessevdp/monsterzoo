@@ -65,20 +65,20 @@ describe('render', () => {
 
 describe('setState', () => {
     it('accepts an object to update the state', () => {
-        const component = new Component();
+        const component = new MockComponent();
         const state = { foo: 'bar' };
         component.setState(state);
         expect(component.state).toEqual(state);
     })
     it('accepts a function to update the state', () => {
-        const component = new Component();
+        const component = new MockComponent();
         const state = { foo: 'bar' };
         component.setState(() => state);
         expect(component.state).toEqual(state);
     })
     it('passes the old state to the passed function', () => {
         // Arrange
-        const component = new Component();
+        const component = new MockComponent();
         const oldState = { foo: 'foo' };
         const newState = { foo: 'bar' };
         component.setState(oldState);
@@ -92,7 +92,7 @@ describe('setState', () => {
     })
     it('overwrites old values', () => {
         // Arrange
-        const component = new Component();
+        const component = new MockComponent();
         const oldState = { foo: 'foo' };
         const newState = { foo: 'bar' };
         component.setState(oldState);
@@ -104,7 +104,7 @@ describe('setState', () => {
         expect(component.state).toEqual(newState);
     })
     it('leaves other values intact', () => {
-        const component = new Component();
+        const component = new MockComponent();
         const fooState = { foo: 'foo' };
         const barState = { bar: 'bar' };
         component.setState(fooState);
@@ -123,7 +123,7 @@ describe('setState', () => {
         [undefined],
         [null],
     ])('throws when [state] param is not an object or function', (param) => {
-        const component = new Component();
+        const component = new MockComponent();
         expect(() => component.setState(param)).toThrow();
     })
     it('calls the [update] method', () => {
@@ -152,7 +152,7 @@ describe('update', () => {
     })
 })
 
-function MockComponent(view = '') {
+function MockComponent(view = '<div></div>') {
     let _this = new Component();
     _this.render = jest.fn(Component.prototype.render);
     _this.view = jest.fn(() => view);
