@@ -3,14 +3,11 @@ import Component from '../Component';
 import { isObject } from '@local/utilities';
 
 jest.mock('@local/system/renderTemplate');
-
-jest.mock('uuid/v1', () => {
-    return jest.fn(() => "mock-id");
-});
+jest.mock('uuid/v1', () => jest.fn(() => 'mock-id'));
 
 describe('constructor', () => {
     it('uses uuid to create an [id]', () => {
-        const expected = 'mock id';
+        const expected = 'mock component id';
         uuid.mockImplementationOnce(() => expected);
         const component = new Component();
         expect(uuid).toHaveBeenCalled();
