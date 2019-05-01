@@ -29,6 +29,21 @@ export default class Component {
     }
 
     /**
+     * Re-render the component to the DOM.
+     * If the component has been rendered to the DOM before this method can be used to replace
+     * the entire component with an updated version.
+     * 
+     * @returns {void}
+     * @throws if the component is currently not present in the DOM
+     * @memberof Component
+     */
+    update() {
+        const element = getDOMNode(this);
+        const newElement = toDOMNode(this.render());
+        if (element) element.replaceWith(newElement);
+    }
+
+    /**
      * Mutate the state of the component
      *
      * @param {*} state the subset of the state to be mutated
@@ -42,6 +57,10 @@ export default class Component {
         else throw new Error('Invalid [state] param, expected an object or a function');
         this.state = { ...this.state, ...newState };
     }
+}
+
+function getDOMNode(component) {
+    return document.querySelectorAll(`[data-component-id="${component.id}"]`)[0];
 }
 
 function verifyHasView(component) {
@@ -71,4 +90,9 @@ function wrapHtmlString(htmlString, element = 'div') {
     const wrapper = document.createElement(element);
     wrapper.innerHTML = htmlString;
     return wrapper;
+}
+
+function toDOMNode(view) {
+    const wrapper = wrapHtmlString(view);
+    return wrapper.children[0];
 }
