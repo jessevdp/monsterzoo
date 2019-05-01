@@ -126,6 +126,13 @@ describe('setState', () => {
         const component = new Component();
         expect(() => component.setState(param)).toThrow();
     })
+    it('calls the [update] method', () => {
+        const component = new MockComponent();
+        component.update = jest.fn();
+        component.setState({ foo: 'foo' });
+        expect(component.update).toHaveBeenCalled();
+    })
+})
 
 describe('update', () => {
     it('replaces the component in the DOM', () => {
