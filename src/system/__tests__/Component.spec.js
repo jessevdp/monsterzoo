@@ -150,10 +150,6 @@ describe('update', () => {
         component.update();
         expect(component.render).toHaveBeenCalled();
     })
-    it('throws if the component is not present in the DOM', () => {
-        const component = new MockComponent('<div></div>');
-        expect(() => component.update()).toThrow();
-    })
 })
 
 function MockComponent(view = '') {

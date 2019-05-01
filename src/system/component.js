@@ -34,7 +34,6 @@ export default class Component {
      * the entire component with an updated version.
      * 
      * @returns {void}
-     * @throws if the component is currently not present in the DOM
      * @memberof Component
      */
     update() {
