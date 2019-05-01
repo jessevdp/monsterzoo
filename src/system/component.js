@@ -56,6 +56,7 @@ export default class Component {
         else if (isFunction(state)) newState = state(this.state);
         else throw new Error('Invalid [state] param, expected an object or a function');
         this.state = { ...this.state, ...newState };
+        this.update();
     }
 }
 
