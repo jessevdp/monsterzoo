@@ -5,6 +5,10 @@ import { isObject } from '@local/utilities';
 jest.mock('@local/system/renderTemplate');
 jest.mock('uuid/v1', () => jest.fn(() => 'mock-id'));
 
+beforeEach(() => {
+    document.body.innerHTML = '';
+});
+
 describe('constructor', () => {
     it('uses uuid to create an [id]', () => {
         const expected = 'mock component id';
@@ -122,5 +126,33 @@ describe('setState', () => {
         const component = new Component();
         expect(() => component.setState(param)).toThrow();
     })
+
+describe('update', () => {
+    it('replaces the component in the DOM', () => {
+        const component = new MockComponent();
+        component.view = () => `<div>initial</div>`;
+        document.body.innerHTML = component.render();
+        component.view = () => `<div>updated</div>`;
+        component.update();
+        const element = document.querySelectorAll(`[data-component-id="${component.id}"]`)[0];
+        expect(element.textContent).toBe('updated');
+    })
+    it('calls the [render] function', () => {
+        const component = new MockComponent('<div></div>');
+        document.body.innerHTML = component.render();
+        component.update();
+        expect(component.render).toHaveBeenCalled();
+    })
+    it('throws if the component is not present in the DOM', () => {
+        const component = new MockComponent('<div></div>');
+        expect(() => component.update()).toThrow();
+    })
 })
 
+function MockComponent(view = '') {
+    let _this = new Component();
+    _this.render = jest.fn(Component.prototype.render);
+    _this.view = jest.fn(() => view);
+    return _this;
+}
+MockComponent.prototype = Object.create(Component.prototype);
