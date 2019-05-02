@@ -112,20 +112,6 @@ describe('setState', () => {
         expect(component.state.foo).toBe(fooState.foo);
         expect(component.state.bar).toBe(barState.bar);
     })
-    test.each([
-        ['string'],
-        [10],
-        [true],
-        [false],
-        [[]],
-        [NaN],
-        [Infinity],
-        [undefined],
-        [null],
-    ])('throws when [state] param is not an object or function', (param) => {
-        const component = new MockComponent();
-        expect(() => component.setState(param)).toThrow();
-    })
     it('calls the [update] method', () => {
         const component = new MockComponent();
         component.update = jest.fn();

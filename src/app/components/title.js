@@ -1,5 +1,4 @@
 import { Component, renderTemplate } from '@local/system';
-import { isString } from '@local/utilities';
 
 import template from './Title.template.html';
 import './Title.scss';
@@ -12,8 +11,7 @@ export default class Title extends Component {
      */
     constructor(content = '') {
         super();
-        if (isString(content)) this.setState({ content });
-        else throw new Error('Invalid [content] parameter, expected a string.');
+        this.setState({ content });
     }
 
     view() {
@@ -25,7 +23,6 @@ export default class Title extends Component {
      * @memberof Title
      */
     set content(value) {
-        if (isString(value)) this.setState({ content: value });
-        else throw new Error('Invalid [content], expected a string.');
+        this.setState({ content: value });
     }
 }

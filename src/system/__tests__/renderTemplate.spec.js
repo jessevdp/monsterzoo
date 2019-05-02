@@ -56,32 +56,6 @@ describe('renderTemplate', () => {
             expect(mustache.render).toHaveBeenCalledWith(template, { components: { mock: view }})
         })
     })
-
-    describe('parameter validation', () => {
-        it('throws without [template] param', () => {
-            expect(() => renderTemplate()).toThrow()
-        })
-    
-        test.each([
-            [[]],
-            [{}],
-            [false],
-            [10],
-            [null]
-        ])('throws when [template] param is not a string (%#)', (param) => {
-            expect(() => renderTemplate(param)).toThrow()
-        })
-    
-        test.each([
-            [[]],
-            ['string'],
-            [false],
-            [10],
-            [null]
-        ])('throws when [data] param is not an object (%#)', (param) => {
-            expect(() => renderTemplate('template', param)).toThrow()
-        })
-    })
 })
 
 function MockComponent(view = '') {

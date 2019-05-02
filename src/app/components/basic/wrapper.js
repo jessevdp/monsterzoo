@@ -3,14 +3,11 @@ import { Component, renderTemplate } from '@local/system';
 export default class Wrapper extends Component {
     /**
      * Creates an instance of Wrapper.
-     * @param {Component[]} components
+     * @param {array} components
      * @memberof Wrapper
      */
     constructor(...components) {
         super();
-        components.forEach(component => {
-            if (!(component instanceof Component)) throw new Error('Wrapper expects only instances of Component');
-        });
         this.setState({ components });
     }
 

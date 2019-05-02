@@ -11,9 +11,8 @@ import Component from './Component';
  * @returns {string} the rendered template populated with the data
  */
 export default function renderTemplate (template, data = {}) {
-    if (typeof template !== 'string') throw new Error('Invalid [template] parameter, expected a string.');
-    if (!isObject(data)) throw new Error('Invalid [data] parameter, expected an object.');
-    return mustache.render(template, renderComponentsInObject(data));
+    data = renderComponentsInObject(data);
+    return mustache.render(template, data);
 }
 
 /**

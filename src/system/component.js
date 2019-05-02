@@ -45,7 +45,7 @@ export default class Component {
     /**
      * Mutate the state of the component
      *
-     * @param {*} state the subset of the state to be mutated
+     * @param {(object|function)} state the subset of the state to be mutated, or a function that returns this subset
      * @returns {void}
      * @memberof Component
      */
@@ -53,7 +53,6 @@ export default class Component {
         let newState;
         if (isObject(state)) newState = state;
         else if (isFunction(state)) newState = state(this.state);
-        else throw new Error('Invalid [state] param, expected an object or a function');
         this.state = { ...this.state, ...newState };
         this.update();
     }

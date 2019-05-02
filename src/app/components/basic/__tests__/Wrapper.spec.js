@@ -7,15 +7,6 @@ describe('constructor', () => {
         const wrapper = new Wrapper(...components);
         expect(wrapper.state.components).toEqual(components);
     })
-    test.each([
-        [{ foo: 'bar' }],
-        ['string'],
-        [10],
-        [false],
-        [{}, new Component()]
-    ])('only accepts instances of Component (%#)', (param) => {
-        expect(() => new Wrapper(param)).toThrow();
-    })
 })
 
 describe('render', () => {
