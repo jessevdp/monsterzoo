@@ -1,8 +1,6 @@
-import App from '@local/app/App';
+import App from './App';
 
-const APP_NAME = process.env.APP_NAME;
-document.title = APP_NAME;
+document.title = process.env.APP_NAME;
 
-const app = new App(APP_NAME);
+const app = new App();
 document.body.innerHTML = app.render();
-window.setTimeout(() => app.name = `Updated ${APP_NAME}`, 2000);
