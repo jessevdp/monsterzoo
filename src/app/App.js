@@ -1,4 +1,4 @@
-import Wrapper from './components/basic/Wrapper';
+import Wrapper from './components/generic/Wrapper';
 import Title from './components/Title';
 
 export default class App extends Wrapper {
