@@ -5,6 +5,8 @@ import { isObject } from '@local/utilities';
 jest.mock('@local/system/renderTemplate');
 jest.mock('uuid/v1', () => jest.fn(() => 'mock-id'));
 
+document.addEventListener = jest.fn(document.addEventListener);
+
 beforeEach(() => {
     document.body.innerHTML = '';
 });
@@ -20,6 +22,14 @@ describe('constructor', () => {
     it('sets up a [state] object', () => {
         const component = new Component();
         expect(isObject(component.state)).toBeTruthy();
+    })
+    it('calls the [events] function', () => {
+        let called = false;
+        class ExampleComponent extends Component {
+            events() { called = true; }
+        }
+        new ExampleComponent();
+        expect(called).toBeTruthy();
     })
 })
 
@@ -135,6 +145,47 @@ describe('update', () => {
         document.body.innerHTML = component.render();
         component.update();
         expect(component.render).toHaveBeenCalled();
+    })
+})
+
+describe('on', () => {
+    it('adds an event listener to the document', () => {
+        const event = 'click';
+        const handler = () => {};
+        const options = { capture: true, passive: true };
+        const component = new Component();
+        component.on(event, handler);
+        expect(document.addEventListener).toHaveBeenCalledWith(event, expect.any(Function), options)
+    })
+    test('when the registered event is emitted the listeners is called', () => {
+        const component = new MockComponent();
+        const handler = jest.fn();
+        component.on('click', handler);
+        document.body.innerHTML = component.render();
+        const element = document.querySelector(`[data-component-id="${component.id}"]`);
+        element.dispatchEvent(new Event('click'));
+        expect(handler).toHaveBeenCalledWith(expect.any(Object));
+    })
+    test('when a different event is emitted the listener is not called', () => {
+        const component = new MockComponent();
+        const handler = jest.fn();
+        component.on('click', handler);
+        document.body.innerHTML = component.render();
+        const element = document.querySelector(`[data-component-id="${component.id}"]`);
+        element.dispatchEvent(new Event('mouseover'));
+        expect(handler).not.toHaveBeenCalled();
+    })
+    test('when the event is emitted on a different element the listener is not called', () => {
+        const component = new MockComponent();
+        component.id = 1;
+        const otherComponent = new MockComponent();
+        otherComponent.id = 2;
+        const handler = jest.fn();
+        component.on('click', handler);
+        document.body.innerHTML = component.render() + otherComponent.render();
+        const element = document.querySelector(`[data-component-id="${otherComponent.id}"]`);
+        element.dispatchEvent(new Event('click'));
+        expect(handler).not.toHaveBeenCalled();
     })
 })
 
