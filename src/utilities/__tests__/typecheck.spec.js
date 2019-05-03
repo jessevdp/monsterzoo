@@ -5,7 +5,7 @@ import {
     isNumber,
     isBoolean,
     isFunction,
-} from './typecheck';
+} from '../typecheck';
 
 describe('isObject', () => {
     it(`returns 'true' for objects`, () => {
