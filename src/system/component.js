@@ -13,6 +13,7 @@ export default class Component {
     constructor() {
         this.id = uuid();
         this.state = {};
+        registerEventListeners(this);
     }
 
     /**
@@ -56,6 +57,46 @@ export default class Component {
         this.state = { ...this.state, ...newState };
         this.update();
     }
+
+    /**
+     * Register an event listener on the component
+     *
+     * @param {string} event a string representing the event-type to listen for
+     * @param {string} [selector=undefined]
+     * @param {function} handler
+     * @returns {void}
+     * @memberof Component
+     */
+    on(event, ...args) {
+        const handler = args.pop();
+        const selector = args.pop();
+        const query = `[data-component-id="${this.id}"] ${selector ? selector : ''}`;
+        const options = { capture: true, passive: true };
+
+        document.addEventListener(event, (e) => {
+            if (containsElement(query, e.target)) handler(e);
+        }, options);
+    }
+}
+
+/**
+ * Check to if a query on the document contains a certain element.
+ *
+ * @param {string} query 
+ * @param {HTMLElement} target
+ * @returns {boolean}
+ */
+function containsElement(query, target) {
+    const elements = document.querySelectorAll(query);
+    let found = false;
+    elements.forEach(element => {
+        if (element.contains(target) || element === target) found = true;
+    });
+    return found;
+}
+
+function registerEventListeners(component) {
+    if (isFunction(component.events)) component.events();
 }
 
 function getDOMNode(component) {
