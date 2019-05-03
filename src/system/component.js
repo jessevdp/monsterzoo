@@ -90,7 +90,7 @@ function containsElement(query, target) {
     const elements = document.querySelectorAll(query);
     let found = false;
     elements.forEach(element => {
-        if (element.contains(target) || element === target) found = true;
+        if (element.contains(target)) found = true;
     });
     return found;
 }
