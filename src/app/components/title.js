@@ -18,6 +18,12 @@ export default class Title extends Component {
         return renderTemplate(template, this.state);
     }
 
+    events() {
+        this.on('click', () => {
+            alert('You clicked on title: ' + this.state.content);
+        });
+    }
+
     /**
      * @param {string} value
      * @memberof Title
