@@ -157,7 +157,7 @@ describe('on', () => {
         component.on(event, handler);
         expect(document.addEventListener).toHaveBeenCalledWith(event, expect.any(Function), options)
     })
-    test('when the registered event is emitted the listeners is called', () => {
+    test('when the registered event is emitted on the element itself, the listeners is called', () => {
         const component = new MockComponent();
         const handler = jest.fn();
         component.on('click', handler);
@@ -166,7 +166,17 @@ describe('on', () => {
         element.dispatchEvent(new Event('click'));
         expect(handler).toHaveBeenCalledWith(expect.any(Object));
     })
-    test('when a different event is emitted the listener is not called', () => {
+    test('when the event is emitted on a child element, the listener is called', () => {
+        const id = 'child';
+        const component = new MockComponent(`<div><span id="${id}"></span></div>`);
+        const handler = jest.fn();
+        component.on('click', handler);
+        document.body.innerHTML = component.render();
+        const child = document.getElementById(id);
+        child.dispatchEvent(new Event('click'));
+        expect(handler).toHaveBeenCalledWith(expect.any(Object));
+    })
+    test('when a different event is emitted, the listener is NOT called', () => {
         const component = new MockComponent();
         const handler = jest.fn();
         component.on('click', handler);
@@ -175,7 +185,7 @@ describe('on', () => {
         element.dispatchEvent(new Event('mouseover'));
         expect(handler).not.toHaveBeenCalled();
     })
-    test('when the event is emitted on a different element the listener is not called', () => {
+    test('when the event is emitted on a different element, the listener is NOT called', () => {
         const component = new MockComponent();
         component.id = 1;
         const otherComponent = new MockComponent();
