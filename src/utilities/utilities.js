@@ -1,4 +1,3 @@
-import { renderTemplate } from './template';
 import {
     isObject,
     isArray,
@@ -9,8 +8,6 @@ import {
 } from './typecheck';
 
 const utilities = {
-    renderTemplate,
-    
     isObject,
     isArray,
     isString,

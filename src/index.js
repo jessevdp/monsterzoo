@@ -1,7 +1,6 @@
-import { renderTemplate } from '@local/utilities';
-import template from './index.template.html';
-import './index.scss';
+import App from './App';
 
-const APP_NAME = process.env.APP_NAME;
-document.title = APP_NAME;
-document.body.innerHTML = renderTemplate(template, { title: APP_NAME });
+document.title = process.env.APP_NAME;
+
+const app = new App();
+document.body.innerHTML = app.render();
