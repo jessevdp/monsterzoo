@@ -42,11 +42,7 @@ export default class Component {
     update() {
         const element = getDOMNode(this);
         const newElement = toDOMNode(this.render());
-        if (element) {
-            
-            element.replaceWith(newElement);
-            runEffects(this);
-        }
+        if (element) element.replaceWith(newElement);
     }
 
     /**
