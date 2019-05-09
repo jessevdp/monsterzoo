@@ -55,9 +55,7 @@ module.exports = (env, argv) => {
             new MiniCssExtractPlugin({
                 filename: '[name].[contenthash].css'
             }),
-            new DotEnv({
-                safe: true
-            })
+            new DotEnv()
         ],
         optimization: {
             runtimeChunk: 'single',
