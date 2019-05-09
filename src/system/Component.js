@@ -140,7 +140,7 @@ function runEffects(component) {
 }
 
 function cleanUpEffects(component) {
-    if (isArray(component.toCleanUp)) { 
+    if (isArray(component._toCleanUp)) {
         component._toCleanUp.forEach(cleanup => cleanup());
     }
 }
