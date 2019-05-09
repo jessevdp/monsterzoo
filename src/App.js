@@ -12,7 +12,10 @@ export default class App extends Component {
     }
 
     view() {
-        return `<div></div>`;
+        return ''
+            + '<div>'
+                + `<h1>${this.state.name}</h1>`
+            + '</div>';
     }
 
     /**
