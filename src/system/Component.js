@@ -87,7 +87,8 @@ export default class Component {
 
     /**
      * Clean up any side effects that the Component has created
-     *
+     * 
+     * @returns {void}
      * @memberof Component
      */
     cleanup() {
