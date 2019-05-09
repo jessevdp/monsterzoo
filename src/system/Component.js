@@ -2,7 +2,8 @@ import uuid from 'uuid/v1';
 import {
     isFunction,
     isString,
-    isObject 
+    isObject,
+    isArray,
 } from '@local/utilities';
 
 export default class Component {
@@ -14,6 +15,7 @@ export default class Component {
         this.id = uuid();
         this.state = {};
         registerEventListeners(this);
+        registerDOMUpdateListener(this);
     }
 
     /**
@@ -40,7 +42,11 @@ export default class Component {
     update() {
         const element = getDOMNode(this);
         const newElement = toDOMNode(this.render());
-        if (element) element.replaceWith(newElement);
+        if (element) {
+            
+            element.replaceWith(newElement);
+            runEffects(this);
+        }
     }
 
     /**
@@ -93,6 +99,46 @@ function containsElement(query, target) {
         if (element.contains(target)) found = true;
     });
     return found;
+}
+
+function registerDOMUpdateListener(component) {
+    const config = { childList: true, subtree: true };
+    const observer = new MutationObserver(createDOMChangeHandler(component));
+    observer.observe(document, config);
+}
+
+function createDOMChangeHandler(component) {
+    return mutations => {
+        mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+                const $component = getDOMNode(component);
+                if (node === $component || node.contains($component)) {
+                    cleanUpEffects(component);
+                    runEffects(component);
+                }
+            });
+        });
+    };
+}
+
+function runEffects(component) {
+    if (!isFunction(component.effects)) return;
+
+    const cleanup = [];
+
+    function useEffect(effect) {
+        const result = effect();
+        if (isFunction(result)) cleanup.push(result);
+    }
+
+    component.effects(useEffect);
+    component.toCleanUp = cleanup;
+}
+
+function cleanUpEffects(component) {
+    if (isArray(component.toCleanUp)) { 
+        component.toCleanUp.forEach(cleanup => cleanup());
+    }
 }
 
 function registerEventListeners(component) {
