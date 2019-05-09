@@ -136,12 +136,12 @@ function runEffects(component) {
     }
 
     component.effects(useEffect);
-    component.toCleanUp = cleanup;
+    component._toCleanUp = cleanup;
 }
 
 function cleanUpEffects(component) {
     if (isArray(component.toCleanUp)) { 
-        component.toCleanUp.forEach(cleanup => cleanup());
+        component._toCleanUp.forEach(cleanup => cleanup());
     }
 }
 
