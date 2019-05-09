@@ -45,6 +45,11 @@ export default class Component {
         if (element) element.replaceWith(newElement);
     }
 
+    afterDOMUpdate() {
+        cleanUpEffects(this);
+        runEffects(this);
+    }
+
     /**
      * Mutate the state of the component
      *
@@ -97,24 +102,27 @@ function containsElement(query, target) {
     return found;
 }
 
+/**
+ * Create a MutationObserver that calls Component.afterDOMUpdate when the
+ * mounted DOM representation of the component, or any of it's sub-nodes
+ * are updated.
+ * 
+ * @returns {void}
+ * @param {Component} component
+ */
 function registerDOMUpdateListener(component) {
     const config = { childList: true, subtree: true };
-    const observer = new MutationObserver(createDOMChangeHandler(component));
+    const observer = new MutationObserver(mutations => {
+        const $component = getDOMNode(component);
+        const wasUpdated = mutations
+            .map(mutation => mutation.addedNodes)
+            .map(nodeList => [...nodeList])
+            .reduce((nodes, subset) => nodes.concat(subset), [])
+            .map(node => node.contains($component))
+            .reduce((matched, matches) => matched || matches);
+        if (wasUpdated) component.afterDOMUpdate();
+    });
     observer.observe(document, config);
-}
-
-function createDOMChangeHandler(component) {
-    return mutations => {
-        mutations.forEach(mutation => {
-            mutation.addedNodes.forEach(node => {
-                const $component = getDOMNode(component);
-                if (node === $component || node.contains($component)) {
-                    cleanUpEffects(component);
-                    runEffects(component);
-                }
-            });
-        });
-    };
 }
 
 function runEffects(component) {
