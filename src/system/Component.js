@@ -2,7 +2,8 @@ import uuid from 'uuid/v1';
 import {
     isFunction,
     isString,
-    isObject 
+    isObject,
+    isArray,
 } from '@local/utilities';
 
 export default class Component {
@@ -14,6 +15,7 @@ export default class Component {
         this.id = uuid();
         this.state = {};
         registerEventListeners(this);
+        this._observer = registerDOMMutationObserver(this);
     }
 
     /**
@@ -41,6 +43,11 @@ export default class Component {
         const element = getDOMNode(this);
         const newElement = toDOMNode(this.render());
         if (element) element.replaceWith(newElement);
+    }
+
+    afterDOMUpdate() {
+        cleanUpEffects(this);
+        runEffects(this);
     }
 
     /**
@@ -77,6 +84,16 @@ export default class Component {
             if (containsElement(query, e.target)) handler(e);
         }, options);
     }
+
+    /**
+     * Clean up any side effects that the Component has created
+     * 
+     * @returns {void}
+     * @memberof Component
+     */
+    cleanup() {
+        this._observer.disconnect();
+    }
 }
 
 /**
@@ -93,6 +110,50 @@ function containsElement(query, target) {
         if (element.contains(target)) found = true;
     });
     return found;
+}
+
+/**
+ * Create a MutationObserver that calls Component.afterDOMUpdate when the
+ * mounted DOM representation of the component, or any of it's sub-nodes
+ * are updated.
+ * 
+ * @returns {void}
+ * @param {Component} component
+ */
+function registerDOMMutationObserver(component) {
+    const config = { childList: true, subtree: true };
+    const observer = new MutationObserver(mutations => {
+        const $component = getDOMNode(component);
+        const wasUpdated = mutations
+            .map(mutation => mutation.addedNodes)
+            .map(nodeList => [...nodeList])
+            .reduce((nodes, subset) => nodes.concat(subset), [])
+            .map(node => node.contains($component))
+            .reduce((matched, matches) => matched || matches, false);
+        if (wasUpdated) component.afterDOMUpdate();
+    });
+    observer.observe(document, config);
+    return observer;
+}
+
+function runEffects(component) {
+    if (!isFunction(component.effects)) return;
+
+    const cleanup = [];
+
+    function useEffect(effect) {
+        const result = effect();
+        if (isFunction(result)) cleanup.push(result);
+    }
+
+    component.effects(useEffect);
+    component._toCleanUp = cleanup;
+}
+
+function cleanUpEffects(component) {
+    if (isArray(component._toCleanUp)) {
+        component._toCleanUp.forEach(cleanup => cleanup());
+    }
 }
 
 function registerEventListeners(component) {

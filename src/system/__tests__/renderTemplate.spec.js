@@ -7,7 +7,7 @@ jest.mock('mustache');
 describe('renderTemplate', () => {
     it('can render a template with data', () => {
         // Arrange
-        const template = '<h1>{{ foo }} </h1>';
+        const template = '<h1>{{ foo }}</h1>';
         const data = { foo: 'bar' };
         const expected = mustache.render(template, data);
 

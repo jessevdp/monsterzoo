@@ -18,18 +18,21 @@ describe('constructor', () => {
         const component = new Component();
         expect(uuid).toHaveBeenCalled();
         expect(component.id).toBe(expected);
+        component.cleanup();
     })
     it('sets up a [state] object', () => {
         const component = new Component();
         expect(isObject(component.state)).toBeTruthy();
+        component.cleanup();
     })
     it('calls the [events] function', () => {
         let called = false;
         class ExampleComponent extends Component {
             events() { called = true; }
         }
-        new ExampleComponent();
+        const component = new ExampleComponent();
         expect(called).toBeTruthy();
+        component.cleanup();
     })
 })
 
@@ -39,37 +42,44 @@ describe('render', () => {
         component.view = jest.fn(() => '<div>rendered view string</div>');
         component.render();
         expect(component.view).toHaveBeenCalled();
+        component.cleanup();
     })
     it('returns the [view] but adds the [id]', () => {
         const component = new Component();
         const view = '<div>view</div>';
         component.view = () => view;
         expect(component.render()).toBe(`<div data-component-id="${component.id}">view</div>`);
+        component.cleanup();
     })
     it('throws if the [view] outputs more than 1 root element', () => {
         const component = new Component();
         component.view = jest.fn(() => '<div></div><div></div>');
         expect(() => component.render()).toThrow();
+        component.cleanup();
     })
     it('throws if the [view] outputs no root element', () => {
         const component = new Component();
         component.view = jest.fn(() => 'just a string');
         expect(() => component.render()).toThrow();
+        component.cleanup();
     })
     it('throws if no [view] function is defined', () => {
         const component = new Component();
         component.view = undefined;
         expect(() => component.render()).toThrow();
+        component.cleanup();
     })
     it('throws if the [view] attribute is not a function', () => {
         const component = new Component();
         component.view = {};
         expect(() => component.render()).toThrow();
+        component.cleanup();
     })
     it('throws if the [view] function does not return a string', () => {
         const component = new Component();
         component.view = () => {};
         expect(() => component.render()).toThrow();
+        component.cleanup();
     })
 })
 
@@ -79,12 +89,14 @@ describe('setState', () => {
         const state = { foo: 'bar' };
         component.setState(state);
         expect(component.state).toEqual(state);
+        component.cleanup();
     })
     it('accepts a function to update the state', () => {
         const component = new MockComponent();
         const state = { foo: 'bar' };
         component.setState(() => state);
         expect(component.state).toEqual(state);
+        component.cleanup();
     })
     it('passes the old state to the passed function', () => {
         // Arrange
@@ -99,6 +111,8 @@ describe('setState', () => {
         
         // Assert
         expect(fn).toHaveBeenCalledWith(oldState);
+
+        component.cleanup();
     })
     it('overwrites old values', () => {
         // Arrange
@@ -112,6 +126,8 @@ describe('setState', () => {
         
         // Assert
         expect(component.state).toEqual(newState);
+
+        component.cleanup();
     })
     it('leaves other values intact', () => {
         const component = new MockComponent();
@@ -121,12 +137,14 @@ describe('setState', () => {
         component.setState(barState);
         expect(component.state.foo).toBe(fooState.foo);
         expect(component.state.bar).toBe(barState.bar);
+        component.cleanup();
     })
     it('calls the [update] method', () => {
         const component = new MockComponent();
         component.update = jest.fn();
         component.setState({ foo: 'foo' });
         expect(component.update).toHaveBeenCalled();
+        component.cleanup();
     })
 })
 
@@ -139,12 +157,14 @@ describe('update', () => {
         component.update();
         const element = document.querySelectorAll(`[data-component-id="${component.id}"]`)[0];
         expect(element.textContent).toBe('updated');
+        component.cleanup();
     })
     it('calls the [render] function', () => {
         const component = new MockComponent('<div></div>');
         document.body.innerHTML = component.render();
         component.update();
         expect(component.render).toHaveBeenCalled();
+        component.cleanup();
     })
 })
 
@@ -156,6 +176,7 @@ describe('on', () => {
         const component = new Component();
         component.on(event, handler);
         expect(document.addEventListener).toHaveBeenCalledWith(event, expect.any(Function), options)
+        component.cleanup();
     })
     test('when the registered event is emitted on the element itself, the listeners is called', () => {
         const component = new MockComponent();
@@ -165,6 +186,7 @@ describe('on', () => {
         const element = document.querySelector(`[data-component-id="${component.id}"]`);
         element.dispatchEvent(new Event('click'));
         expect(handler).toHaveBeenCalledWith(expect.any(Object));
+        component.cleanup();
     })
     test('when the event is emitted on a child element, the listener is called', () => {
         const id = 'child';
@@ -175,6 +197,7 @@ describe('on', () => {
         const child = document.getElementById(id);
         child.dispatchEvent(new Event('click'));
         expect(handler).toHaveBeenCalledWith(expect.any(Object));
+        component.cleanup();
     })
     test('when a different event is emitted, the listener is NOT called', () => {
         const component = new MockComponent();
@@ -184,6 +207,7 @@ describe('on', () => {
         const element = document.querySelector(`[data-component-id="${component.id}"]`);
         element.dispatchEvent(new Event('mouseover'));
         expect(handler).not.toHaveBeenCalled();
+        component.cleanup();
     })
     test('when the event is emitted on a different element, the listener is NOT called', () => {
         const component = new MockComponent();
@@ -196,6 +220,8 @@ describe('on', () => {
         const element = document.querySelector(`[data-component-id="${otherComponent.id}"]`);
         element.dispatchEvent(new Event('click'));
         expect(handler).not.toHaveBeenCalled();
+        component.cleanup();
+        otherComponent.cleanup();
     })
 })
 
