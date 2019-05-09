@@ -5,7 +5,6 @@ module.exports = {
     },
     'extends': 'eslint:recommended',
     'globals': {
-        'process': 'readonly',
         'Atomics': 'readonly',
         'SharedArrayBuffer': 'readonly'
     },

@@ -1,8 +1,9 @@
 import App from './App';
+import config from './config';
 
-const app = new App(process.env.APP_NAME);
+const app = new App(config.app.name);
 document.body.innerHTML = app.render();
 
 window.setTimeout(() => {
-    app.name = 'Updated ' + process.env.APP_NAME;
+    app.name = 'Updated ' + config.app.name;
 }, 2000);
