@@ -15,7 +15,7 @@ export default class Component {
         this.id = uuid();
         this.state = {};
         registerEventListeners(this);
-        registerDOMUpdateListener(this);
+        this._observer = registerDOMMutationObserver(this);
     }
 
     /**
@@ -84,6 +84,15 @@ export default class Component {
             if (containsElement(query, e.target)) handler(e);
         }, options);
     }
+
+    /**
+     * Clean up any side effects that the Component has created
+     *
+     * @memberof Component
+     */
+    cleanup() {
+        this._observer.disconnect();
+    }
 }
 
 /**
@@ -110,7 +119,7 @@ function containsElement(query, target) {
  * @returns {void}
  * @param {Component} component
  */
-function registerDOMUpdateListener(component) {
+function registerDOMMutationObserver(component) {
     const config = { childList: true, subtree: true };
     const observer = new MutationObserver(mutations => {
         const $component = getDOMNode(component);
@@ -119,10 +128,11 @@ function registerDOMUpdateListener(component) {
             .map(nodeList => [...nodeList])
             .reduce((nodes, subset) => nodes.concat(subset), [])
             .map(node => node.contains($component))
-            .reduce((matched, matches) => matched || matches);
+            .reduce((matched, matches) => matched || matches, false);
         if (wasUpdated) component.afterDOMUpdate();
     });
     observer.observe(document, config);
+    return observer;
 }
 
 function runEffects(component) {
