@@ -1,5 +1,9 @@
 @import "./spacing";
 
+$font-stack-sans-serif: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif !default;
+$font-stack-display: "Playfair Display" "Times New Roman", serif !default;
+$font-family-base: $font-stack-sans-serif;
+
 $font-size-base: 1rem !default;
 $font-size-lg: $font-size-base * 1.25 !default;
 $font-size-sm: 80% !default;
