@@ -1,0 +1,29 @@
+@import "../variables/spacing";
+@import "../variables/font-settings";
+
+body {
+    font-size: $font-size-base;
+    font-weight: $font-weight-base;
+    line-height: $line-height-base;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+}
+
+h1 { font-size: $h1-font-size; }
+h2 { font-size: $h2-font-size; }
+h3 { font-size: $h3-font-size; }
+h4 { font-size: $h4-font-size; }
+h5 { font-size: $h5-font-size; }
+h6 { font-size: $h6-font-size; }
+
+.text-sm { font-size: $font-size-sm }
+.text-lg { font-size: $font-size-lg }
+
+p:not(:last-child) {
+    margin-bottom: $paragraph-margin-bottom;
+}
