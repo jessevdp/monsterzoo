@@ -1,0 +1,17 @@
+@import '~@local/styles/variables/font-settings';
+@import '~@local/styles/variables/spacing';
+
+.logo {
+    font-family: $font-stack-display;
+    padding: spacing(3) spacing(4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    box-sizing: border-box;
+
+    > * {
+        margin: spacing(0);
+    }
+}

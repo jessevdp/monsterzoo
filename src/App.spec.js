@@ -1,8 +1,14 @@
 import App from "./App";
+import Logo from './layout/Logo';
+import renderTemplate from '@local/system/renderTemplate';
 
-it('renders correctly', () => {
-    const app = new App();
-    const result = app.view();
-    expect(result).toMatchSnapshot();
-    app.cleanup();
-});
+jest.mock('@local/system/renderTemplate');
+
+describe('view', () => {
+    it('passes a Logo to renderTemplate', () => {
+        const app = new App();
+        app.view();
+        expect(renderTemplate).toHaveBeenCalledWith(expect.any(String), { logo: expect.any(Logo) });
+        app.cleanup();
+    })
+})
