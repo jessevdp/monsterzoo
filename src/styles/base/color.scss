@@ -1,0 +1,26 @@
+@import "../variables/ui-colors";
+
+@mixin bg-variant($variant) {
+    background-color: ui-background($variant);
+    color: ui-contrast($variant);
+    p {
+        color: ui-contrast($variant, "secondary");
+    }
+    .text-muted {
+        color: ui-contrast($variant, 'tertiary');
+    }
+}
+
+body {
+    @include bg-variant($default-ui-background);
+}
+
+@each $variant, $data in $ui-colors {
+    .bg-#{$variant} {
+        @include bg-variant($variant);
+    }
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}

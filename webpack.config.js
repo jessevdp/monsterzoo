@@ -11,7 +11,10 @@ module.exports = (env, argv) => {
     return {
         mode: production ? 'production' : 'development',
         devtool: production ? 'nosources-source-map' : 'source-map',
-        entry: './src/index.js',
+        entry: {
+            'base-styles': './src/styles/base.scss',
+            'app': './src/index.js'
+        },
         output: {
             filename: '[name].[contenthash].js',
             path: path.resolve(__dirname, 'dist')
