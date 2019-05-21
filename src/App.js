@@ -1,6 +1,5 @@
 import { Component, renderTemplate } from '@local/system';
 import Logo from '@local/layout/Logo';
-import config from '@local/config';
 import template from './App.template.html';
 import './App.scss';
 
@@ -11,11 +10,10 @@ export default class App extends Component {
      */
     constructor() {
         super();
-        this.setState({ name: config.app.name });
+        this.logo = new Logo();
     }
 
     view() {
-        const logo = new Logo(this.state.name);
-        return renderTemplate(template, { logo });
+        return renderTemplate(template, { logo: this.logo });
     }
 }

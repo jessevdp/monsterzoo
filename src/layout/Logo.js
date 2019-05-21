@@ -1,15 +1,15 @@
 import { Component } from '@local/system';
+import config from '@local/config';
 import './styles/Logo.scss';
 
 export default class Logo extends Component {
     /**
      * Creates an instance of Logo.
-     * @param {string} content
      * @memberof Logo
      */
-    constructor(content) {
+    constructor() {
         super();
-        this.setState({ content });
+        this.setState({ content: config.app.name });
     }
 
     view() {
