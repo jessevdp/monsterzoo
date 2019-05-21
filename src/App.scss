@@ -1,0 +1,27 @@
+.app {
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "logo topbar"
+        "sidebar main";
+
+    > .logo {
+        grid-area: logo;
+    }
+
+    > .topbar {
+        grid-area: topbar;
+    }
+
+    > .sidebar {
+        grid-area: sidebar;
+    }
+
+    > .main {
+        grid-area: main;
+    }
+}

@@ -1,7 +1,9 @@
-import { Component } from '@local/system';
+import { Component, renderTemplate } from '@local/system';
+import template from './App.template.html';
+import './App.scss';
 
 export default class App extends Component {
     view() {
-        return '<div></div>';
+        return renderTemplate(template);
     }
 }
