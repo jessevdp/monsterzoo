@@ -16,4 +16,9 @@ export default class App extends Component {
     view() {
         return renderTemplate(template, { logo: this.logo });
     }
+
+    cleanup() {
+        super.cleanup();
+        this.logo.cleanup();
+    }
 }
