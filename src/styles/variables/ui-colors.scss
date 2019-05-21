@@ -107,11 +107,12 @@ $ui-colors: map-merge(
 $default-ui-background: "100" !default;
 
 @function ui-background($variant: $base-ui-variant) {
-  $map: map-get($ui-colors, $key);
+  $map: map-get($ui-colors, $variant);
   @return map-get($map, "base");
 }
 
 @function ui-contrast($background, $variant: "primary") {
   $map: map-get($ui-colors, $background);
-  @return map-get($map, $variant);
+  $contrast: map-get($map, "contrast");
+  @return map-get($contrast, $variant);
 }
