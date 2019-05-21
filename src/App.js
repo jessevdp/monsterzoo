@@ -5,10 +5,15 @@ import template from './App.template.html';
 import './App.scss';
 
 export default class App extends Component {
+    /**
+     * Creates an instance of App.
+     * @memberof App
+     */
     constructor() {
         super();
         this.setState({ name: config.app.name });
     }
+
     view() {
         const logo = new Logo(this.state.name);
         return renderTemplate(template, { logo });
