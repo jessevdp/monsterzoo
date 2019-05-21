@@ -1,7 +1,7 @@
 import { Component } from '@local/system';
 import './styles/Logo.scss';
 
-export default class App extends Component {
+export default class Logo extends Component {
     /**
      * Creates an instance of Logo.
      * @param {string} content
