@@ -1,9 +1,16 @@
 import { Component, renderTemplate } from '@local/system';
+import Logo from '@local/layout/Logo';
+import config from '@local/config';
 import template from './App.template.html';
 import './App.scss';
 
 export default class App extends Component {
+    constructor() {
+        super();
+        this.setState({ name: config.app.name });
+    }
     view() {
-        return renderTemplate(template);
+        const logo = new Logo(this.state.name);
+        return renderTemplate(template, { logo });
     }
 }

@@ -9,19 +9,8 @@
         "logo topbar"
         "sidebar main";
 
-    > .logo {
-        grid-area: logo;
-    }
-
-    > .topbar {
-        grid-area: topbar;
-    }
-
-    > .sidebar {
-        grid-area: sidebar;
-    }
-
-    > .main {
-        grid-area: main;
-    }
+    > .logo-container { grid-area: logo; }
+    > .topbar-container { grid-area: topbar; }
+    > .sidebar-container { grid-area: sidebar; }
+    > .main-container { grid-area: main; }
 }
