@@ -16,15 +16,15 @@ $ui-colors: map-merge(
       "base": white,
       "contrast": (
         "primary": $gray-800,
-        "secondary": $gray-600,
-        "tertiary": $gray-300
+        "secondary": $gray-500,
+        "tertiary": $gray-200
       )
     ),
     "100": (
       "base": $gray-100,
       "contrast": (
         "primary": $gray-800,
-        "secondary": $gray-600,
+        "secondary": $gray-500,
         "tertiary": $gray-300
       )
     ),
@@ -32,31 +32,31 @@ $ui-colors: map-merge(
       "base": $gray-200,
       "contrast": (
         "primary": $gray-800,
-        "secondary": $gray-300,
+        "secondary": $gray-500,
         "tertiary": $gray-400
       )
     ),
     "300": (
       "base": $gray-300,
       "contrast": (
-        "primary": $gray-800,
-        "secondary": $gray-300,
-        "tertiary": $gray-400
+        "primary": $gray-900,
+        "secondary": $gray-600,
+        "tertiary": $gray-500
       )
     ),
     "400": (
       "base": $gray-400,
       "contrast": (
-        "primary": $gray-800,
+        "primary": $gray-900,
         "secondary": $gray-600,
-        "tertiary": $gray-300
+        "tertiary": $gray-500
       )
     ),
     "500": (
       "base": $gray-500,
       "contrast": (
         "primary": white,
-        "secondary": $gray-200,
+        "secondary": $gray-300,
         "tertiary": $gray-400
       )
     ),
@@ -64,24 +64,24 @@ $ui-colors: map-merge(
       "base": $gray-600,
       "contrast": (
         "primary": white,
-        "secondary": $gray-600,
-        "tertiary": $gray-700
+        "secondary": $gray-400,
+        "tertiary": $gray-500
       )
     ),
     "700": (
       "base": $gray-700,
       "contrast": (
         "primary": white,
-        "secondary": $gray-600,
-        "tertiary": $gray-800
+        "secondary": $gray-500,
+        "tertiary": $gray-600
       )
     ),
     "800": (
       "base": $gray-800,
       "contrast": (
         "primary": white,
-        "secondary": $gray-600,
-        "tertiary": $gray-900
+        "secondary": $gray-500,
+        "tertiary": $gray-600
       )
     ),
     "900": (
@@ -89,7 +89,7 @@ $ui-colors: map-merge(
       "contrast": (
         "primary": white,
         "secondary": $gray-600,
-        "tertiary": $gray-800
+        "tertiary": $gray-700
       )
     ),
     "black": (
