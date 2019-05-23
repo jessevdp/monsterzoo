@@ -6,4 +6,4 @@ Object {
 }
 `;
 
-exports[`renders correctly 1`] = `"<input name=\\"foobar\\" foo=\\"bar\\" bar=\\"foo\\" />"`;
+exports[`renders correctly 1`] = `"<div><label>undefined</label><input name=\\"foobar\\" foo=\\"bar\\" bar=\\"foo\\" /></div>"`;
