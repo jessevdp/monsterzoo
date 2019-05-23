@@ -99,3 +99,21 @@ describe('setAttributes', () => {
         input.cleanup();
     })
 })
+
+describe('[label] setter', () => {
+    it('updates the [label] variable on state', () => {
+        const newLabel = 'new label';
+        const input = new Input('name', 'label');
+        input.label = newLabel;
+        expect(input.state.label).toBe(newLabel);
+        input.cleanup();
+    })
+    it('uses the setState method', () => {
+        const newLabel = 'new label';
+        const input = new Input('name', 'label');
+        const spy = jest.spyOn(Input.prototype, 'setState');
+        input.label = newLabel;
+        expect(spy).toHaveBeenCalledWith({ label: newLabel });
+        input.cleanup();
+    })
+})
