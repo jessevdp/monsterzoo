@@ -225,6 +225,21 @@ describe('on', () => {
     })
 })
 
+describe('getHTMLElement', () => {
+    it('returns the HTMLElement if the component is rendered to the document', () => {
+        const component = new MockComponent();
+        document.body.innerHTML = component.render();
+        const el = document.body.firstChild;
+        expect(component.getHTMLElement()).toBe(el);
+        component.cleanup();
+    })
+    it('returns [null] if the component is not rendered to the document', () => {
+        const component = new MockComponent();
+        expect(component.getHTMLElement()).toBe(null);
+        component.cleanup();
+    })
+})
+
 function MockComponent(view = '<div></div>') {
     let _this = new Component();
     _this.render = jest.fn(Component.prototype.render);

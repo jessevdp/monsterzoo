@@ -40,7 +40,7 @@ export default class Component {
      * @memberof Component
      */
     update() {
-        const element = getDOMNode(this);
+        const element = this.getHTMLElement();
         if (element) {
             const newElement = toDOMNode(this.render());
             element.replaceWith(newElement);
@@ -88,6 +88,17 @@ export default class Component {
     }
 
     /**
+     * Get the HTMLElement for the component by querying the document for an element with the
+     * id of the component.
+     *
+     * @returns {(HTMLElement|null)} Returns the first element with the same component id. Or null if not found.
+     * @memberof Component
+     */
+    getHTMLElement() {
+        return document.querySelector(`[data-component-id="${this.id}"]`);
+    }
+
+    /**
      * Clean up any side effects that the Component has created
      * 
      * @returns {void}
@@ -125,7 +136,7 @@ function containsElement(query, target) {
 function registerDOMMutationObserver(component) {
     const config = { childList: true, subtree: true };
     const observer = new MutationObserver(mutations => {
-        const $component = getDOMNode(component);
+        const $component = component.getHTMLElement();
         const wasUpdated = mutations
             .map(mutation => mutation.addedNodes)
             .map(nodeList => [...nodeList])
@@ -160,10 +171,6 @@ function cleanUpEffects(component) {
 
 function registerEventListeners(component) {
     if (isFunction(component.events)) component.events();
-}
-
-function getDOMNode(component) {
-    return document.querySelectorAll(`[data-component-id="${component.id}"]`)[0];
 }
 
 function verifyHasView(component) {
