@@ -3,10 +3,12 @@
 @mixin bg-variant($variant) {
     background-color: ui-background($variant);
     color: ui-contrast($variant);
-    p {
+    p,
+    .text-secondary {
         color: ui-contrast($variant, "secondary");
     }
-    .text-muted {
+    .text-muted,
+    .text-tertiary {
         color: ui-contrast($variant, 'tertiary');
     }
 }
