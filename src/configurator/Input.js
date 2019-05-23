@@ -1,6 +1,8 @@
 import { Component } from '@local/system';
 import { isObject, isFunction } from '@local/utilities';
 
+import './styles/Input.scss';
+
 const defaultAttributes = {
     'type': 'text'
 };
@@ -25,8 +27,8 @@ export default class Input extends Component {
 
     view() {
         return ''
-            + '<div>'
-                + `<label>${this.state.label}</label>`
+            + '<div class="input bg-300">'
+                + `<label class="text-secondary">${this.state.label}</label>`
                 + `<input name="${this.state.name}" ${this.htmlAttributes()} />`
             + '</div>';
     }
