@@ -1,5 +1,12 @@
 import Input from '../Input';
 
+it('renders correctly', () => {
+    const input = new Input('foobar');
+    input.state.attributes = { foo: 'bar', bar: 'foo' };
+    expect(input.view()).toMatchSnapshot();
+    input.cleanup();
+})
+
 describe('constructor', () => {
     it('sets the [name] on state', () => {
         const name = 'foobar';
