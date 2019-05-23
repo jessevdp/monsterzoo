@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constructor uses defaults for the [attributes] 1`] = `
+Object {
+  "type": "text",
+}
+`;
