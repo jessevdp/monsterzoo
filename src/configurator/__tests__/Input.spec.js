@@ -10,8 +10,14 @@ it('renders correctly', () => {
 describe('constructor', () => {
     it('sets the [name] on state', () => {
         const name = 'foobar';
-        const input = new Input(name);
+        const input = new Input(name, 'label');
         expect(input.state.name).toBe(name);
+        input.cleanup();
+    })
+    it('sets the [label] on state', () => {
+        const label = 'foobar';
+        const input = new Input('name', label);
+        expect(input.state.label).toBe(label);
         input.cleanup();
     })
     it('uses defaults for the [attributes]', () => {
@@ -20,12 +26,12 @@ describe('constructor', () => {
         input.cleanup();
     })
     it('merges the passed attributes with the defaults', () => {
-        const input = new Input('foobar', { foo: 'bar' });
+        const input = new Input('name', 'label', { foo: 'bar' });
         expect(input.state.attributes).toHaveProperty('foo', 'bar');
         input.cleanup();
     })
     it('overwrites attribute defaults with passed attributes', () => {
-        const input = new Input('foobar', { type: 'number' });
+        const input = new Input('name', 'label', { type: 'number' });
         expect(input.state.attributes.type).toBe('number');
         input.cleanup();
     })

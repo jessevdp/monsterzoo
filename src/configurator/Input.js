@@ -9,20 +9,26 @@ export default class Input extends Component {
     /**
      * Creates an instance of Input.
      * @param {string} name
+     * @param {string} label
      * @param {object} [attributes={}] A set of attributes for the input box, represented as key-value pairs
      * @memberof Input
      */
-    constructor(name, attributes = {}) {
+    constructor(name, label, attributes = {}) {
         super();
         attributes = {...defaultAttributes, ...attributes};
         this.setState({
             name,
+            label,
             attributes
         });
     }
 
     view() {
-        return `<input name="${this.state.name}" ${this.htmlAttributes()} />`;
+        return ''
+            + '<div>'
+                + `<label>${this.state.label}</label>`
+                + `<input name="${this.state.name}" ${this.htmlAttributes()} />`
+            + '</div>';
     }
 
     /**
