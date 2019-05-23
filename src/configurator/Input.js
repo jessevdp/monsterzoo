@@ -1,4 +1,5 @@
 import { Component } from '@local/system';
+import { isObject, isFunction } from '@local/utilities';
 
 const defaultAttributes = {
     'type': 'text'
@@ -17,6 +18,27 @@ export default class Input extends Component {
         this.setState({
             name,
             attributes
+        });
+    }
+
+    /**
+     * Mutate the attributes of the Input.
+     *
+     * @param {(object|function)} attributes The subset of attributes to be mutated, or a function that returns this subset.
+     * @returns {void}
+     * @memberof Input
+     */
+    setAttributes(attributes) {
+        this.setState(state => {
+            let newAttributes;
+            if (isObject(attributes)) newAttributes = attributes;
+            if (isFunction(attributes)) newAttributes = attributes(state.attributes);
+            return {
+                attributes: {
+                    ...state.attributes,
+                    ...newAttributes,
+                }
+            };
         });
     }
 
