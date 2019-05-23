@@ -19,4 +19,18 @@ export default class Input extends Component {
             attributes
         });
     }
+
+    /**
+     * Convert the attributes object (stored in state) into it's HTML string
+     * equivalent. (E.g. a sequence of: 'key="value"')
+     *
+     * @returns {string}
+     * @memberof Input
+     */
+    htmlAttributes() {
+        return Object.entries(this.state.attributes)
+            .map((entry) => `${entry[0]}="${entry[1]}"`)
+            .reduce((all, attribute) => all + (attribute + ' '), '')
+            .trim();
+    }
 }
