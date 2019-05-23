@@ -32,7 +32,7 @@ describe('constructor', () => {
 })
 
 describe('htmlAttributes', () => {
-    it('can convert [attributes] into an HTML string', () => {
+    it('can convert [attributes] state object into an HTML string', () => {
         const attributes = { foo: 'bar', number: 10 }
         const expected = 'foo="bar" number="10"';
         const input = new Input('name');
