@@ -5,3 +5,5 @@ Object {
   "type": "text",
 }
 `;
+
+exports[`renders correctly 1`] = `"<input name=\\"foobar\\" foo=\\"bar\\" bar=\\"foo\\" />"`;

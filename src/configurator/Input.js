@@ -21,6 +21,10 @@ export default class Input extends Component {
         });
     }
 
+    view() {
+        return `<input name="${this.state.name}" ${this.htmlAttributes()} />`;
+    }
+
     /**
      * Mutate the attributes of the Input.
      *
