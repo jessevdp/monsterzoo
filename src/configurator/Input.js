@@ -65,4 +65,11 @@ export default class Input extends Component {
             .reduce((all, attribute) => all + (attribute + ' '), '')
             .trim();
     }
+
+    /**
+     * @param {string} label
+     */
+    set label(label) {
+        this.setState({ label });
+    }
 }
