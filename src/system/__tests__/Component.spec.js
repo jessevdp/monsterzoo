@@ -238,6 +238,19 @@ describe('getHTMLElement', () => {
         expect(component.getHTMLElement()).toBe(null);
         component.cleanup();
     })
+    it('accepts a [query] parameter to select a sub-element of the component', () => {
+        const component = new MockComponent('<div><h1 id="foo">bar</h1></div>');
+        document.body.innerHTML = component.render();
+        const expected = document.getElementById('foo');
+        expect(component.getHTMLElement('#foo')).toBe(expected);
+        component.cleanup();
+    })
+    it('returns [null] if the [query] does not match any sub-elements', () => {
+        const component = new MockComponent('<div><h1 id="foo">bar</h1></div>');
+        document.body.innerHTML = component.render();
+        expect(component.getHTMLElement('#bar')).toBe(null);
+        component.cleanup();
+    })
 })
 
 function MockComponent(view = '<div></div>') {
