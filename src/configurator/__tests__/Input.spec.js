@@ -1,7 +1,11 @@
 import Input from '../Input';
 
+beforeEach(() => {
+    document.body.innerHTML = '';
+});
+
 it('renders correctly', () => {
-    const input = new Input('foobar');
+    const input = new Input('name', 'label');
     input.state.attributes = { foo: 'bar', bar: 'foo' };
     expect(input.view()).toMatchSnapshot();
     input.cleanup();
@@ -33,6 +37,15 @@ describe('constructor', () => {
     it('overwrites attribute defaults with passed attributes', () => {
         const input = new Input('name', 'label', { type: 'number' });
         expect(input.state.attributes.type).toBe('number');
+        input.cleanup();
+    })
+    it('accepts an optional [value] attribute on [attributes] to initialze state.value', () => {
+        const value = 'value';
+        const attributes = { foo: 'bar', value };
+        const input = new Input('name', 'label', attributes);
+        expect(input.state.value).toBe(value);
+        expect(input.state.attributes.foo).toBe(attributes.foo);
+        expect(input.state.attributes.value).toBe(undefined);
         input.cleanup();
     })
 })
@@ -114,6 +127,62 @@ describe('[label] setter', () => {
         const spy = jest.spyOn(Input.prototype, 'setState');
         input.label = newLabel;
         expect(spy).toHaveBeenCalledWith({ label: newLabel });
+        input.cleanup();
+    })
+})
+
+describe('[value] setter', () => {
+    it('updates the [value] variable on state', () => {
+        const newValue = 'new value';
+        const input = new Input('name', 'label', 'value');
+        input.value = newValue;
+        expect(input.state.value).toBe(newValue);
+        input.cleanup();
+    })
+    it('updates the value of the input box', () => {
+        const newValue = 'new value';
+        const input = new Input('name', 'label');
+        document.body.innerHTML = input.render();
+        input.value = newValue;
+        const $input = document.querySelector('input');
+        expect($input.value).toBe(newValue);
+        input.cleanup();
+    })
+    it('uses the setState method', () => {
+        const newValue = 'new value';
+        const input = new Input('name', 'label');
+        const spy = jest.spyOn(Input.prototype, 'setState');
+        input.value = newValue;
+        expect(spy).toHaveBeenCalledWith({ value: newValue });
+        input.cleanup();
+    })
+})
+describe('[value] getter', () => {
+    it('returns the value of state.value', () => {
+        const value = 'value';
+        const input = new Input('name', 'label');
+        input.state.value = value;
+        expect(input.value).toBe(value);
+        input.cleanup();
+    })
+})
+
+describe('events', () => {
+    it('updates [value] state when the value of the input changes', () => {
+        // Arrange
+        const newValue = 'new value';
+        const input = new Input('name', 'label');
+        document.body.innerHTML = input.render();
+        const $input = document.querySelector('input');
+
+        // Act
+        $input.value = newValue;
+        $input.dispatchEvent(new Event('change'));
+
+        // Assert
+        expect(input.value).toBe(newValue);
+
+        // Cleanup
         input.cleanup();
     })
 })
