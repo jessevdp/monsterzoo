@@ -18,9 +18,14 @@ export default class Input extends Component {
     constructor(name, label, attributes = {}) {
         super();
         attributes = {...defaultAttributes, ...attributes};
+
+        const value = attributes['value'] || '';
+        delete attributes['value'];
+        
         this.setState({
             name,
             label,
+            value,
             attributes
         });
     }
@@ -29,8 +34,17 @@ export default class Input extends Component {
         return ''
             + '<div class="input bg-300">'
                 + `<label class="text-secondary">${this.state.label}</label>`
-                + `<input name="${this.state.name}" ${this.htmlAttributes()} />`
+                + `<input name="${this.state.name}" value="${this.state.value || ''}" ${this.htmlAttributes()} />`
             + '</div>';
+    }
+
+    events() {
+        this.on('change', 'input', () => {
+            let $input = this.getHTMLElement('input');
+            const isActive = document.activeElement == $input;
+            this.setState({ value: $input.value });
+            if (isActive) this.getHTMLElement('input').focus();
+        });
     }
 
     /**
@@ -73,5 +87,13 @@ export default class Input extends Component {
      */
     set label(label) {
         this.setState({ label });
+    }
+
+    get value() {
+        return this.state.value;
+    }
+
+    set value(value) {
+        this.setState({ value });
     }
 }
