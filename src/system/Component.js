@@ -91,11 +91,13 @@ export default class Component {
      * Get the HTMLElement for the component by querying the document for an element with the
      * id of the component.
      *
+     * @param {string} [query]
      * @returns {(HTMLElement|null)} Returns the first element with the same component id. Or null if not found.
      * @memberof Component
      */
-    getHTMLElement() {
-        return document.querySelector(`[data-component-id="${this.id}"]`);
+    getHTMLElement(query) {
+        query = query ? ' ' + query : '';
+        return document.querySelector(`[data-component-id="${this.id}"]` + query);
     }
 
     /**
