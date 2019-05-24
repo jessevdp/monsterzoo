@@ -90,17 +90,6 @@ export default class Component {
 
     /**
      * Setup two-way data binding beteween a property on the components' state
-     * and a property on another component's state 
-     *
-     * @param {string} property
-     * @param {Component} otherComponent
-     * @param {*} [otherProperty]
-     * @returns {void}
-     * @memberof Component
-     */
-
-    /**
-     * Setup two-way data binding beteween a property on the components' state
      * and a property on another component's state.
      *
      * @param {string} property
