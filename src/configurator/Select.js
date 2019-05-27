@@ -8,6 +8,7 @@ export default class Select extends Component {
             name,
             label,
             options,
+            value: options[0],
         });
     }
 
