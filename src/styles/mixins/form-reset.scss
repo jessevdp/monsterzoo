@@ -23,3 +23,15 @@
         }
     }
 }
+
+@mixin select-reset {
+    -webkit-appearance: none;
+    border: 0;
+    background: inherit;
+    font-family: inherit;
+
+    &:active,
+    &:focus {
+        outline: 0;
+    }
+}

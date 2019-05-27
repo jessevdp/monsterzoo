@@ -1,4 +1,5 @@
 import { Component, renderTemplate } from '@local/system';
+import './styles/Select.scss';
 
 export default class Select extends Component {
     constructor(name, label, options) {
@@ -12,13 +13,10 @@ export default class Select extends Component {
 
     view() {
         const template = ''
-            + '<div class="select">'
-                + '<label>{{label}}</label>'
+            + '<div class="select bg-300">'
+                + '<label class="text-secondary">{{label}}</label>'
                 + '<select name="{{name}}">'
-                    + '<option value="" disabled selected>Select an option</option>'
-                    + '{{#options}}'
-                        + '{{{.}}}'
-                    + '{{/options}}'
+                    + '{{#options}}{{{.}}}{{/options}}'
                 + '</select>'
             + '</div>';
 
