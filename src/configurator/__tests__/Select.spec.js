@@ -14,13 +14,13 @@ it('renders correctly', () => {
 describe('constructor', () => {
     it('sets the [name] on state', () => {
         const name = 'foobar';
-        const select = new Select(name, 'label');
+        const select = new Select(name, 'label', ['foo']);
         expect(select.state.name).toBe(name);
         select.cleanup();
     })
     it('sets the [label] on state', () => {
         const label = 'label';
-        const select = new Select('name', label);
+        const select = new Select('name', label, ['foo']);
         expect(select.state.label).toBe(label);
         select.cleanup();
     })
@@ -93,7 +93,7 @@ describe('[value] getter', () => {
     it('returns the value of state.value', () => {
         const options = ['foo', 'bar'];
         const value = options[1];
-        const select = new Select('name', 'label');
+        const select = new Select('name', 'label', options);
         select.state.value = value;
         expect(select.value).toBe(value);
         select.cleanup();
