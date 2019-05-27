@@ -1,10 +1,7 @@
 import Select from '../Select';
 
 it('renders correctly', () => {
-    const options = [
-        { name: 'Foo', value: 'foo' },
-        { name: 'Bar', value: 'bar' }
-    ];
+    const options = ['foo', 'bar'];
     const select = new Select('name', 'label', options);
     expect(select.view()).toMatchSnapshot();
     select.cleanup();
@@ -24,10 +21,7 @@ describe('constructor', () => {
         select.cleanup();
     })
     it('sets the [options] on state', () => {
-        const options = [
-            { name: 'Foo', value: 'foo' },
-            { name: 'Bar', value: 'bar' }
-        ];
+        const options = ['foo', 'bar'];
         const select = new Select('name', 'label', options);
         expect(select.state.options).toBe(options);
         select.cleanup();
