@@ -30,6 +30,13 @@ describe('constructor', () => {
         expect(select.state.options).toBe(options);
         select.cleanup();
     })
+    it('defaults the [value] to the first option', () => {
+        const options = ['foo', 'bar'];
+        const expected = options[0];
+        const select = new Select('name', 'label', options);
+        expect(select.state.value).toBe(expected);
+        select.cleanup();
+    })
 })
 
 describe('[options] setter', () => {
