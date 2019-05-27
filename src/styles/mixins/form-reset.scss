@@ -14,7 +14,7 @@
         outline: 0;
     }
     &[type="number"] {
-        -moz-appearance: textfield !important;
+        appearance: textfield !important;
         &::-webkit-inner-spin-button,
         &::-webkit-outer-spin-button {
             height: 300px;
@@ -25,7 +25,7 @@
 }
 
 @mixin select-reset {
-    -webkit-appearance: none;
+    appearance: none;
     border: 0;
     background: inherit;
     font-family: inherit;
