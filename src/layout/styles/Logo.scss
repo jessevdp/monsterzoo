@@ -3,6 +3,9 @@
 
 .logo {
     font-family: $font-stack-display;
+    font-style: italic;
+    font-weight: bold;
+    
     padding: spacing(3) spacing(4);
     display: flex;
     justify-content: center;
