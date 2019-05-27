@@ -253,6 +253,43 @@ describe('getHTMLElement', () => {
     })
 })
 
+describe('bind', () => {
+    describe('when the property on the components\' state changes', () => {
+        it('updates the value on the linked components state', () => {
+            const value = 'foo';
+            const component = new Component();
+            const otherComponent = new Component();
+            component.bind('property', otherComponent);
+            component.setState({ property: value });
+            expect(otherComponent.state.property).toBe(value);
+            component.cleanup();
+            otherComponent.cleanup();
+        })
+    })
+    describe('when the property on the linked components\' state changes', () => {
+        it('updates the value on the initial components state', () => {
+            const value = 'foo';
+            const component = new Component();
+            const otherComponent = new Component();
+            component.bind('property', otherComponent);
+            otherComponent.setState({ property: value });
+            expect(component.state.property).toBe(value);
+            component.cleanup();
+            otherComponent.cleanup();
+        })
+    })
+    it('accepts an optional parameter to specify the name of the property on the source component', () => {
+        const value = 'foo';
+        const component = new Component();
+        const otherComponent = new Component();
+        component.bind('property', otherComponent, 'otherProperty');
+        component.setState({ property: value });
+        expect(otherComponent.state.otherProperty).toBe(value);
+        component.cleanup();
+        otherComponent.cleanup();
+    })
+})
+
 function MockComponent(view = '<div></div>') {
     let _this = new Component();
     _this.render = jest.fn(Component.prototype.render);
