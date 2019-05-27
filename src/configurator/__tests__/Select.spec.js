@@ -47,13 +47,50 @@ describe('[options] setter', () => {
         expect(select.state.options).toBe(newOptions);
         select.cleanup();
     })
-    it ('uses the setState method', () => {
+    it('uses the setState method', () => {
         const newOptions = ['foo', 'bar'];
         const select = new Select('name', 'label', ['foo']);
         const spy = jest.spyOn(Select.prototype, 'setState');
         select.options = newOptions;
         expect(spy).toHaveBeenCalledWith({ options: newOptions });
         select.cleanup();
+    })
+    describe('when the current [value] is not present in the new [options]', () => {
+        it('defaults the [value] to the first option', () => {
+            // Arrange
+            const options = ['baz', 'derp'];
+            const newOptions = ['foo', 'bar'];
+            const select = new Select('name', 'label', options);
+            select.value = options[0];
+
+            // Act
+            select.options = newOptions;
+
+            // Assert
+            expect(select.state.value).toBe(newOptions[0]);
+
+            // Cleanup
+            select.cleanup();
+        })
+    })
+    describe('when the current [value] is present in the new [options]', () => {
+        it('keeps the selected value', () => {
+            // Arrange
+            const options = ['foo', 'bar'];
+            const value = options[0];
+            const newOptions = ['baz', 'bar', value];
+            const select = new Select('name', 'label', options);
+            select.value = value;
+
+            // Act
+            select.options = newOptions;
+
+            // Assert
+            expect(select.state.value).toBe(value);
+
+            // Cleanup
+            select.cleanup();
+        })
     })
 })
 
@@ -93,6 +130,18 @@ describe('[value] setter', () => {
         select.value = value;
         expect(spy).toHaveBeenCalledWith({ value: value });
         select.cleanup();
+    })
+    describe('when the new value is not present in the set of options', () => {
+        it('throws a RangeError', () => {
+            const options = ['foo', 'bar'];
+            const newValue = 'baz';
+            const select = new Select('name', 'label', options);
+            expect(() => {
+                select.value = newValue;
+            })
+            .toThrowError(RangeError);
+            select.cleanup();
+        })
     })
 })
 
