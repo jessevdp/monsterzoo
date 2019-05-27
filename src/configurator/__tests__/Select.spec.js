@@ -27,3 +27,30 @@ describe('constructor', () => {
         select.cleanup();
     })
 })
+
+describe('[options] setter', () => {
+    it('updates the [options] on state', () => {
+        const newOptions = ['foo', 'bar'];
+        const select = new Select('name', 'label', ['foo']);
+        select.options = newOptions;
+        expect(select.state.options).toBe(newOptions);
+        select.cleanup();
+    })
+    it ('uses the setState method', () => {
+        const newOptions = ['foo', 'bar'];
+        const select = new Select('name', 'label', ['foo']);
+        const spy = jest.spyOn(Select.prototype, 'setState');
+        select.options = newOptions;
+        expect(spy).toHaveBeenCalledWith({ options: newOptions });
+        select.cleanup();
+    })
+})
+
+describe('[options] getter', () => {
+    it('returns the value of state.options', () => {
+        const options = ['foo', 'bar'];
+        const select = new Select('name', 'label', options);
+        expect(select.options).toBe(options);
+        select.cleanup();
+    })
+})
