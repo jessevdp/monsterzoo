@@ -40,7 +40,10 @@ export default class Select extends Component {
 
 
     set value(value) {
-        this.setState({ value });
+        this.setState(state => {
+            if (state.options.includes(value))return { value };
+            else throw new RangeError(); 
+        });
     }
 
     get value() {
@@ -48,7 +51,10 @@ export default class Select extends Component {
     }
 
     set options(options) {
-        this.setState({ options });
+        this.setState(state => {
+            const value = options.includes(state.value) ? state.value : options[0];
+            return { options, value };
+        });
     }
 
     get options() {
