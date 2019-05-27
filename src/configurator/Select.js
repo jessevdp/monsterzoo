@@ -22,4 +22,12 @@ export default class Select extends Component {
             + '</div>';
         return renderTemplate(template, this.state);
     }
+
+    set options(options) {
+        this.setState({ options });
+    }
+
+    get options() {
+        return this.state.options;
+    }
 }
