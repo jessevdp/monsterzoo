@@ -65,6 +65,7 @@ export default class Component {
         else if (isFunction(state)) newState = state(this.state);
         this.state = { ...this.state, ...newState };
         this.update();
+        runBindings(this, newState);
     }
 
     /**
@@ -85,6 +86,21 @@ export default class Component {
         document.addEventListener(event, (e) => {
             if (containsElement(query, e.target)) handler(e);
         }, options);
+    }
+
+    /**
+     * Setup two-way data binding beteween a property on the components' state
+     * and a property on another component's state.
+     *
+     * @param {string} property
+     * @param {Component} otherComponent
+     * @param {string} [otherProperty=property]
+     * @returns {void}
+     * @memberof Component
+     */
+    bind(property, otherComponent, otherProperty = property) {
+        setupOneWayDataBinding(this, property, otherComponent, otherProperty);
+        setupOneWayDataBinding(otherComponent, otherProperty, this, property);
     }
 
     /**
@@ -173,6 +189,23 @@ function cleanUpEffects(component) {
 
 function registerEventListeners(component) {
     if (isFunction(component.events)) component.events();
+}
+
+function setupOneWayDataBinding(component, property, otherComponent, otherProperty) {
+    if (!component._bindings) component._bindings = [];
+    function handler (newState) {
+        if (!newState.hasOwnProperty(property)) return;
+        if (otherComponent.state[otherProperty] === newState[property]) return;
+        otherComponent.setState({ 
+            [otherProperty]: newState[property] 
+        });
+    }
+    component._bindings.push(handler);
+}
+
+function runBindings(component, newState) {
+    if (! isArray(component._bindings)) return;
+    component._bindings.forEach(handle => handle(newState));
 }
 
 function verifyHasView(component) {
