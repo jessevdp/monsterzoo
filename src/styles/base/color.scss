@@ -8,7 +8,9 @@
         color: ui-contrast($variant, "secondary");
     }
     .text-muted,
-    .text-tertiary {
+    .text-tertiary
+    &:disabled,
+    *:disabled {
         color: ui-contrast($variant, 'tertiary');
     }
 }
