@@ -15,6 +15,7 @@ export default class Select extends Component {
             + '<div class="select">'
                 + '<label>{{label}}</label>'
                 + '<select name="{{name}}">'
+                    + '<option value="" disabled selected>Select an option</option>'
                     + '{{#options}}'
                         + '{{{.}}}'
                     + '{{/options}}'
