@@ -52,7 +52,7 @@ describe('[options] setter', () => {
         const select = new Select('name', 'label', ['foo']);
         const spy = jest.spyOn(Select.prototype, 'setState');
         select.options = newOptions;
-        expect(spy).toHaveBeenCalledWith({ options: newOptions });
+        expect(spy).toHaveBeenCalled();
         select.cleanup();
     })
     describe('when the current [value] is not present in the new [options]', () => {
@@ -128,7 +128,7 @@ describe('[value] setter', () => {
         const select = new Select('name', 'label', options);
         const spy = jest.spyOn(Select.prototype, 'setState');
         select.value = value;
-        expect(spy).toHaveBeenCalledWith({ value: value });
+        expect(spy).toHaveBeenCalled();
         select.cleanup();
     })
     describe('when the new value is not present in the set of options', () => {
