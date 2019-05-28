@@ -1,5 +1,7 @@
 import { Component, renderTemplate } from '@local/system';
-import Logo from '@local/layout/Logo';
+import Logo from './layout/Logo';
+import Configurator from './configurator/Configurator';
+
 import template from './App.template.html';
 import './App.scss';
 
@@ -11,14 +13,16 @@ export default class App extends Component {
     constructor() {
         super();
         this.logo = new Logo();
+        this.configurator = new Configurator();
     }
 
     view() {
-        return renderTemplate(template, { logo: this.logo });
+        return renderTemplate(template, { logo: this.logo, configurator: this.configurator });
     }
 
     cleanup() {
         super.cleanup();
         this.logo.cleanup();
+        this.configurator.cleanup();
     }
 }
