@@ -1,5 +1,10 @@
 import NumberInput from '../NumberInput';
 
+beforeEach(() => {
+    document.body.innerHTML = '';
+});
+
+
 describe('constructor', () => {
     it('overwrites the [attributes.type] to be \'number\'', () => {
         const input = new NumberInput('name', 'label', { type: 'foo' });
@@ -69,5 +74,15 @@ describe('setAttributes', () => {
             expect(input.value).toBe(newMax);
             input.cleanup();
         })
+    })
+})
+
+describe('view', () => {
+    it('disables the input when min & max are equal', () => {
+        const input = new NumberInput('name', 'label', { min: 2, max: 2 });
+        document.body.innerHTML = input.render();
+        const $input = document.querySelector('input');
+        expect($input.disabled).toBeTruthy();
+        input.cleanup();
     })
 })
