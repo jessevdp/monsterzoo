@@ -39,7 +39,7 @@ export default class Configurator extends Component {
         this.inputs.armType.options = this.options.armTypes();
         this.inputs.arms.setAttributes(this.options.armCount());
         this.inputs.eyes.setAttributes(this.options.eyeCount());
-        this.inputs.legs.setAttributes(this.options.legCount());
+        this.inputs.legs.setAttributes(this.options.legCount(this.state.arms));
     }
 
     setState(...args) {
