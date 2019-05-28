@@ -176,3 +176,22 @@ describe('events', () => {
         select.cleanup();
     })
 })
+
+describe('isDisabled', () => {
+    test.each([
+        [[]],
+        [['1']],
+    ])('returns [true] if there is less than 2 options (%p)', options => {
+        const select = new Select('name', 'label', options);
+        expect(select.isDisabled()).toBe(true);
+        select.cleanup();
+    })
+    test.each([
+        [['1', '2']],
+        [['1', '2', '3', '4']],
+    ])('returns [false] if there are than 2 or more options (%p)', options => {
+        const select = new Select('name', 'label', options);
+        expect(select.isDisabled()).toBe(false);
+        select.cleanup();
+    })
+})
