@@ -2,7 +2,7 @@ import { Component, renderTemplate } from '@local/system';
 import './styles/Select.scss';
 
 export default class Select extends Component {
-    constructor(name, label, options) {
+    constructor(name, label, options = []) {
         super();
         this.setState({
             name,
