@@ -8,3 +8,42 @@ describe('constructor', () => {
     })
 })
 
+describe('[value] getter', () => {
+    it('converts the [value] into a number', () => {
+        const value = '10';
+        const input = new NumberInput('name', 'label');
+        input.setState({ value })
+        expect(input.value).toBe(Number(value));
+        input.cleanup();
+    })
+})
+
+describe('[value] setter', () => {
+    test.each([
+        [0],
+        [10],
+        [5],
+    ])('can set the value inside the bounds of min/max (%p)', value => {
+        const input = new NumberInput('name', 'label', { min: 0, max: 10 });
+        input.value = value;
+        expect(input.value).toBe(value);
+        input.cleanup();
+    })
+    it('sets the value to [max] when the value is higher than max', () => {
+        const max = 10;
+        const value = 11;
+        const input = new NumberInput('name', 'label', { min: 0, max });
+        input.value = value;
+        expect(input.value).toBe(max);
+        input.cleanup();
+    })
+    it('sets the value to [min] when the value is lower than min', () => {
+        const min = 0;
+        const value = -10;
+        const input = new NumberInput('name', 'label', { min, max: 10 });
+        input.value = value;
+        expect(input.value).toBe(min);
+        input.cleanup();
+    })
+})
+
