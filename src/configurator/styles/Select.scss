@@ -31,4 +31,8 @@
             fill: var(--ui-contrast-tertiary);
         }
     }
+
+    > select:disabled ~ .icon {
+        display: none;
+    }
 }

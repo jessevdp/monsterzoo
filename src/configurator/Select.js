@@ -16,7 +16,7 @@ export default class Select extends Component {
         const template = ''
             + '<div class="select bg-300">'
                 + '<label class="text-secondary">{{label}}</label>'
-                + '<select name="{{name}}">'
+                + `<select name="{{name}}"${this.isDisabled() ? ' disabled' : ''}>`
                     + '{{#options}}{{{.}}}{{/options}}'
                 + '</select>'
                 + '<svg class="icon" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 7L9 0H0z" fill-rule="evenodd"></path></svg>'
@@ -37,6 +37,10 @@ export default class Select extends Component {
             this.setState({ value: $select.value });
             if (isActive) this.getHTMLElement('select').focus();
         });
+    }
+
+    isDisabled() {
+        return this.state.options.length < 2;
     }
 
 
