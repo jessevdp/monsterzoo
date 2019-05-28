@@ -20,7 +20,7 @@ export default class Configurator extends Component {
             arms: new Input('arms', 'Amount of arms', { type: 'number' }),
             eyes: new Input('eyes', 'Amount of eyes', { type: 'number' }),
             legs: new Input('legs', 'Amount of legs', { type: 'number' }),
-        }
+        };
         
         bindInputs(this);
         this.setState({ name: '', ...options.defaults });

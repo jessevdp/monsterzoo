@@ -93,7 +93,7 @@ const types = {
     'fire': new FireType(),
     'earth': new EarthType(),
     'air': new AirType(),
-}
+};
 
 class Options {
     get types() {
@@ -114,7 +114,7 @@ class Options {
             arms: options.armCount().min,
             eyes: options.eyeCount().min,
             legs: options.legCount(options.armCount().min).min,
-        }
+        };
     }
 }
 
