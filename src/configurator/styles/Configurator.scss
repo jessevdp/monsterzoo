@@ -1,3 +1,18 @@
+@import '~@local/styles/variables/spacing';
+
 .configurator {
-    
+    .title {
+        text-align: center;
+        margin-bottom: spacing(3);
+    }
+
+    .inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: .125rem;
+
+        > *:first-child {
+            grid-column: span 2;
+        }
+    }
 }
