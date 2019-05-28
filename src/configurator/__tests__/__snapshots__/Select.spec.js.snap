@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `"<div class=\\"select bg-300\\"><label class=\\"text-secondary\\">label</label><select name=\\"name\\"><option value=\\"foo\\" selected>foo</option><option value=\\"bar\\">bar</option></select></div>"`;
+exports[`renders correctly 1`] = `"<div class=\\"select bg-300\\"><label class=\\"text-secondary\\">label</label><select name=\\"name\\"><option value=\\"foo\\" selected>foo</option><option value=\\"bar\\">bar</option></select><svg class=\\"icon\\" viewBox=\\"0 0 9 7\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M4.5 7L9 0H0z\\" fill-rule=\\"evenodd\\"></path></svg></div>"`;

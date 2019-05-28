@@ -19,6 +19,7 @@ export default class Select extends Component {
                 + '<select name="{{name}}">'
                     + '{{#options}}{{{.}}}{{/options}}'
                 + '</select>'
+                + '<svg class="icon" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 7L9 0H0z" fill-rule="evenodd"></path></svg>'
             + '</div>';
 
         const options = this.state.options.map(option => {
