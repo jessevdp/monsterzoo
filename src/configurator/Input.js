@@ -31,10 +31,11 @@ export default class Input extends Component {
     }
 
     view() {
+        const value = this.state.value || (this.state.value === 0 ? 0 : '');
         return ''
             + '<div class="input bg-300">'
                 + `<label class="text-secondary">${this.state.label}</label>`
-                + `<input name="${this.state.name}" value="${this.state.value || ''}" ${this.htmlAttributes()} />`
+                + `<input name="${this.state.name}" value="${value}" ${this.htmlAttributes()} />`
             + '</div>';
     }
 
