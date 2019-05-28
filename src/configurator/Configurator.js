@@ -1,5 +1,6 @@
 import { Component, renderTemplate } from '@local/system';
 import Input from './Input';
+import NumberInput from './NumberInput';
 import Select from './Select';
 import options from './options';
 
@@ -13,13 +14,13 @@ export default class Configurator extends Component {
         this.inputs = {
             name: new Input('name', 'Name'),
             type: new Select('type', 'Type', options.types),
-            strength: new Input('strenght', 'Strenght', { type: 'number' }),
+            strength: new NumberInput('strenght', 'Strenght'),
             skinType: new Select('skintype', 'Skin type'),
             skinColor: new Select('skincolor', 'Skin color'),
             armType: new Select('armtype', 'Arm type'),
-            arms: new Input('arms', 'Amount of arms', { type: 'number' }),
-            eyes: new Input('eyes', 'Amount of eyes', { type: 'number' }),
-            legs: new Input('legs', 'Amount of legs', { type: 'number' }),
+            arms: new NumberInput('arms', 'Amount of arms'),
+            eyes: new NumberInput('eyes', 'Amount of eyes'),
+            legs: new NumberInput('legs', 'Amount of legs'),
         };
         
         bindInputs(this);
