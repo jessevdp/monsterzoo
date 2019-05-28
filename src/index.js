@@ -1,4 +1,4 @@
 import App from './App';
 
-const app = new App();
+const app = window.app = new App();
 document.body.innerHTML = app.render();
