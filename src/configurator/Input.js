@@ -43,7 +43,7 @@ export default class Input extends Component {
         this.on('change', 'input', () => {
             let $input = this.getHTMLElement('input');
             const isActive = document.activeElement == $input;
-            this.setState({ value: $input.value });
+            this.value = $input.value;
             if (isActive) this.getHTMLElement('input').focus();
         });
     }
