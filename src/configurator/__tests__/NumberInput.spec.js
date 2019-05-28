@@ -47,3 +47,27 @@ describe('[value] setter', () => {
     })
 })
 
+describe('setAttributes', () => {
+    describe('when [min] is updated and the current value is below the new min', () => {
+        it('updates the current value to the new minimum', () => {
+            const min = 0;
+            const newMin = 3;
+            const input = new NumberInput('name', 'label', { min, max: 10 });
+            input.value = min;
+            input.setAttributes({ min: newMin });
+            expect(input.value).toBe(newMin);
+            input.cleanup();
+        })
+    })
+    describe('when [max] is updated and the current value is above the new max', () => {
+        it('updates the current value to the new minimum', () => {
+            const max = 10;
+            const newMax = 6;
+            const input = new NumberInput('name', 'label', { min: 0, max });
+            input.value = max;
+            input.setAttributes({ max: newMax });
+            expect(input.value).toBe(newMax);
+            input.cleanup();
+        })
+    })
+})
