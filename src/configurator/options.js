@@ -72,7 +72,7 @@ class AirType extends BaseType {
         return ['feathers', 'hair', 'scales'];
     }
     skinColors() {
-        return ['purple', 'orange', 'white'];
+        return ['white', 'blue', 'purple'];
     }
     armTypes() {
         return ['wings', 'claw-wings'];
