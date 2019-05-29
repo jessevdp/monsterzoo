@@ -53,6 +53,14 @@ describe('[value] setter', () => {
 })
 
 describe('setAttributes', () => {
+    describe('calls setAttributes on it\'s super component (Input)', () => {
+        const attributes = { min: 0, max: 10 };
+        const input = new NumberInput('name', 'label');
+        const spy = jest.spyOn(NumberInput.prototype, 'setAttributes');
+        input.setAttributes(attributes);
+        expect(spy).toHaveBeenCalledWith({ attributes });
+        input.cleanup();
+    })
     describe('when [min] is updated and the current value is below the new min', () => {
         it('updates the current value to the new minimum', () => {
             const min = 0;
