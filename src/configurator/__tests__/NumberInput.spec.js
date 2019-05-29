@@ -79,6 +79,15 @@ describe('[value] setter', () => {
         expect(input.value).toBe(rounded);
         input.cleanup();
     })
+    it('respects the max value when rounding the value to the nearest step', () => {
+        const attributes = { min: 0, max: 7, step: 2 };
+        const value = 7;
+        const rounded = 6;
+        const input = new NumberInput('name', 'label', attributes);
+        input.value = value;
+        expect(input.value).toBe(rounded);
+        input.cleanup();
+    })
 })
 
 describe('setAttributes', () => {
