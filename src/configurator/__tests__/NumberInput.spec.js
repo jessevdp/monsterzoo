@@ -93,4 +93,11 @@ describe('view', () => {
         expect($input.disabled).toBeTruthy();
         input.cleanup();
     })
+    it('does not disable the input when min & max are not equal', () => {
+        const input = new NumberInput('name', 'label', { min: 0, max: 10 });
+        document.body.innerHTML = input.render();
+        const $input = document.querySelector('input');
+        expect($input.disabled).toBeFalsy();
+        input.cleanup();
+    })
 })
