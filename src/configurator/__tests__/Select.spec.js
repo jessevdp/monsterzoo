@@ -1,4 +1,5 @@
 import Select from '../Select';
+import { Component } from '@local/system';
 
 beforeEach(() => {
     document.body.innerHTML = '';
@@ -50,7 +51,7 @@ describe('[options] setter', () => {
     it('uses the setState method', () => {
         const newOptions = ['foo', 'bar'];
         const select = new Select('name', 'label', ['foo']);
-        const spy = jest.spyOn(Select.prototype, 'setState');
+        const spy = jest.spyOn(Component.prototype, 'setState');
         select.options = newOptions;
         expect(spy).toHaveBeenCalled();
         select.cleanup();
@@ -126,7 +127,7 @@ describe('[value] setter', () => {
         const options = ['foo', 'bar'];
         const value = options[1];
         const select = new Select('name', 'label', options);
-        const spy = jest.spyOn(Select.prototype, 'setState');
+        const spy = jest.spyOn(Component.prototype, 'setState');
         select.value = value;
         expect(spy).toHaveBeenCalled();
         select.cleanup();

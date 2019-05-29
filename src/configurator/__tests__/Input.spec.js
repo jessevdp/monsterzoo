@@ -1,4 +1,5 @@
 import Input from '../Input';
+import { Component } from '@local/system';
 
 beforeEach(() => {
     document.body.innerHTML = '';
@@ -124,7 +125,7 @@ describe('[label] setter', () => {
     it('uses the setState method', () => {
         const newLabel = 'new label';
         const input = new Input('name', 'label');
-        const spy = jest.spyOn(Input.prototype, 'setState');
+        const spy = jest.spyOn(Component.prototype, 'setState');
         input.label = newLabel;
         expect(spy).toHaveBeenCalledWith({ label: newLabel });
         input.cleanup();
@@ -151,7 +152,7 @@ describe('[value] setter', () => {
     it('uses the setState method', () => {
         const newValue = 'new value';
         const input = new Input('name', 'label');
-        const spy = jest.spyOn(Input.prototype, 'setState');
+        const spy = jest.spyOn(Component.prototype, 'setState');
         input.value = newValue;
         expect(spy).toHaveBeenCalledWith({ value: newValue });
         input.cleanup();
