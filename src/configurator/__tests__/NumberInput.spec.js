@@ -12,6 +12,11 @@ describe('constructor', () => {
         expect(input.state.attributes.type).toBe('number');
         input.cleanup();
     })
+    it('defaults the [step] to 1', () => {
+        const input = new NumberInput('name', 'label');
+        expect(input.state.attributes.step).toBe(1);
+        input.cleanup();
+    })
 })
 
 describe('[value] getter', () => {
@@ -51,6 +56,29 @@ describe('[value] setter', () => {
         expect(input.value).toBe(min);
         input.cleanup();
     })
+    test.each([
+        [0, 0],
+        [1, 0],
+        [2, 0],
+        [3, 5],
+        [4, 5],
+        [5, 5],
+    ])('rounds the value to the nearest step (%p)', (value, rounded) => {
+        const attributes = { min: 0, max: 10, step: 5 };
+        const input = new NumberInput('name', 'label', attributes);
+        input.value = value;
+        expect(input.value).toBe(rounded);
+        input.cleanup();
+    })
+    it('offsets the rounding to the minimum value', () => {
+        const attributes = { min: -1, max: 10, step: 2 };
+        const value = 0;
+        const rounded = 1;
+        const input = new NumberInput('name', 'label', attributes);
+        input.value = value;
+        expect(input.value).toBe(rounded);
+        input.cleanup();
+    })
 })
 
 describe('setAttributes', () => {
@@ -82,6 +110,18 @@ describe('setAttributes', () => {
             input.setAttributes({ max: newMax });
             expect(input.value).toBe(newMax);
             input.cleanup();
+        })
+        describe('when [max] is not a valid step', () => {
+            it('it rounds the value to the step nearest to max', () => {
+                const max = 10;
+                const newMax = 7;
+                const rounded = 6;
+                const input = new NumberInput('name', 'label', { min: 0, max, step: 3 });
+                input.value = max;
+                input.setAttributes({ max: newMax });
+                expect(input.value).toBe(rounded);
+                input.cleanup();
+            })
         })
     })
 })
