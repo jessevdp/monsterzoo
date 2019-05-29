@@ -6,12 +6,25 @@ export default class NumberInput extends Input {
         super(name, label, {...attributes, type: 'number'});
     }
 
+    view() {
+        let view = super.view();
+        const min = this.state.attributes.min;
+        const max = this.state.attributes.max;
+        if (isNumber(min) && isNumber(max) && min === max) {
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = view;
+            wrapper.querySelector('input').disabled = true;
+            view = wrapper.innerHTML;
+        }
+        return view;
+    }
+
     setAttributes(attributes) {
         const min = attributes.min;
         const max = attributes.max;
         if (isNumber(min) && min > this.value) this.value = min;
         if (isNumber(max) && max < this.value) this.value = max;
-        super.setState(attributes);
+        super.setAttributes(attributes);
     }
 
     set value(value) {
