@@ -3,7 +3,7 @@ import { Input, NumberInput, Select } from '@local/components/form';
 import options from './options';
 
 import template from './Configurator.template.html';
-import './styles/Configurator.scss';
+import './Configurator.scss';
 
 export default class Configurator extends Component {
     constructor() {
