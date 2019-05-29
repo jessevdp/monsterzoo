@@ -6,6 +6,6 @@ const form = {
     Input,
     NumberInput,
     Select,
-}
+};
 
 export default form;
