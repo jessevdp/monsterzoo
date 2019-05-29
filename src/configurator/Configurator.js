@@ -1,7 +1,5 @@
 import { Component, renderTemplate } from '@local/system';
-import Input from './Input';
-import NumberInput from './NumberInput';
-import Select from './Select';
+import { Input, NumberInput, Select } from '@local/components/form';
 import options from './options';
 
 import template from './Configurator.template.html';
