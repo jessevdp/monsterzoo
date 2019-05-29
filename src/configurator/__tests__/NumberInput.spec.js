@@ -85,7 +85,7 @@ describe('setAttributes', () => {
     describe('calls setAttributes on it\'s super component (Input)', () => {
         const attributes = { min: 0, max: 10 };
         const input = new NumberInput('name', 'label');
-        const spy = jest.spyOn(Component.prototype, 'setAttributes');
+        const spy = jest.spyOn(Input.prototype, 'setAttributes');
         input.setAttributes(attributes);
         expect(spy).toHaveBeenCalledWith(attributes);
         input.cleanup();
