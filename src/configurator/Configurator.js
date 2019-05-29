@@ -50,6 +50,10 @@ export default class Configurator extends Component {
         return options.for(this.state.type);
     }
 
+    isComplete() {
+        return !!this.state.name;
+    }
+
     cleanup() {
         super.cleanup();
         Object.values(this.inputs).forEach(input => input.cleanup());
