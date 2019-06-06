@@ -42,6 +42,8 @@ function renderComponentsInObject(object) {
 function renderComponentsInArray(array) {
     return array.map(item => {
         if (item instanceof Component) return item.render();
+        else if (isObject(item)) return renderComponentsInObject(item);
+        else if (isArray(item)) return renderComponentsInArray(item);
         else return item;
     });
 }
