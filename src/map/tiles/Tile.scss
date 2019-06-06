@@ -1,0 +1,18 @@
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/mixins/aspect-ratio-box';
+
+.tile {
+    @include square-ratio-box;
+
+    .tile--content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }   
+
+    .tile--placeholder {
+        height: spacing(3);
+        width: spacing(3);
+        background: var(--ui-contrast-tertiary);
+    }
+}

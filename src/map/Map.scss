@@ -1,0 +1,25 @@
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/mixins/aspect-ratio-box';
+
+.map {
+    box-sizing: border-box;
+    display: grid;
+    height: 100%;
+    padding: spacing(4);
+    
+    > .map--container {
+        @include square-ratio-box;
+        box-sizing: border-box;
+        margin: auto;
+        max-width: 80vh;
+        overflow: hidden;
+        width: 100%;
+
+        > .map--grid {
+            display: grid;
+            --grid-columns: 10; /* fallback */
+            grid-template-columns: repeat(var(--grid-columns), 1fr);
+            grid-gap: spacing(2);
+        }
+    }
+}
