@@ -3,6 +3,7 @@ import { Input, NumberInput, Select } from '@local/components/form';
 import { excludeProperties } from '@local/utilities';
 import Monster from '@local/Monster';
 
+import Preview from './Preview';
 import options from './options';
 import template from './Configurator.template.html';
 import './Configurator.scss';
@@ -26,11 +27,14 @@ export default class Configurator extends Component {
         bindInputs(this);
         this.setState({ name: '', ...options.defaults });
         this.configureInputs();
+
+        this.preview = new Preview();
+        this.bind('monster', this.preview);
     }
 
     view() {
         const inputs = Object.values(this.inputs);
-        return renderTemplate(template, { inputs });
+        return renderTemplate(template, { inputs, preview: this.preview });
     }
 
     configureInputs() {
@@ -79,6 +83,7 @@ export default class Configurator extends Component {
         super.cleanup();
         Object.values(this.inputs).forEach(input => input.cleanup());
         if (this.state.monster) this.state.monster.cleanup();
+        this.preview.cleanup();
     }
 }
 
