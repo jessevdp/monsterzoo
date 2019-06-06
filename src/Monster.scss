@@ -1,0 +1,14 @@
+@import '~@local/styles/variables/monster-colors';
+
+.monster {
+    border-radius: 100%;
+    height: 100%;
+
+    &.blue { background: $monster-blue }
+    &.brown { background: $monster-brown }
+    &.green { background: $monster-green }
+    &.orange { background: $monster-orange }
+    &.purple { background: $monster-purple }
+    &.red { background: $monster-red }
+    &.white { background: $monster-white }
+}

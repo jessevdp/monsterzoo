@@ -1,4 +1,5 @@
 import { Component } from '@local/system';
+import './Monster.scss';
 
 export default class Monster extends Component {
     constructor(attributes = {}) {
@@ -6,6 +7,6 @@ export default class Monster extends Component {
         this.setState(attributes);
     }
     view() {
-        return '<div class="monster"></div>';
+        return `<div class="monster ${this.state.skinColor}"></div>`;
     }
 }
