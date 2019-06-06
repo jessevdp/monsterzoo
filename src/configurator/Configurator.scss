@@ -1,13 +1,13 @@
 @import '~@local/styles/variables/spacing';
 
 .configurator {
-    .title {
+    > .title {
         font-weight: 400;
         margin-bottom: spacing(3);
         text-align: center;
     }
 
-    .inputs {
+    > .inputs {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: .125rem;
