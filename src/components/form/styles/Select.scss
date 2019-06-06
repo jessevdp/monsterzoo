@@ -1,0 +1,38 @@
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/mixins/form-reset';
+
+.select {
+    display: flex;
+    flex-direction: column;
+    padding: spacing(1) spacing(2) spacing(2);
+    position: relative;
+
+    > label {
+        font-size: .6rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    > select {
+        @include select-reset;
+        font-size: 1rem;
+        margin-top: spacing(1);
+        margin-left: spacing(2);
+        text-transform: capitalize;
+    }
+
+    > .icon {
+        height: .5rem;
+        position: absolute;
+        top: 50%;
+        right: spacing(3);
+        transform: translateY(-50%);
+        > path {
+            fill: var(--ui-contrast-tertiary);
+        }
+    }
+
+    > select:disabled ~ .icon {
+        display: none;
+    }
+}

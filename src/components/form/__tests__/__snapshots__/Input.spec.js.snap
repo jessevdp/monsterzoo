@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constructor uses defaults for the [attributes] 1`] = `
+Object {
+  "type": "text",
+}
+`;
+
+exports[`renders correctly 1`] = `"<div class=\\"input bg-300\\"><label class=\\"text-secondary\\">label</label><input name=\\"name\\" value=\\"\\" foo=\\"bar\\" bar=\\"foo\\" /></div>"`;

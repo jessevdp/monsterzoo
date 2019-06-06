@@ -7,6 +7,8 @@ import {
     isFunction
 } from './typecheck';
 
+import excludeProperties from './excludeProperties';
+
 const utilities = {
     isObject,
     isArray,
@@ -14,6 +16,8 @@ const utilities = {
     isNumber,
     isBoolean,
     isFunction,
+
+    excludeProperties,
 };
 
 export default utilities;

@@ -1,0 +1,21 @@
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/mixins/form-reset';
+
+.input {
+    display: flex;
+    flex-direction: column;
+    padding: spacing(1) spacing(2) spacing(2);
+
+    > label {
+        font-size: .6rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    > input {
+        @include input-reset;
+        font-size: 1rem;
+        margin-top: spacing(1);
+        margin-left: spacing(2);
+    }
+}

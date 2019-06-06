@@ -1,0 +1,28 @@
+@import '~@local/styles/variables/spacing';
+
+.preview {
+    text-align: center;
+
+    > .title {
+        font-weight: 400;
+    }
+
+    > .monster-container {
+        position: relative;
+        max-width: 9em;
+        margin: 0 auto;
+        &:before {
+            content: "";
+            display: block;
+            padding-top: 100%; /* 1:1 aspect ratio */
+        }
+        > .monster-container--content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: spacing(4);
+        }
+    }
+}

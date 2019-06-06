@@ -1,0 +1,37 @@
+@mixin input-reset {
+    appearance: none;
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0;
+    line-height: 1;
+    margin: 0;
+    vertical-align: middle;
+    white-space: normal;
+    &:focus,
+    &:active {
+        outline: 0;
+    }
+    &[type="number"] {
+        appearance: textfield !important;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            height: 300px;
+            -webkit-appearance: none !important;
+            margin: 0;
+        }
+    }
+}
+
+@mixin select-reset {
+    appearance: none;
+    border: 0;
+    background: inherit;
+    font-family: inherit;
+
+    &:active,
+    &:focus {
+        outline: 0;
+    }
+}
