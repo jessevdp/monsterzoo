@@ -1,7 +1,9 @@
 import { Component, renderTemplate } from '@local/system';
 import { Input, NumberInput, Select } from '@local/components/form';
-import options from './options';
+import { excludeProperties } from '@local/utilities';
+import Monster from '@local/Monster';
 
+import options from './options';
 import template from './Configurator.template.html';
 import './Configurator.scss';
 
@@ -41,9 +43,28 @@ export default class Configurator extends Component {
         this.inputs.legs.setAttributes(this.options.legCount(this.state.arms));
     }
 
-    setState(...args) {
-        super.setState(...args);
+    setState(state) {
+        if (state.monster instanceof Monster) {
+            const attributes = state.monster.state;
+            state = { ...state, ...attributes };
+            super.setState(state);
+        }
+        else {
+            super.setState(state);
+            let monster = this.monster;
+            super.setState({ monster });
+        }
         this.configureInputs();
+    }
+
+    get monster() {
+        let monster = null;
+        if (this.isComplete()) {
+            const attributes = excludeProperties(['monster'], this.state);
+            monster = this.state.monster || new Monster();
+            monster.setState(attributes);
+        }
+        return monster;
     }
 
     get options() {
@@ -57,6 +78,7 @@ export default class Configurator extends Component {
     cleanup() {
         super.cleanup();
         Object.values(this.inputs).forEach(input => input.cleanup());
+        if (this.state.monster) this.state.monster.cleanup();
     }
 }
 
