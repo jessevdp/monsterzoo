@@ -1,5 +1,7 @@
+import { Component } from '@local/system';
 import Configurator from "./Configurator";
 import Monster from "../Monster";
+
 
 const monsterAttributes = {
     name: 'name',
@@ -29,6 +31,14 @@ describe('isComplete', () => {
 })
 
 describe('setState', () => {
+    it('calls the setState method on it\'s super', () => {
+        const newState = { foo: 'foo', bar: 'bar' };
+        const configurator = new Configurator();
+        const spy = jest.spyOn(Component.prototype, 'setState');
+        configurator.setState(newState);
+        expect(spy).toHaveBeenCalledWith(newState);
+        configurator.cleanup();
+    })
     describe('when the [monster] state is updated', () => {
         it('copies the attributes from the monster into it\'s own state', () => {
             const configurator = new Configurator();
