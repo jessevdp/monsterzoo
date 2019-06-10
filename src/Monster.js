@@ -9,7 +9,7 @@ export default class Monster extends Component {
     }
 
     view() {
-        return `<div class="monster ${this.state.skinColor}" draggable="true"></div>`;
+        return `<div class="monster ${this.state.skinColor}" draggable="true"><div></div></div>`;
     }
 
     events() {
@@ -17,5 +17,8 @@ export default class Monster extends Component {
             const index = Registry.add(this);
             e.dataTransfer.setData('monster', index);
         });
+
+        this.on('dragstart', () => this.getHTMLElement().classList.add('dragged'));
+        this.on('dragend', () => this.getHTMLElement().classList.remove('dragged'));
     }
 }
