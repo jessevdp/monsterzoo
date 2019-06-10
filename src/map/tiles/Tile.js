@@ -28,8 +28,8 @@ export default class Tile extends Component {
     events() {
         this.on('dragenter', '.tile--placeholder', () => this.getHTMLElement().classList.add('hover'));
         this.on('dragleave', '.tile--placeholder', () => this.getHTMLElement().classList.remove('hover'));
-        this.on('dragover', e => e.preventDefault()); // Make element a drop target
-        this.on('drop', '.tile--placeholder', e => {
+        this.on('dragover', e => this.monster || e.preventDefault()); // Make element a drop target, if there is no monster yet
+        this.on('drop', e => {
             const i = e.dataTransfer.getData('monster');
             const monster = Registry.get(i);
             this.monster = monster;
@@ -38,11 +38,15 @@ export default class Tile extends Component {
 
     set monster(monster) {
         this.setState({ monster });
-        if (monster instanceof Monster) monster.tile = this;
     }
 
     get monster() {
         return this.state.monster;
+    }
+
+    setState(state) {
+        if (state.monster instanceof Monster) state.monster.tile = this;
+        super.setState(state);
     }
 
     cleanup() {
