@@ -1,4 +1,6 @@
 import { Component, renderTemplate } from '@local/system';
+import Monster from '@local/Monster';
+import Registry from '../../Registry';
 import './Tile.scss';
 
 export default class Tile extends Component {
@@ -26,10 +28,17 @@ export default class Tile extends Component {
     events() {
         this.on('dragenter', '.tile--placeholder', () => this.getHTMLElement().classList.add('hover'));
         this.on('dragleave', '.tile--placeholder', () => this.getHTMLElement().classList.remove('hover'));
+        this.on('dragover', e => e.preventDefault()); // Make element a drop target
+        this.on('drop', '.tile--placeholder', e => {
+            const i = e.dataTransfer.getData('monster');
+            const monster = Registry.get(i);
+            this.monster = monster;
+        });
     }
 
     set monster(monster) {
         this.setState({ monster });
+        if (monster instanceof Monster) monster.tile = this;
     }
 
     get monster() {
