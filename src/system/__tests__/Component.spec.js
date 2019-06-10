@@ -172,7 +172,7 @@ describe('on', () => {
     it('adds an event listener to the document', () => {
         const event = 'click';
         const handler = () => {};
-        const options = { capture: true, passive: true };
+        const options = { capture: true };
         const component = new Component();
         component.on(event, handler);
         expect(document.addEventListener).toHaveBeenCalledWith(event, expect.any(Function), options)
