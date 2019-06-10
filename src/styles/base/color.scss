@@ -18,6 +18,7 @@
     &:disabled,
     *:disabled {
         color: ui-contrast($variant, 'tertiary');
+        -webkit-text-fill-color: ui-contrast($variant, 'tertiary');
     }
 }
 
