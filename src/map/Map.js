@@ -1,6 +1,6 @@
 import { Component, renderTemplate } from '@local/system';
-import Tile from './tiles/Tile';
-import Obstacle from './tiles/Obstacle';
+import Tile from './Tile';
+import Obstacle from './Obstacle';
 import Monster from '../Monster';
 
 import template from './Map.template.html';

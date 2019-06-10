@@ -1,6 +1,6 @@
 import { renderTemplate } from '@local/system';
 import Monster from '@local/Monster';
-import Tile from '@local/map/tiles/Tile';
+import Tile from '@local/map/Tile';
 
 import template from './Preview.template.html';
 import './Preview.scss';

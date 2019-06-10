@@ -1,5 +1,5 @@
 import { Component, renderTemplate } from '@local/system';
-import Registry from '../../Registry';
+import Registry from '../Registry';
 import './Tile.scss';
 
 export default class Tile extends Component {
