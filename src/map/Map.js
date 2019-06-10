@@ -35,7 +35,7 @@ export default class Map extends Component {
 function createTile(object) {
     if (object.class === 'Tile') {
         const tile = new Tile();
-        if (object.monster) tile.monster = new Monster(object.monster);
+        if (object.monster) tile.placeMonster(new Monster(object.monster));
         return tile;
     }
     else if (object.class === 'Obstacle') return new Obstacle();

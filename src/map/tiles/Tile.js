@@ -1,5 +1,4 @@
 import { Component, renderTemplate } from '@local/system';
-import Monster from '@local/Monster';
 import Registry from '../../Registry';
 import './Tile.scss';
 
@@ -32,21 +31,20 @@ export default class Tile extends Component {
         this.on('drop', e => {
             const i = e.dataTransfer.getData('monster');
             const monster = Registry.get(i);
-            this.monster = monster;
+            this.placeMonster(monster);
         });
     }
 
-    set monster(monster) {
-        this.setState({ monster });
+    placeMonster(monster) {
+        if (monster.tile) monster.tile.removeMonster();
+        monster.tile = this;
+        super.setState({ monster });
     }
 
-    get monster() {
-        return this.state.monster;
-    }
-
-    setState(state) {
-        if (state.monster instanceof Monster) state.monster.tile = this;
-        super.setState(state);
+    removeMonster() {
+        const monster = this.state.monster;
+        if (monster) monster.tile = null;
+        this.setState({ monster: null });
     }
 
     cleanup() {
