@@ -38,7 +38,6 @@ export default class Configurator extends Component {
     }
 
     reset() {
-        console.log(this);
         this.setState({ name: '', ...options.defaults });
     }
 
