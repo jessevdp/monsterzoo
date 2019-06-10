@@ -23,6 +23,11 @@ export default class Tile extends Component {
         return renderTemplate(template, this.state);
     }
 
+    events() {
+        this.on('dragenter', '.tile--placeholder', () => this.getHTMLElement().classList.add('hover'));
+        this.on('dragleave', '.tile--placeholder', () => this.getHTMLElement().classList.remove('hover'));
+    }
+
     set monster(monster) {
         this.setState({ monster });
     }

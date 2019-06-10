@@ -13,6 +13,12 @@
     .tile--placeholder {
         height: spacing(3);
         width: spacing(3);
+        transition: all 100ms;
         background: var(--ui-contrast-tertiary);
+    }
+
+    &.hover .tile--placeholder {
+        height: 100%;
+        width: 100%;
     }
 }
