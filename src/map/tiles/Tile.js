@@ -27,7 +27,7 @@ export default class Tile extends Component {
     events() {
         this.on('dragenter', '.tile--placeholder', () => this.getHTMLElement().classList.add('hover'));
         this.on('dragleave', '.tile--placeholder', () => this.getHTMLElement().classList.remove('hover'));
-        this.on('dragover', e => this.monster || e.preventDefault()); // Make element a drop target, if there is no monster yet
+        this.on('dragover', e => this.state.monster || e.preventDefault()); // Make element a drop target, if there is no monster yet
         this.on('drop', e => {
             const i = e.dataTransfer.getData('monster');
             const monster = Registry.get(i);
