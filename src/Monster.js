@@ -7,6 +7,6 @@ export default class Monster extends Component {
         this.setState(attributes);
     }
     view() {
-        return `<div class="monster ${this.state.skinColor}"></div>`;
+        return `<div class="monster ${this.state.skinColor}" draggable="true"></div>`;
     }
 }

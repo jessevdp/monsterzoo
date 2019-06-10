@@ -3,6 +3,8 @@
 .monster {
     border-radius: 100%;
     height: 100%;
+    width: 100%;
+    cursor: grab;
 
     &.blue { background: $monster-blue }
     &.brown { background: $monster-brown }
