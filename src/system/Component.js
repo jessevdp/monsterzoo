@@ -81,7 +81,7 @@ export default class Component {
         const handler = args.pop();
         const selector = args.pop();
         const query = `[data-component-id="${this.id}"] ${selector ? selector : ''}`;
-        const options = { capture: true, passive: true };
+        const options = { capture: true };
 
         document.addEventListener(event, (e) => {
             if (containsElement(query, e.target)) handler(e);
