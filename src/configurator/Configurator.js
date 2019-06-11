@@ -25,16 +25,20 @@ export default class Configurator extends Component {
         };
         
         bindInputs(this);
-        this.setState({ name: '', ...options.defaults });
+        this.reset();
         this.configureInputs();
 
-        this.preview = new Preview();
+        this.preview = new Preview(this.reset.bind(this));
         this.bind('monster', this.preview);
     }
 
     view() {
         const inputs = Object.values(this.inputs);
         return renderTemplate(template, { inputs, preview: this.preview });
+    }
+
+    reset() {
+        this.setState({ name: '', ...options.defaults });
     }
 
     configureInputs() {
