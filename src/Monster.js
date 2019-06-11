@@ -1,4 +1,4 @@
-import { Component } from '@local/system';
+import { Component, renderTemplate } from '@local/system';
 import Registry from './Registry';
 import './Monster.scss';
 
@@ -9,7 +9,11 @@ export default class Monster extends Component {
     }
 
     view() {
-        return `<div class="monster ${this.state.skinColor}" draggable="true"><div></div></div>`;
+        const template = ''
+            + '<div class="monster {{color}}" draggable="true">'
+                + '<div class="monster--internal"></div>'
+            + '</div>';
+        return renderTemplate(template, { color: this.state.skinColor });
     }
 
     events() {
