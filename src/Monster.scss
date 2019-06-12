@@ -1,4 +1,6 @@
 @import '~@local/styles/variables/monster-colors';
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/variables/ui-colors';
 
 .monster {
     height: 100%;
@@ -27,5 +29,50 @@
         height: 3rem;
         width: 3rem;
         opacity: .5;
+    }
+
+    ~ .tooltip {
+        z-index: 2;
+
+        .monster--stats {
+            padding: spacing(3);
+            max-width: 30rem;
+            min-width: 20rem;
+            text-align: initial;
+
+            .stats--description::first-letter {
+                text-transform: uppercase;
+            }
+        }
+
+        --arrow-size: .5em;
+
+        .tooltip-arrow {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            position: absolute;
+            margin: var(--arrow-size) 0;
+        }
+
+        &[x-placement="right"] {
+            margin-left: var(--arrow-size);
+            .tooltip-arrow {
+                border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) 0;
+                border-color: transparent ui-background('800') transparent transparent;
+                right: 100%;
+                top: calc(50% - var(--arrow-size));
+            }
+        }
+
+        &[x-placement="left"] {
+            margin-right: var(--arrow-size);
+            .tooltip-arrow {
+                border-width: var(--arrow-size) 0 var(--arrow-size) var(--arrow-size);
+                border-color: transparent transparent transparent ui-background('800');
+                left: 100%;
+                top: calc(50% - var(--arrow-size));
+            }
+        }
     }
 }
