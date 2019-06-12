@@ -11,19 +11,27 @@
     align-items: center;
     justify-content: center;
 
+    &.blue,
+    &.blue ~ .tooltip { --monster-color: #{$monster-blue}; }
+    &.brown,
+    &.brown ~ .tooltip { --monster-color: #{$monster-brown}; }
+    &.green,
+    &.green ~ .tooltip { --monster-color: #{$monster-green}; }
+    &.orange,
+    &.orange ~ .tooltip { --monster-color: #{$monster-orange}; }
+    &.purple,
+    &.purple ~ .tooltip { --monster-color: #{$monster-purple}; }
+    &.red,
+    &.red ~ .tooltip { --monster-color: #{$monster-red}; }
+    &.white,
+    &.white ~ .tooltip { --monster-color: #{$monster-white}; }
+
     > .monster--internal {
         height: 100%;
         width: 100%;
         border-radius: 100%;
+        background: var(--monster-color);
     }
-
-    &.blue > * { background: $monster-blue }
-    &.brown > * { background: $monster-brown }
-    &.green > * { background: $monster-green }
-    &.orange > * { background: $monster-orange }
-    &.purple > * { background: $monster-purple }
-    &.red > * { background: $monster-red }
-    &.white > * { background: $monster-white }
 
     &.dragged > .monster--internal {
         height: 3rem;
@@ -40,8 +48,32 @@
             min-width: 20rem;
             text-align: initial;
 
-            .stats--description::first-letter {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-column-gap: spacing(3);
+
+            .stats--details {
+                grid-column: 2;
+            }
+
+            .stats--description {
+                margin-bottom: spacing(1);
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .stats--preview {
+                height: 2.5rem;
+                width: 2.5rem;
+                border-radius: 100%;
+                background: var(--monster-color);
+            }
+
+            .stats--power {
+                font-size: .7em;
                 text-transform: uppercase;
+                color: var(--ui-contrast-secondary);
             }
         }
 

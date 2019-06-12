@@ -20,10 +20,15 @@ export default class Monster extends Component {
     statsView() {
         const template = ''
             + '<div class="bg-800 monster--stats">'
-                + '<p class="text-sm stats--description">{{ description }}</p>'
+                + '<div class="stats--preview"></div>'
+                + '<div class="stats--details">'
+                    + '<p class="text-sm stats--description">{{ description }}</p>'
+                    + '<div class="stats--power">power {{ power }}</div>'
+                + '</div>'
             + '</div>';
         const description = this.getStatsMessage();
-        return renderTemplate(template, { description });
+        const power = this.state.strength;
+        return renderTemplate(template, { description, power });
     }
 
     events() {
@@ -42,7 +47,6 @@ export default class Monster extends Component {
                 title: this.statsView(),
                 html: true,
                 placement: 'right',
-                trigger: 'hover',
             };
             const tooltip = new Tooltip($el, options);
             return () => tooltip.dispose();
