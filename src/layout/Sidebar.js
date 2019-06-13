@@ -13,4 +13,9 @@ export default class Sidebar extends Component {
         const template = '<div class="sidebar">{{{ configurator }}}</div>';
         return renderTemplate(template, this.state);
     }
+
+    cleanup() {
+        super.cleanup();
+        this.state.configurator.cleanup();
+    }
 }

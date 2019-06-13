@@ -28,8 +28,8 @@ export default class App extends Component {
 
     cleanup() {
         super.cleanup();
-        this.logo.cleanup();
-        this.configurator.cleanup();
-        this.map.cleanup();
+        this.state.logo.cleanup();
+        this.state.sidebar.cleanup();
+        this.state.map.cleanup();
     }
 }

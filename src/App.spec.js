@@ -1,6 +1,6 @@
 import App from "./App";
 import Logo from './layout/Logo';
-import Configurator from './configurator/Configurator';
+import Sidebar from './layout/Sidebar';
 import renderTemplate from '@local/system/renderTemplate';
 
 jest.mock('@local/system/renderTemplate');
@@ -20,7 +20,7 @@ describe('view', () => {
         app.view();
         expect(renderTemplate).toHaveBeenCalledWith(
             expect.any(String),
-            expect.objectContaining({ configurator: expect.any(Configurator) })
+            expect.objectContaining({ sidebar: expect.any(Sidebar) })
         );
         app.cleanup();
     })
