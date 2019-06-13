@@ -38,6 +38,7 @@ export default class Monster extends Component {
         });
         this.on('dragstart', () => this.getHTMLElement().classList.add('dragged'));
         this.on('dragend', () => this.getHTMLElement().classList.remove('dragged'));
+        this.on('click', '.monster--internal', () => this.activateAbility());
     }
 
     effects(useEffect) {
@@ -62,6 +63,13 @@ export default class Monster extends Component {
         const legs = `${number(this.state.legs)} legs`;
         const eyes = `${number(this.state.eyes)} eyes`;
         return `${this.state.name} is a ${this.state.type} monster with ${skin}, ${arms}, ${legs}, and ${eyes}.`;
+    }
+
+    activateAbility() {
+        this.getHTMLElement().classList.add('special-ability');
+        window.setTimeout(() => {
+            this.getHTMLElement().classList.remove('special-ability');
+        }, 500)
     }
 }
 

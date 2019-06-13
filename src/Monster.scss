@@ -39,6 +39,13 @@
         opacity: .5;
     }
 
+    &.special-ability > .monster--internal {
+        animation-name: special-ability;
+        animation-duration: 500ms;
+        z-index: 1000;
+    }
+
+    &.special-ability ~ .tooltip,
     &.dragged ~ .tooltip {
         display: none;
     }
@@ -111,5 +118,20 @@
                 top: calc(50% - var(--arrow-size));
             }
         }
+    }
+}
+
+@keyframes special-ability {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(.25);
+        opacity: .25;
+    }
+    80% {
+        transform: scale(2);
+        opacity: 1;
     }
 }
