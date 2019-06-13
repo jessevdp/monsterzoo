@@ -1,7 +1,5 @@
 import { Component, renderTemplate } from '@local/system';
-import Tile from './Tile';
-import Obstacle from './Obstacle';
-import Monster from '../Monster';
+import parseMap from './parseMap';
 
 import template from './Map.template.html';
 import './Map.scss';
@@ -13,9 +11,7 @@ export default class Map extends Component {
     }
 
     static fromData(data) {
-        const rows = data.map(row => {
-            return row.map(tile => createTile(tile));
-        });
+        const rows = parseMap(data);
         return new this(rows);
     }
 
@@ -30,13 +26,4 @@ export default class Map extends Component {
             .reduce((all, row) => all.concat(row), [])
             .forEach(tile => tile.cleanup());
     }
-}
-
-function createTile(object) {
-    if (object.class === 'Tile') {
-        const tile = new Tile();
-        if (object.monster) tile.placeMonster(new Monster(object.monster));
-        return tile;
-    }
-    else if (object.class === 'Obstacle') return new Obstacle();
 }
