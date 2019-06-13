@@ -75,6 +75,13 @@ export default class Monster extends Component {
             this.getHTMLElement().classList.remove('special-ability');
         }, 500);
     }
+    
+    notify() {
+        this.getHTMLElement().classList.add('grow');
+        window.setTimeout(() => {
+            this.getHTMLElement().classList.remove('grow');
+        }, 500);
+    }
 }
 
 function number(n) {
