@@ -1,6 +1,6 @@
 import { Component } from '@local/system';
-import Configurator from "./Configurator";
-import Monster from "../Monster";
+import Configurator from "../Configurator";
+import Monster from "../../Monster";
 
 
 const monsterAttributes = {

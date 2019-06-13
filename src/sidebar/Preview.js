@@ -2,8 +2,8 @@ import { renderTemplate } from '@local/system';
 import Monster from '@local/Monster';
 import Tile from '@local/map/Tile';
 
-import template from './Preview.template.html';
-import './Preview.scss';
+import template from './templates/Preview.template.html';
+import './styles/Preview.scss';
 
 export default class Preview extends Tile {
     constructor(resetConfigurator) {
