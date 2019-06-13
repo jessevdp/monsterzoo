@@ -1,8 +1,9 @@
-import { Component, renderTemplate } from '@local/system';
+import { renderTemplate } from '@local/system';
+import BaseTile from './BaseTile';
 import Registry from '../Registry';
 import './Tile.scss';
 
-export default class Tile extends Component {
+export default class Tile extends BaseTile {
     /**
      * Creates an instance of Tile.
      * @param {Monster} [monster=null]
@@ -49,6 +50,6 @@ export default class Tile extends Component {
 
     cleanup() {
         super.cleanup();
-        if (this.state.monster instanceof Component) this.state.monster.cleanup();
+        if (this.state.monster) this.state.monster.cleanup();
     }
 }
