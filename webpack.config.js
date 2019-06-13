@@ -48,6 +48,10 @@ module.exports = (env, argv) => {
                 {
                     test: /\.template.html$/,
                     use: ['raw-loader']
+                },
+                {
+                    test: /\.mp3$/,
+                    use: ['file-loader']
                 }
             ]
         },
