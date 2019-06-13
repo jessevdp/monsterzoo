@@ -39,6 +39,10 @@
         opacity: .5;
     }
 
+    &.dragged ~ .tooltip {
+        display: none;
+    }
+
     ~ .tooltip {
         z-index: 2;
         box-shadow: 0px 3px 8px 0px rgba(0,0,0, 0.3);

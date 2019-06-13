@@ -47,6 +47,9 @@ export default class Monster extends Component {
                 title: this.statsView(),
                 html: true,
                 placement: 'right',
+                delay: {
+                    show: 500
+                },
             };
             const tooltip = new Tooltip($el, options);
             return () => tooltip.dispose();
