@@ -1,8 +1,9 @@
-import { Component, renderTemplate } from '@local/system';
+import { renderTemplate } from '@local/system';
+import BaseTile from './BaseTile';
 import Registry from '../Registry';
 import './Tile.scss';
 
-export default class Tile extends Component {
+export default class Tile extends BaseTile {
     /**
      * Creates an instance of Tile.
      * @param {Monster} [monster=null]
@@ -21,7 +22,7 @@ export default class Tile extends Component {
                     + '{{^monster}}<div class="tile--placeholder"></div>{{/monster}}'
                 + '</div>'
             + '</div>';
-        return renderTemplate(template, this.state);
+        return renderTemplate(template, { monster: this.state.monster });
     }
 
     events() {
@@ -39,6 +40,7 @@ export default class Tile extends Component {
         if (monster.tile) monster.tile.removeMonster();
         monster.tile = this;
         super.setState({ monster });
+        this.notifyNeighbors();
     }
 
     removeMonster() {
@@ -47,8 +49,19 @@ export default class Tile extends Component {
         this.setState({ monster: null });
     }
 
+    notify() {
+        if (this.state.monster) this.state.monster.notify();
+    }
+
+    notifyNeighbors() {
+        if (this.north) this.north.notify();
+        if (this.east) this.east.notify();
+        if (this.south) this.south.notify();
+        if (this.west) this.west.notify();
+    }
+
     cleanup() {
         super.cleanup();
-        if (this.state.monster instanceof Component) this.state.monster.cleanup();
+        if (this.state.monster) this.state.monster.cleanup();
     }
 }
