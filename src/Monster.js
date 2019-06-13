@@ -63,6 +63,13 @@ export default class Monster extends Component {
         const eyes = `${number(this.state.eyes)} eyes`;
         return `${this.state.name} is a ${this.state.type} monster with ${skin}, ${arms}, ${legs}, and ${eyes}.`;
     }
+
+    notify() {
+        this.getHTMLElement().classList.add('grow');
+        window.setTimeout(() => {
+            this.getHTMLElement().classList.remove('grow');
+        }, 500);
+    }
 }
 
 function number(n) {
