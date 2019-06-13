@@ -65,7 +65,7 @@ export default class Monster extends Component {
         this.getHTMLElement().classList.add('grow');
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('grow');
-        }, 500)
+        }, 500);
     }
 }
 
