@@ -1,18 +1,13 @@
-import { renderTemplate } from '@local/system';
 import Monster from '@local/Monster';
-import Tile from '@local/map/Tile';
+import SidebarTile from './SidebarTile';
 
-import template from './templates/Preview.template.html';
-import './styles/Preview.scss';
+const title = 'Your Monster';
+const description = 'This is a preview of the monster configured above. You can drag it out onto the grid. You can also drag a monster here in order to update it.';
 
-export default class Preview extends Tile {
+export default class Preview extends SidebarTile {
     constructor(resetConfigurator) {
-        super();
+        super(title, description);
         this.resetConfigurator = resetConfigurator;
-    }
- 
-    view() {
-        return renderTemplate(template, this.state);
     }
 
     setState(state) {
