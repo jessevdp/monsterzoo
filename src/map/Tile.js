@@ -22,7 +22,7 @@ export default class Tile extends BaseTile {
                     + '{{^monster}}<div class="tile--placeholder"></div>{{/monster}}'
                 + '</div>'
             + '</div>';
-        return renderTemplate(template, this.state);
+        return renderTemplate(template, { monster: this.state.monster });
     }
 
     events() {
