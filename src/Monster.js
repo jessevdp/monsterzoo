@@ -73,7 +73,7 @@ export default class Monster extends Component {
         audio.play();
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('special-ability');
-        }, 500)
+        }, 500);
     }
 }
 
