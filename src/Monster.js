@@ -3,6 +3,8 @@ import Tooltip from 'tooltip.js';
 import Registry from './Registry';
 import './Monster.scss';
 
+import audioSource from './assets/monster.mp3';
+
 export default class Monster extends Component {
     constructor(attributes = {}) {
         super();
@@ -38,6 +40,7 @@ export default class Monster extends Component {
         });
         this.on('dragstart', () => this.getHTMLElement().classList.add('dragged'));
         this.on('dragend', () => this.getHTMLElement().classList.remove('dragged'));
+        this.on('click', '.monster--internal', () => this.activateAbility());
     }
 
     effects(useEffect) {
@@ -64,6 +67,15 @@ export default class Monster extends Component {
         return `${this.state.name} is a ${this.state.type} monster with ${skin}, ${arms}, ${legs}, and ${eyes}.`;
     }
 
+    activateAbility() {
+        this.getHTMLElement().classList.add('special-ability');
+        const audio = new Audio(audioSource);
+        audio.play();
+        window.setTimeout(() => {
+            this.getHTMLElement().classList.remove('special-ability');
+        }, 500);
+    }
+    
     notify() {
         this.getHTMLElement().classList.add('grow');
         window.setTimeout(() => {
