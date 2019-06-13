@@ -3,6 +3,8 @@ import Tooltip from 'tooltip.js';
 import Registry from './Registry';
 import './Monster.scss';
 
+import audioSource from './assets/monster.mp3';
+
 export default class Monster extends Component {
     constructor(attributes = {}) {
         super();
@@ -67,6 +69,8 @@ export default class Monster extends Component {
 
     activateAbility() {
         this.getHTMLElement().classList.add('special-ability');
+        const audio = new Audio(audioSource);
+        audio.play();
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('special-ability');
         }, 500)
