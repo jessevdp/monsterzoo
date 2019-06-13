@@ -1,5 +1,5 @@
 import { Component, renderTemplate } from '@local/system';
-import Configurator from '@local/configurator/Configurator';
+import Configurator from '@local/sidebar/Configurator';
 
 export default class Sidebar extends Component {
     constructor() {
