@@ -15,7 +15,7 @@ describe('view', () => {
         );
         app.cleanup();
     })
-    it('passes a Configurator to renderTemplate', () => {
+    it('passes a Sidebar to renderTemplate', () => {
         const app = new App();
         app.view();
         expect(renderTemplate).toHaveBeenCalledWith(
