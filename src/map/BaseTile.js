@@ -13,6 +13,10 @@ export default class BaseTile extends Component {
         this.setState(defaultNeighbors);
     }
 
+    notify() {
+        return;
+    }
+
     get north() {
         return this.state.north;
     }

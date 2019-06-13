@@ -40,12 +40,24 @@ export default class Tile extends BaseTile {
         if (monster.tile) monster.tile.removeMonster();
         monster.tile = this;
         super.setState({ monster });
+        this.notifyNeighbors();
     }
 
     removeMonster() {
         const monster = this.state.monster;
         if (monster) monster.tile = null;
         this.setState({ monster: null });
+    }
+
+    notify() {
+        if (this.state.monster) this.state.monster.notify();
+    }
+
+    notifyNeighbors() {
+        if (this.north) this.north.notify();
+        if (this.east) this.east.notify();
+        if (this.south) this.south.notify();
+        if (this.west) this.west.notify();
     }
 
     cleanup() {
