@@ -20,6 +20,7 @@ export default class SidebarTile extends Tile {
     }
 
     view() {
-        return renderTemplate(template, this.state);
+        const placeholder = this.placeholder;
+        return renderTemplate(template, {...this.state, placeholder});
     }
 }

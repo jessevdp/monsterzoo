@@ -3,7 +3,12 @@
     <p class="text-sm">{{ description }}</p>
     <div class="monster-container bg-300">
         <div class="monster-container--content">
-            {{{ monster }}}
+            {{#monster}}
+                {{{ . }}}
+            {{/monster}}
+            {{^monster}}
+                {{{ placeholder }}}
+            {{/monster}}
         </div>
     </div>
 </div>
