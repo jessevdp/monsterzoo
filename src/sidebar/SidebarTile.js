@@ -23,4 +23,10 @@ export default class SidebarTile extends Tile {
         const placeholder = this.placeholder;
         return renderTemplate(template, {...this.state, placeholder});
     }
+
+    events() {
+        super.events();
+        this.on('dragover', () => this.getHTMLElement().classList.add('hover'));
+        this.on('dragleave', () => this.getHTMLElement().classList.remove('hover'));
+    }
 }
