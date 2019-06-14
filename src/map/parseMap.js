@@ -1,6 +1,6 @@
+import Monster from '@local/common/Monster';
 import Tile from './Tile';
 import Obstacle from './Obstacle';
-import Monster from '../Monster';
 
 export default function parseMap(data) {
     const map = data.map(parseRow);

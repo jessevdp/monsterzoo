@@ -1,9 +1,9 @@
-import { Component, renderTemplate } from '@local/system';
 import Tooltip from 'tooltip.js';
-import Registry from './Registry';
-import './Monster.scss';
+import { Component, renderTemplate } from '@local/system';
+import Registry from '@local/common/Registry';
+import './styles/Monster.scss';
 
-import audioSource from './assets/monster.mp3';
+import audioSource from '@local/assets/monster.mp3';
 
 export default class Monster extends Component {
     constructor(attributes = {}) {

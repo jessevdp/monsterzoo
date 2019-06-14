@@ -1,6 +1,6 @@
 import App from "./App";
-import Logo from './layout/Logo';
-import Sidebar from './layout/Sidebar';
+import Logo from './common/Logo';
+import Sidebar from './sidebar/Sidebar';
 import renderTemplate from '@local/system/renderTemplate';
 
 jest.mock('@local/system/renderTemplate');

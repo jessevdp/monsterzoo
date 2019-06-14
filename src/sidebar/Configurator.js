@@ -1,7 +1,7 @@
 import { Component, renderTemplate } from '@local/system';
-import { Input, NumberInput, Select } from '@local/components/form';
 import { excludeProperties } from '@local/utilities';
-import Monster from '@local/Monster';
+import { Input, NumberInput, Select } from '@local/common/form';
+import Monster from '@local/common/Monster';
 
 import Preview from './Preview';
 import options from './options';

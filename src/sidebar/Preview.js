@@ -1,4 +1,4 @@
-import Monster from '@local/Monster';
+import Monster from '@local/common/Monster';
 import SidebarTile from './SidebarTile';
 import './styles/Preview.scss';
 

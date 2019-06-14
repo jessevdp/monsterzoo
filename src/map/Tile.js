@@ -1,6 +1,6 @@
 import { renderTemplate } from '@local/system';
+import Registry from '@local/common/Registry';
 import BaseTile from './BaseTile';
-import Registry from '../Registry';
 import './Tile.scss';
 
 export default class Tile extends BaseTile {

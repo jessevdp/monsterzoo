@@ -1,6 +1,6 @@
 import { Component, renderTemplate } from '@local/system';
-import Configurator from '@local/sidebar/Configurator';
-import Bin from '@local/sidebar/Bin';
+import Configurator from './Configurator';
+import Bin from './Bin';
 
 import './styles/Sidebar.scss';
 
