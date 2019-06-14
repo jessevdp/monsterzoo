@@ -13,6 +13,9 @@
 
     > .logo-container { grid-area: logo; }
     > .topbar-container { grid-area: topbar; }
-    > .sidebar-container { grid-area: sidebar; }
     > .main-container { grid-area: main; }
+    > .sidebar-container {
+        grid-area: sidebar;
+        overflow: hidden;
+    }
 }

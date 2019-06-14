@@ -1,0 +1,11 @@
+@import '~@local/styles/variables/spacing';
+
+.sidebar {
+    height: 100%;
+    overflow-y: auto;
+
+    hr {
+        margin-bottom: spacing(3);
+        border: 1px solid var(--ui-contrast-tertiary);
+    }
+}

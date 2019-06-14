@@ -5,8 +5,8 @@ import Monster from '@local/Monster';
 
 import Preview from './Preview';
 import options from './options';
-import template from './Configurator.template.html';
-import './Configurator.scss';
+import template from './templates/Configurator.template.html';
+import './styles/Configurator.scss';
 
 export default class Configurator extends Component {
     constructor() {
