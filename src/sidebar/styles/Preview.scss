@@ -1,0 +1,19 @@
+.sidebar-tile {
+    .preview--placeholder {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        svg {
+            height: 50%;
+            width: 50%;
+            fill: var(--ui-contrast-tertiary);
+        }
+    }
+
+    &.hover .preview--placeholder svg {
+        fill: var(--ui-contrast-secondary);
+    }
+}
