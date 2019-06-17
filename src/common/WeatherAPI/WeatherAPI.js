@@ -31,6 +31,9 @@ export default class WeatherAPI {
         if (!subscriptions) return;
         const index = subscriptions.handlers.indexOf(handler);
         if (index > -1) subscriptions.handlers.splice(index, 1);
+        if (subscriptions.handlers.length <= 0 ) {
+            delete this._subscriptions[city.id];
+        }
     }
 
     async fetchForSubscriptions() {
