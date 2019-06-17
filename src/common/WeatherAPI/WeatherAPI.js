@@ -1,7 +1,7 @@
 import WeatherCondition from './WeatherCondition';
 import ReferenceCity from './ReferenceCity';
 
-const subscriptionTimeout = 30000;
+const subscriptionTimeout = 60000;
 
 export default class WeatherAPI {
     constructor(key) {
