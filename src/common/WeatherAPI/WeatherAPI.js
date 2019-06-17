@@ -22,6 +22,8 @@ export default class WeatherAPI {
     subscribeToWeatherForCity(city, handler) {
         if (!this._subscriptions[city.id]) this._subscriptions[city.id] = { handlers: [] };
         this._subscriptions[city.id].handlers.push(handler);
+        this.fetchWeatherForCity(city)
+            .then(weather => handler(weather));
     }
 
     unsubscribeFromWeatherForCity(city, handler) {
