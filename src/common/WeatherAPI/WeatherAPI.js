@@ -20,20 +20,34 @@ export default class WeatherAPI {
     }
 
     subscribeToWeatherForCity(city, handler) {
-        if (!this._subscriptions[city.id]) this._subscriptions[city.id] = [];
-        this._subscriptions[city.id].push(handler);
+        if (!this._subscriptions[city.id]) this._subscriptions[city.id] = { handlers: [] };
+        this._subscriptions[city.id].handlers.push(handler);
     }
 
     async fetchForSubscriptions() {
-        const entries = Object.entries(this._subscriptions);
-        for (const [cityId, handlers] of entries) {
+        for (const [cityId, subscription] of Object.entries(this._subscriptions)) {
             const city = ReferenceCity.fromID(cityId);
-            const weather = await this.fetchWeatherForCity(city);
-            handlers.forEach(handler => handler(weather));
+
+            let weather;
+            try {
+                weather = await this.fetchWeatherForCity(city);
+            } catch (e) { return; }
+
+            if (hasChanged(subscription.previous, weather)) {
+                subscription.handlers.forEach(handler => handler(weather));
+            }
+            subscription.previous = weather;
         }
     }
 
     cleanup() {
         if (this._interval) window.clearInterval(this._interval);
     }
+}
+
+function hasChanged(previous, weather) {
+    if (!previous) return true;
+    if (previous.temperature !== weather.temperature) return true;
+    if (previous.condition.name !== weather.condition.name) return true;
+    return false;
 }
