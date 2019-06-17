@@ -24,6 +24,13 @@ export default class WeatherAPI {
         this._subscriptions[city.id].handlers.push(handler);
     }
 
+    unsubscribeFromWeatherForCity(city, handler) {
+        const subscriptions = this._subscriptions[city.id];
+        if (!subscriptions) return;
+        const index = subscriptions.handlers.indexOf(handler);
+        if (index > -1) subscriptions.handlers.splice(index, 1);
+    }
+
     async fetchForSubscriptions() {
         for (const [cityId, subscription] of Object.entries(this._subscriptions)) {
             const city = ReferenceCity.fromID(cityId);
