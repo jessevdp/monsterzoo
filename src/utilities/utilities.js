@@ -8,6 +8,7 @@ import {
 } from './typecheck';
 
 import excludeProperties from './excludeProperties';
+import arrayEquals from './arrayEquals';
 
 const utilities = {
     isObject,
@@ -18,6 +19,7 @@ const utilities = {
     isFunction,
 
     excludeProperties,
+    arrayEquals,
 };
 
 export default utilities;
