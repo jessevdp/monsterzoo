@@ -9,7 +9,7 @@ if (!key) throw new Error('The API key for OpenWeatherMap has not been set. (OPE
 
 const options = {
     subscriptionInterval: config.openWeatherMap.subscriptionInterval || (60 * 1000),
-}
+};
 
 export default new WeatherAPI(key, options);
 export {

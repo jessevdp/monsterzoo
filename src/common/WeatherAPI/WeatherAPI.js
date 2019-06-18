@@ -3,7 +3,7 @@ import ReferenceCity from './ReferenceCity';
 
 const defaultOptions = {
     subscriptionInterval: (60 * 1000)
-}
+};
 
 export default class WeatherAPI {
     constructor(key, options = {}) {
