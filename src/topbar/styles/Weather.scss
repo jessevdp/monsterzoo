@@ -1,0 +1,8 @@
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/variables/ui-colors';
+
+.weather {
+    padding: spacing(2) calc(#{spacing(3)} - .5ch) spacing(2) spacing(3);
+    color: var(--ui-contrast-secondary);
+    line-height: 1;
+}
