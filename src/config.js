@@ -11,6 +11,7 @@ export default {
      * obtain an API key (free for limited use) here: https://openweathermap.org/appid.
      */
     openWeatherMap: {
-        apiKey: process.env.OPEN_WEATHER_MAP_API_KEY
+        apiKey: process.env.OPEN_WEATHER_MAP_API_KEY,
+        subscriptionInterval: process.env.OPEN_WEATHER_MAP_SUBSCRIPTION_INTERVAL,
     }
 };

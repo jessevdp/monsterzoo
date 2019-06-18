@@ -1,13 +1,16 @@
 import WeatherCondition from './WeatherCondition';
 import ReferenceCity from './ReferenceCity';
 
-const subscriptionTimeout = 60000;
+const defaultOptions = {
+    subscriptionInterval: (60 * 1000)
+}
 
 export default class WeatherAPI {
-    constructor(key) {
+    constructor(key, options = {}) {
+        options = {...defaultOptions, ...options};
         this._key = key;
         this._subscriptions = {};
-        this._interval = window.setInterval(this.fetchForSubscriptions.bind(this), subscriptionTimeout);
+        this._interval = window.setInterval(this.fetchForSubscriptions.bind(this), options.subscriptionInterval);
     }
 
     async fetchWeatherForCity(city) {
