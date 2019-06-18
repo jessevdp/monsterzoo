@@ -4,6 +4,7 @@ import {
     isString,
     isObject,
     isArray,
+    arrayEquals,
 } from '@local/utilities';
 
 export default class Component {
@@ -48,8 +49,7 @@ export default class Component {
     }
 
     afterDOMUpdate() {
-        cleanUpEffects(this);
-        runEffects(this);
+        refreshEffects(this);
     }
 
     /**
@@ -167,24 +167,30 @@ function registerDOMMutationObserver(component) {
     return observer;
 }
 
-function runEffects(component) {
+function refreshEffects(component) {
     if (!isFunction(component.effects)) return;
+    if (!isArray(component._effects)) component._effects = [];
 
-    const cleanup = [];
+    const effects = [];
 
-    function useEffect(effect) {
-        const result = effect();
-        if (isFunction(result)) cleanup.push(result);
+    function useEffect(effect, dependencies = []) {
+        const oldEffect = component._effects.filter(e => e.id === effect.toString()).shift();
+        if (isObject(oldEffect)) {
+            if (arrayEquals(dependencies, oldEffect.dependencies)) {
+                effects.push(oldEffect);
+                return;
+            }
+            if (isFunction(oldEffect.cleanup)) oldEffect.cleanup();
+        }
+        effects.push({
+            id: effect.toString(),
+            cleanup: effect(),
+            dependencies: dependencies,
+        });
     }
 
     component.effects(useEffect);
-    component._toCleanUp = cleanup;
-}
-
-function cleanUpEffects(component) {
-    if (isArray(component._toCleanUp)) {
-        component._toCleanUp.forEach(cleanup => cleanup());
-    }
+    component._effects = effects;
 }
 
 function registerEventListeners(component) {
