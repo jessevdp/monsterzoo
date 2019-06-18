@@ -2,7 +2,23 @@
 @import '~@local/styles/variables/ui-colors';
 
 .weather {
-    padding: spacing(2) calc(#{spacing(3)} - .5ch) spacing(2) spacing(3);
+    padding: spacing(2) calc(#{spacing(3)} - .5ch);// spacing(2) spacing(2);
     color: var(--ui-contrast-secondary);
     line-height: 1;
+
+    display: flex;
+    align-items: center;
+
+    .weather--icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            width: 1em;
+            fill: currentColor;
+        }
+    }
+    .weather--temperature {
+        margin-left: spacing(2);
+    }
 }
