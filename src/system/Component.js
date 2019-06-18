@@ -173,10 +173,14 @@ function refreshEffects(component) {
 
     const effects = [];
 
-    function useEffect(effect, dependencies = []) {
+    function useEffect(effect, dependencies = null) {
         const oldEffect = component._effects.filter(e => e.id === effect.toString()).shift();
         if (isObject(oldEffect)) {
-            if (arrayEquals(dependencies, oldEffect.dependencies)) {
+            if (
+                isArray(dependencies)
+                && isArray(oldEffect.dependencies)
+                && arrayEquals(dependencies, oldEffect.dependencies)
+            ) {
                 effects.push(oldEffect);
                 return;
             }
