@@ -18,7 +18,7 @@
         
         &:focus, &:hover {
             background: ui-background('700');
-            color: ui-contrast('700', 'secondary');
+            color: ui-contrast('700', 'primary');
         }
 
         &.selected {
