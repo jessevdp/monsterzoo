@@ -101,6 +101,12 @@ export default class Component {
     bind(property, otherComponent, otherProperty = property) {
         setupOneWayDataBinding(this, property, otherComponent, otherProperty);
         setupOneWayDataBinding(otherComponent, otherProperty, this, property);
+        if (this.state[property]) {
+            otherComponent.setState({ [otherProperty]: this.state[property] });
+        }
+        else if (otherComponent.state[otherProperty]) {
+            this.setState({ [property]: otherComponent.state[otherProperty] });
+        }
     }
 
     /**
