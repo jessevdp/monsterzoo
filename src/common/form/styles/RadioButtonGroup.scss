@@ -1,0 +1,34 @@
+@import '~@local/styles/variables/spacing';
+@import '~@local/styles/variables/ui-colors';
+@import '~@local/styles/variables/font-settings';
+@import '~@local/styles/mixins/form-reset';
+
+.radio-button-group {
+    display: flex;
+    font-size: $font-size-sm;
+
+    .radio-button-group__button {
+        @include button-reset;
+        padding: spacing(2) spacing(3);
+
+        background: ui-background('900');
+        color: ui-contrast('900', 'secondary');
+        cursor: pointer;
+        transition: all 150ms;
+        
+        &:focus, &:hover {
+            background: ui-background('700');
+            color: ui-contrast('700', 'secondary');
+        }
+
+        &.selected {
+            background: ui-background('white');
+            color: ui-contrast('white', 'primary');
+
+            &:focus, &:hover {
+                background: ui-background('300');
+                color: ui-contrast('300', 'primary');
+            }
+        }
+    }
+}
