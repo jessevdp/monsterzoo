@@ -8,7 +8,7 @@ const regions = {
     northPole: {
         name: 'North-pole',
     }
-}
+};
 
 const Region = {
     ...regions,
@@ -20,7 +20,7 @@ const Region = {
             .filter(region => region.name === name)
             .shift();
     }
-}
+};
 
 Object.freeze(Region);
 export default Region;
