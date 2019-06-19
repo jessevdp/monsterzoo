@@ -8,7 +8,6 @@ export default class RegionSelector extends RadioButtonGroup {
     }
 
     setState(state) {
-        
         if (state.hasOwnProperty('region')) {
             const name = state.region.name
             let value;
