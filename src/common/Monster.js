@@ -1,5 +1,5 @@
 import Tooltip from 'tooltip.js';
-import { Component, renderTemplate } from '@local/system';
+import { Component, renderTemplate, EventBus } from '@local/system';
 import Registry from '@local/common/Registry';
 import './styles/Monster.scss';
 
@@ -81,6 +81,10 @@ export default class Monster extends Component {
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('grow');
         }, 500);
+    }
+
+    moved() {
+        EventBus.emit('monster-moved');
     }
 }
 
