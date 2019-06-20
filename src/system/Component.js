@@ -82,10 +82,13 @@ export default class Component {
         const selector = args.pop();
         const query = `[data-component-id="${this.id}"] ${selector ? selector : ''}`;
         const options = { capture: true };
-
-        document.addEventListener(event, (e) => {
+        const listener = e => {
             if (containsElement(query, e.target)) handler(e);
-        }, options);
+        };
+        document.addEventListener(event, listener, options);
+
+        if (!isArray(this._listeners)) this._listeners = [];
+        this._listeners.push({ event, listener, options });
     }
 
     /**
@@ -130,6 +133,7 @@ export default class Component {
      */
     cleanup() {
         this._observer.disconnect();
+        removeEventListeners(this);
     }
 }
 
@@ -205,6 +209,10 @@ function refreshEffects(component) {
 
 function registerEventListeners(component) {
     if (isFunction(component.events)) component.events();
+}
+
+function removeEventListeners(component) {
+    if (isArray(component._listeners)) component._listeners.forEach(l => document.removeEventListener(l.event, l.listener, l.options));
 }
 
 function setupOneWayDataBinding(component, property, otherComponent, otherProperty) {
