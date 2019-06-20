@@ -25,7 +25,7 @@
             background: ui-background('white');
             color: ui-contrast('white', 'primary');
 
-            &:focus, &:hover {
+            &:focus {
                 background: ui-background('300');
                 color: ui-contrast('300', 'primary');
             }
