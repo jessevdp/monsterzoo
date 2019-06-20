@@ -5,6 +5,9 @@ import './styles/Monster.scss';
 
 import audioSource from '@local/assets/monster.mp3';
 
+const audio = new Audio(audioSource);
+audio.preload = 'auto';
+
 export default class Monster extends Component {
     constructor(attributes = {}) {
         super();
@@ -69,7 +72,6 @@ export default class Monster extends Component {
 
     activateAbility() {
         this.getHTMLElement().classList.add('special-ability');
-        const audio = new Audio(audioSource);
         audio.play();
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('special-ability');
