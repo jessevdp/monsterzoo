@@ -1,12 +1,11 @@
 import { Component, renderTemplate } from '@local/system';
 import Logo from './common/Logo';
+import Topbar from './topbar/Topbar';
 import Sidebar from './sidebar/Sidebar';
 import Map from './map/Map';
-import initialMapData from './map/initial-map.json';
 
 import template from './App.template.html';
 import './App.scss';
-
 
 export default class App extends Component {
     /**
@@ -17,9 +16,13 @@ export default class App extends Component {
         super();
         this.setState({
             logo: new Logo(),
+            topbar: new Topbar(),
             sidebar: new Sidebar(),
-            map: Map.fromData(initialMapData),
+            map: new Map(),
         });
+
+        this.bind('selectedRegion', this.state.topbar, 'region');
+        this.bind('selectedRegion', this.state.map, 'region');
     }
 
     view() {
@@ -29,6 +32,7 @@ export default class App extends Component {
     cleanup() {
         super.cleanup();
         this.state.logo.cleanup();
+        this.state.topbar.cleanup();
         this.state.sidebar.cleanup();
         this.state.map.cleanup();
     }
