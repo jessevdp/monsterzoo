@@ -30,6 +30,7 @@ export default class Map extends Component {
     load() {
         const data = MapStorage.get(this.state.region);
         const rows = parseMap(data);
+        cleanUpTiles(this);
         this.setState({ rows });
     }
 
@@ -42,7 +43,13 @@ export default class Map extends Component {
 
     cleanup() {
         super.cleanup();
-        this.state.rows
+        cleanUpTiles(this);
+    }
+}
+
+function cleanUpTiles(map) {
+    if (isArray(map.state.rows)) {
+        map.state.rows
             .reduce((all, row) => all.concat(row), [])
             .forEach(tile => tile.cleanup());
     }
