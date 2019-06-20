@@ -5,9 +5,9 @@ import northPole from './northPole.json';
 
 export default function initialMap(region) {
     switch (region) {
-        case Region.jungle: return jungle;
-        case Region.desert: return desert;
-        case Region.northPole: return northPole;
-        default: return jungle;
+    case Region.jungle: return jungle;
+    case Region.desert: return desert;
+    case Region.northPole: return northPole;
+    default: return jungle;
     }
 }
