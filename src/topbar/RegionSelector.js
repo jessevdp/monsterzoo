@@ -5,6 +5,7 @@ export default class RegionSelector extends RadioButtonGroup {
     constructor() {
         const regions = Region.getAll().map(region => region.name);
         super('region', regions);
+        loadRegionFromStorage(this);
     }
 
     setState(state) {
@@ -22,4 +23,14 @@ export default class RegionSelector extends RadioButtonGroup {
             region: Region.fromName(this.state.value),
         });
     }
+
+    effects(useEffect) {
+        useEffect(() => localStorage.setItem('region', this.value));
+    }
+}
+
+function loadRegionFromStorage(regionSelector) {
+    const storedValue = localStorage.getItem('region');
+    const region = Region.fromName(storedValue);
+    if (region) regionSelector.value = region.name;
 }
