@@ -1,5 +1,5 @@
 import Monster from '@local/common/Monster';
-import initialMapData from './initial-map.json';
+import initialMap from './initialMap';
 
 class MapStorage {
     async put(region, map) {
@@ -11,7 +11,7 @@ class MapStorage {
         const key = storageKey(region);
         const data = localStorage.getItem(key);
         if (data) return JSON.parse(data);
-        else return initialMapData;
+        else return initialMap(region);
     }
 }
 
