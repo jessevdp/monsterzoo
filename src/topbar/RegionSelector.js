@@ -1,5 +1,5 @@
 import { RadioButtonGroup } from '@local/common/form';
-import Region from './Region';
+import Region from '@local/common/Region';
 
 export default class RegionSelector extends RadioButtonGroup {
     constructor() {
@@ -9,7 +9,7 @@ export default class RegionSelector extends RadioButtonGroup {
 
     setState(state) {
         if (state.hasOwnProperty('region')) {
-            const name = state.region.name
+            const name = state.region.name;
             let value;
             if (this.state.options.includes(name)) value = name;
             else value = this.state.options[0];
