@@ -3,6 +3,7 @@ import { isArray } from '@local/utilities';
 import Region from '@local/common/Region';
 import MapStorage from './MapStorage';
 import parseMap from './parseMap';
+import Background from './Background';
 
 import template from './Map.template.html';
 import './Map.scss';
@@ -10,13 +11,20 @@ import './Map.scss';
 export default class Map extends Component {
     constructor() {
         super();
-        this.setState({ region: Region.getAll()[0] });
+        this.setState({
+            region: Region.getAll()[0],
+            background: new Background(),
+        });
         this.load();
     }
 
     view() {
         const tiles = this.state.rows.reduce((all, row) => all.concat(row), []);
-        return renderTemplate(template, { tiles, columns: this.state.rows[0].length });
+        return renderTemplate(template, {
+            tiles,
+            columns: this.state.rows[0].length,
+            background: this.state.background
+        });
     }
 
     events() {
@@ -43,6 +51,7 @@ export default class Map extends Component {
 
     cleanup() {
         super.cleanup();
+        this.state.background.cleanup();
         cleanUpTiles(this);
     }
 }
