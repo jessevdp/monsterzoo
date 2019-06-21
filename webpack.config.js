@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
 
     return {
         mode: production ? 'production' : 'development',
-        devtool: production ? 'nosources-source-map' : 'source-map',
+        devtool: production ? false : 'source-map',
         entry: {
             'base-styles': './src/styles/base.scss',
             'app': './src/index.js'

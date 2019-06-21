@@ -1,9 +1,12 @@
 import Tooltip from 'tooltip.js';
-import { Component, renderTemplate } from '@local/system';
+import { Component, renderTemplate, EventBus } from '@local/system';
 import Registry from '@local/common/Registry';
 import './styles/Monster.scss';
 
 import audioSource from '@local/assets/monster.mp3';
+
+const audio = new Audio(audioSource);
+audio.preload = 'auto';
 
 export default class Monster extends Component {
     constructor(attributes = {}) {
@@ -69,7 +72,6 @@ export default class Monster extends Component {
 
     activateAbility() {
         this.getHTMLElement().classList.add('special-ability');
-        const audio = new Audio(audioSource);
         audio.play();
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('special-ability');
@@ -81,6 +83,10 @@ export default class Monster extends Component {
         window.setTimeout(() => {
             this.getHTMLElement().classList.remove('grow');
         }, 500);
+    }
+
+    moved() {
+        EventBus.emit('monster-moved');
     }
 }
 

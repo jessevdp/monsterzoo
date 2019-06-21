@@ -46,7 +46,7 @@ export default class Select extends Component {
 
     set value(value) {
         this.setState(state => {
-            if (state.options.includes(value))return { value };
+            if (state.options.includes(value)) return { value };
             else throw new RangeError(); 
         });
     }
