@@ -1,8 +1,9 @@
+import { excludeProperties } from '@local/utilities';
 import Monster from '@local/common/Monster';
 import initialMap from './initialMap';
 
 class MapStorage {
-    async put(region, map) {
+    put(region, map) {
         const key = storageKey(region);
         const data = prepareMapForStorage(map);
         localStorage.setItem(key, JSON.stringify(data));
@@ -19,7 +20,9 @@ function prepareMapForStorage(mapData) {
     return mapData.map(row => {
         return row.map(tile =>  {
             const data = { class: tile.constructor.name };
-            if (tile.state.monster instanceof Monster) data.monster = tile.state.monster.state;
+            if (tile.state.monster instanceof Monster) {
+                data.monster = excludeProperties(['region', 'weather'], tile.state.monster.state);
+            }
             return data;
         });
     });

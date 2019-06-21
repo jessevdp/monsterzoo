@@ -1,5 +1,6 @@
 import { Component, renderTemplate } from '@local/system';
 import RegionSelector from './RegionSelector';
+import Weather from './Weather';
 
 import './styles/Topbar.scss';
 
@@ -7,16 +8,24 @@ export default class Topbar extends Component {
     constructor() {
         super();
         this.regionSelector = new RegionSelector();
-        this.bind('region', this.regionSelector);
+        this.weather = new Weather();
     }
 
     view() {
-        const template = '<div class="topbar">{{{ region }}}</div>';
-        return renderTemplate(template, { region: this.regionSelector });
+        const template = ''
+        + '<div class="topbar">'
+            + '{{{ weather }}}'
+            + '{{{ region }}}'
+        + '</div>';
+        return renderTemplate(template, {
+            region: this.regionSelector,
+            weather: this.weather,
+        });
     }
 
     cleanup() {
         super.cleanup();
         this.regionSelector.cleanup();
+        this.weather.cleanup();
     }
 }
