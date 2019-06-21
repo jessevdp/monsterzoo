@@ -4,6 +4,7 @@ import Sidebar from './sidebar/Sidebar';
 import renderTemplate from '@local/system/renderTemplate';
 
 jest.mock('@local/system/renderTemplate');
+jest.mock('@local/common/WeatherAPI/');
 
 describe('view', () => {
     it('passes a Logo to renderTemplate', () => {
