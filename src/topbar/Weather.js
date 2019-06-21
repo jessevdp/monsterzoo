@@ -4,11 +4,6 @@ import WeatherIcon from './WeatherIcon';
 import './styles/Weather.scss';
 
 export default class Weather extends Component {
-    constructor(city) {
-        super();
-        this.setState({ city });
-    }
-
     view() {
         const icon = this.getConditionIcon();
         const template = ''
@@ -42,10 +37,11 @@ export default class Weather extends Component {
     }
 
     effects(useEffect) {
-        useEffect(() => {
+        if (this.state.region) useEffect(() => {
+            const city = this.state.region.referenceCity;
             const handler = weather => this.setState(weather);
-            WeatherAPI.subscribeToWeatherForCity(this.state.city, handler);
-            return () => WeatherAPI.unsubscribeFromWeatherForCity(this.state.city, handler);
-        }, [this.state.city]);
+            WeatherAPI.subscribeToWeatherForCity(city, handler);
+            return () => WeatherAPI.unsubscribeFromWeatherForCity(city, handler);
+        }, [this.state.region.id]);
     }
 }
