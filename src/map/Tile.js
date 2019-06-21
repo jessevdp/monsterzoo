@@ -36,10 +36,11 @@ export default class Tile extends BaseTile {
         });
     }
 
-    placeMonster(monster) {
+    placeMonster(monster, alertMonster = true) {
         if (monster.tile) monster.tile.removeMonster();
         monster.tile = this;
         super.setState({ monster });
+        if (alertMonster) monster.moved();
         this.notifyNeighbors();
     }
 

@@ -1,0 +1,26 @@
+[
+    [
+        { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Obstacle" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Tile" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Obstacle" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Tile" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Tile" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Tile" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Obstacle" }, { "class": "Obstacle" }, { "class": "Tile" }
+    ],
+    [
+        { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Obstacle" }, { "class": "Tile" }, { "class": "Tile" }, { "class": "Tile" }
+    ]
+]
