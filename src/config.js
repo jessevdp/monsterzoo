@@ -12,6 +12,6 @@ export default {
      */
     openWeatherMap: {
         apiKey: process.env.OPEN_WEATHER_MAP_API_KEY,
-        subscriptionInterval: process.env.OPEN_WEATHER_MAP_SUBSCRIPTION_INTERVAL,
+        subscriptionInterval: Number(process.env.OPEN_WEATHER_MAP_SUBSCRIPTION_INTERVAL),
     }
 };
