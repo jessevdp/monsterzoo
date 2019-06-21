@@ -29,15 +29,15 @@ export default class Weather extends Component {
         if (!this.state.condition) return WeatherIcon.noData;
 
         switch (this.state.condition.id) {
-            case 1: return WeatherIcon.sun;
-            case 2: return WeatherIcon.cloudSun;
-            case 3: return WeatherIcon.cloud;
-            case 4: return WeatherIcon.rain;
-            case 5: return WeatherIcon.showers;
-            case 6: return WeatherIcon.lightning;
-            case 7: return WeatherIcon.snow;
-            case 8: return WeatherIcon.mist;
-            default: return WeatherIcon.noData;
+        case 1: return WeatherIcon.sun;
+        case 2: return WeatherIcon.cloudSun;
+        case 3: return WeatherIcon.cloud;
+        case 4: return WeatherIcon.rain;
+        case 5: return WeatherIcon.showers;
+        case 6: return WeatherIcon.lightning;
+        case 7: return WeatherIcon.snow;
+        case 8: return WeatherIcon.mist;
+        default: return WeatherIcon.noData;
         }
     }
 
