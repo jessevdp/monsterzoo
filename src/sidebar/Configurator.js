@@ -55,6 +55,7 @@ export default class Configurator extends Component {
         if (state.monster instanceof Monster) {
             const attributes = state.monster.state;
             state = { ...state, ...attributes };
+            state = excludeProperties(['region', 'weather'], state);
             super.setState(state);
         }
         else {
