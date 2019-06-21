@@ -1,9 +1,16 @@
 import { Component, renderTemplate } from '@local/system';
 import WeatherAPI from '@local/common/WeatherAPI';
+import CentralStore from '@local/common/CentralStore';
+
 import WeatherIcon from './WeatherIcon';
 import './styles/Weather.scss';
 
 export default class Weather extends Component {
+    constructor() {
+        super();
+        this.bind('region', CentralStore);
+    }
+
     view() {
         const icon = this.getConditionIcon();
         const template = ''

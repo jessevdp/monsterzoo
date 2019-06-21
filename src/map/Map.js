@@ -1,6 +1,7 @@
 import { Component, renderTemplate, EventBus } from '@local/system';
 import { isArray } from '@local/utilities';
-import Region from '@local/common/Region';
+import CentralStore from '@local/common/CentralStore';
+
 import MapStorage from './MapStorage';
 import parseMap from './parseMap';
 
@@ -10,7 +11,7 @@ import './Map.scss';
 export default class Map extends Component {
     constructor() {
         super();
-        this.setState({ region: Region.getAll()[0] });
+        this.bind('region', CentralStore);
         this.load();
     }
 

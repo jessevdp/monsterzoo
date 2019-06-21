@@ -9,8 +9,6 @@ export default class Topbar extends Component {
         super();
         this.regionSelector = new RegionSelector();
         this.weather = new Weather();
-        this.bind('region', this.regionSelector);
-        this.bind('region', this.weather);
     }
 
     view() {

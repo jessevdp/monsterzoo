@@ -1,11 +1,13 @@
 import { RadioButtonGroup } from '@local/common/form';
 import Region from '@local/common/Region';
+import CentralStore from '@local/common/CentralStore';
 
 export default class RegionSelector extends RadioButtonGroup {
     constructor() {
         const regions = Region.getAll().map(region => region.name);
         super('region', regions);
         loadRegionFromStorage(this);
+        this.bind('region', CentralStore);
     }
 
     setState(state) {
