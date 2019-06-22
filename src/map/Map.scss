@@ -2,10 +2,24 @@
 @import '~@local/styles/mixins/aspect-ratio-box';
 
 .map {
+    position: relative;
     box-sizing: border-box;
     display: grid;
     height: 100%;
     padding: spacing(4);
+
+    .map--background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        > * {
+            height: 100%;
+            width: 100%;
+        }
+    }
     
     > .map--container {
         @include square-ratio-box;
