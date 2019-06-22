@@ -44,7 +44,7 @@ function backgroundEffect() {
     }
     
     updateTwoSize(this.two, this.state);
-    executeBackground(this.two);
+    executeBackground(this.two, this.state);
 
     return () => {
         this.two.clear();
@@ -67,16 +67,16 @@ function updateTwoSize(two, state) {
     two.width = state.width;
 }
 
-function executeBackground(two) {
+function executeBackground(two, state) {
     two.clear();
     two.unbind();
-    draw(two);
+    draw(two, state);
     two.update();
 }
 
 let theta = 0;
 
-function draw(two) {
+function draw(two, state) {
     const amplitude = two.height / 16;
     const velocity = Math.PI / 200;
 
@@ -86,9 +86,20 @@ function draw(two) {
     const water = two.makeRectangle(x, y, two.width * 1.25, two.height * 0.25);
     water.linewidth = 40;
     water.subdivide(32);
-    water.stroke = 'rgba(222, 240, 216, .5)';
-    water.fill = '#CFE6D0';
 
+    if (state.region.id === 1) {
+        water.stroke = 'rgba(222, 240, 216, .5)';
+        water.fill = '#CFE6D0';
+    }
+    else if (state.region.id === 2) {
+        water.stroke = 'rgba(240, 231, 204, .5)';
+        water.fill = '#E8DFC5';
+    }
+    else {
+        water.stroke = 'rgba(218, 240, 242, .5)';
+        water.fill = '#D1E5E8';
+    }
+   
     for (let i = 0; i < water.vertices.length; i++) {
         const vertex = water.vertices[i];
         vertex.origin = new Two.Vector().copy(vertex);
