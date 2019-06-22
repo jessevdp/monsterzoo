@@ -1,5 +1,6 @@
 import { excludeProperties } from '@local/utilities';
 import Monster from '@local/common/Monster';
+import Tile from '@local/map/Tile';
 import initialMap from './initialMap';
 
 class MapStorage {
@@ -19,7 +20,7 @@ class MapStorage {
 function prepareMapForStorage(mapData) {
     return mapData.map(row => {
         return row.map(tile =>  {
-            const data = { class: tile.constructor.name };
+            const data = { class: tile instanceof Tile ? 'Tile' : 'Obstacle' };
             if (tile.state.monster instanceof Monster) {
                 data.monster = excludeProperties(['region', 'weather'], tile.state.monster.state);
             }
