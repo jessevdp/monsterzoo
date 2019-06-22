@@ -20,9 +20,6 @@ export default class App extends Component {
             sidebar: new Sidebar(),
             map: new Map(),
         });
-
-        this.bind('selectedRegion', this.state.topbar, 'region');
-        this.bind('selectedRegion', this.state.map, 'region');
     }
 
     view() {

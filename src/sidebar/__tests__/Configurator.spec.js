@@ -2,7 +2,7 @@ import { Component } from '@local/system';
 import Monster from "@local/common/Monster";
 import Configurator from "../Configurator";
 
-
+jest.mock('@local/common/WeatherAPI/');
 
 const monsterAttributes = {
     name: 'name',

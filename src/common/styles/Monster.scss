@@ -92,6 +92,13 @@
                 font-size: .6em;
                 text-transform: uppercase;
                 color: var(--ui-contrast-secondary);
+
+                .stats--power--percentage {
+                    background: ui-background('black');
+                    color: ui-contrast('black', 'secondary');
+                    margin-left: spacing(1);
+                    padding: spacing(1);
+                }
             }
         }
 
