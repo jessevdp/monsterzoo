@@ -12,6 +12,7 @@ import './Map.scss';
 export default class Map extends Component {
     constructor() {
         super();
+        this.setState({ background: new Background() });
         this.bind('region', CentralStore);
         this.load();
     }
