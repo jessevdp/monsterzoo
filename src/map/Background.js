@@ -1,56 +1,70 @@
 import Two from 'two.js';
 import { Component } from '@local/system';
+import CentralStore from '@local/common/CentralStore';
 
 export default class Background extends Component {
+    constructor() {
+        super();
+        this.bind('region', CentralStore);
+    }
+
     view() {
         return '<div class="background"></div>';
     }
 
     effects(useEffect) {
-        useEffect(() => {
-            if (!this.two) {
-                const $el = this.getHTMLElement();
-                this.two = new Two({
-                    height: $el.clientHeight,
-                    width: $el.clientWidth,
-                    autostart: true,
-                });
-                this.two.appendTo($el);
-            }
-            executeBackground(this.two);
-            return () => {
-                this.two.clear();
-                this.two.unbind();
-                this.two = null;
-            }
-        });
+        useEffect(() => this.setSize());
+        useEffect(backgroundEffect.bind(this), [this.state.width, this.state.height, this.state.region]);
     }
 
     events() {
-        this._resize = window.addEventListener('resize', () => {
-            if (this.two) {
-                const $two = this.getHTMLElement('svg');
-                const $el = this.getHTMLElement();
-                const oldHeight = $two.clientHeight;
-                const oldWidth = $two.clientWidth;
-                const newHeight = $el.clientHeight; 
-                const newWidth = $el.clientWidth;
+        this._resize = window.addEventListener('resize', this.setSize.bind(this));
+    }
 
-                if (oldHeight === newHeight && oldWidth === newWidth) return;
-
-                this.two.renderer.setSize(newWidth, newHeight);
-                this.two.height = newHeight;
-                this.two.width = newWidth;
-
-                executeBackground(this.two);
-            }
-        });
+    setSize() {
+        const $el = this.getHTMLElement();
+        const oldHeight = this.state.height;
+        const oldWidth = this.state.width;
+        const height = $el.clientHeight; 
+        const width = $el.clientWidth;
+        if (oldHeight !== height || oldWidth !== width) this.setState({ height, width });
     }
 
     cleanup() {
         super.cleanup();
         if (this._resize) window.removeEventListener('resize', this._resize);
     }
+}
+
+function backgroundEffect() {
+    if (!this.two) {
+        const $el = this.getHTMLElement();
+        this.two = createTwo($el);
+        this.two.appendTo($el);
+    }
+    
+    updateTwoSize(this.two, this.state);
+    executeBackground(this.two);
+
+    return () => {
+        this.two.clear();
+        this.two.unbind();
+        this.two = null;
+    };
+}
+
+function createTwo($el) {
+    return new Two({
+        height: $el.clientHeight,
+        width: $el.clientWidth,
+        autostart: true,
+    });
+}
+
+function updateTwoSize(two, state) {
+    two.renderer.setSize(state.width, state.height);
+    two.height = state.height;
+    two.width = state.width;
 }
 
 function executeBackground(two) {
