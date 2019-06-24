@@ -9,3 +9,7 @@ Hi there and welcome to  Monsterzoo. This project is for a school assignment. Th
 #### 📄 Case
 
 The company Monsters 'n Madness had given me an assignment—to create an interface using which different monsters can be configured and placed within a region of their zoo. The monsters have different attributes that can be configured such as: skin, arms, legs, etc. The company had a (very) limited amount of time.
+
+## 👀 Design
+
+<img width="1440" alt="Screenshot 2019-06-24 at 21 17 41" src="https://user-images.githubusercontent.com/15139826/60051493-69df0480-96d3-11e9-82fc-0cc51a966793.png">
