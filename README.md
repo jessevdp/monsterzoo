@@ -4,7 +4,7 @@
 
 <h2></h2>
 
-Hi there and welcome to  Monsterzoo. This project is for a school assignment. The purpose of this project was to demonstrate that I could build a front-end JavaScript application, without the use of large frameworks like React, Vue, or Angular. Other than a case describing the funciton of the application, I had to start from scratch—building up the structure of the project.
+Hi there and welcome to  Monsterzoo. This project is for a school assignment. The purpose of this project was to demonstrate that I could build a front-end JavaScript application, without the use of large frameworks like React, Vue, or Angular. Other than a case describing the different features of the application, I had to start from scratch—building up the structure of the project.
 
 #### 📄 Case
 
